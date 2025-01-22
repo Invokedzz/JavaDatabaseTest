@@ -5,6 +5,7 @@ import src.model.entities.*;
 import src.model.services.*;
 
 import src.util.*;
+import src.validation.CheckProducts;
 
 public class Program {
 
@@ -24,7 +25,7 @@ public class Program {
 
         Product productChecked = check.validateProduct(product, predicate);
 
-        InsertElementsOnDatabase insert = new InsertElementsOnDatabase();
+        ProductTable insert = new ProductTable();
 
         insert.insert(productChecked);
 

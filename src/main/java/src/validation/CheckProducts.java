@@ -1,4 +1,4 @@
-package src.model.services;
+package src.validation;
 
 import src.exceptions.ProductException;
 

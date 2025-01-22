@@ -8,7 +8,7 @@ import src.model.entities.Product;
 
 import java.sql.*;
 
-public class InsertElementsOnDatabase implements InsertContract {
+public class ProductTable implements DatabaseContract {
 
     @Override
     public void insert (Product product) {
@@ -48,5 +48,9 @@ public class InsertElementsOnDatabase implements InsertContract {
 
     }
 
+    @Override
+    public void display () {
+
+    }
 
 }
