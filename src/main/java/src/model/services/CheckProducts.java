@@ -24,9 +24,9 @@ public class CheckProducts {
 
     }
 
-    public Product validateProduct (ProductPredicate predicate) {
+    public Product validateProduct (Product product, ProductPredicate predicate) {
 
-        if (predicate.test(getProduct())) return getProduct();
+        if (predicate.test(getProduct())) return product;
 
         throw new ProductException("Enter a valid product!");
 

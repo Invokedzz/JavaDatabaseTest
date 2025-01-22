@@ -22,17 +22,17 @@ public class InsertElementsOnDatabase implements InsertContract {
             connection = DB.getConnection();
 
             statement = connection.prepareStatement(
-                    "INSERT INTO Product " +
-                            "(name, price, category_id) "
-                            + "VALUES " + "(?, ?, ?)" );
+                    "INSERT INTO public.\"Product\" "
+                            + "(name, price) "
+                            + "VALUES (?, ?)" );
 
             statement.setString(1, product.getName());
 
             statement.setDouble(2, product.getPrice());
 
-            statement.setInt(3, product.getCategory().getId());
+            int rows = statement.executeUpdate();
 
-            statement.executeUpdate();
+            System.out.printf("Rows Affected: %s", rows);
 
         } catch ( SQLException exception ) {
 

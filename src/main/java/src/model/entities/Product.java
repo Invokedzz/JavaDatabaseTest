@@ -12,15 +12,13 @@ public class Product {
 
     public Product () {}
 
-    public Product ( Integer id, String name, Double price, Category category ) {
+    public Product ( Integer id, String name, Double price ) {
 
         this.id = id;
 
         this.name = name;
 
         this.price = price;
-
-        this.category = category;
 
     }
 
