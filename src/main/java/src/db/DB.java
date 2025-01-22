@@ -82,6 +82,20 @@ public class DB {
 
     }
 
+    public static void closeConnections (Connection connection) {
+
+        try {
+
+            if (connection != null) connection.close();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+    }
+
     public static void closeResult (ResultSet resultSet) {
 
         try {
