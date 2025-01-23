@@ -1,10 +1,12 @@
-package src.model.services;
+package src.model.services.ProdServices;
 
 import src.db.DB;
 
 import src.db.DbException;
 
 import src.model.entities.ProdEntities.Product;
+
+import src.model.services.DatabaseContract;
 
 import java.sql.*;
 

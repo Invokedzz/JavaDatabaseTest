@@ -4,7 +4,8 @@ import src.model.entities.ProdEntities.Category;
 
 import src.model.entities.ProdEntities.Product;
 
-import src.model.services.*;
+import src.model.services.ProdServices.CategoryTable;
+import src.model.services.ProdServices.ProductTable;
 
 public class Program {
 
@@ -24,7 +25,8 @@ public class Program {
 
         ProductTable prodTable = new ProductTable(product);
 
-        // fix the connection issue
+        // fix the connection issue -> fixed
+        // don't forget to validate each one of the database elements!
 
         //prodTable.insert();
 
