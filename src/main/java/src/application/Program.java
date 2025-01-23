@@ -5,29 +5,36 @@ import src.model.entities.*;
 import src.model.services.*;
 
 import src.util.*;
-import src.validation.CheckProducts;
+
+import src.validation.*;
 
 public class Program {
 
     public static void main (String[] args) {
 
-        runOperations();
+        runCategoryTable();
 
     }
 
-    private static void runOperations () {
+    private static void runCategoryTable () {
 
-        Product product = new Product( 0, "Ball", 50.0 );
+        Category cat = new Category(1, "Electronics", 1);
 
-        CheckProducts check = new CheckProducts(product);
+        CategoryTable catTable = new CategoryTable();
 
-        ProductPredicate predicate = ( prod ) -> !prod.getName().isEmpty() && prod.getPrice() > 0;
+        catTable.insert(cat);
 
-        Product productChecked = check.validateProduct(product, predicate);
+        runProductTable(cat);
 
-        ProductTable insert = new ProductTable();
+    }
 
-        insert.insert(productChecked);
+    private static void runProductTable (Category cat) {
+
+        Product product = new Product("Computer", 400.0, cat);
+
+        ProductTable prodTable = new ProductTable();
+
+        prodTable.insert(product);
 
     }
 

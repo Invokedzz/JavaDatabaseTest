@@ -1,10 +1,8 @@
 package src.model.entities;
 
-public class Category {
+public class Category extends Product {
 
     private Integer id;
-
-    private String name;
 
     private Integer tier;
 
@@ -12,9 +10,9 @@ public class Category {
 
     public Category ( Integer id, String name, Integer tier ) {
 
-        this.id = id;
+        super( name );
 
-        this.name = name;
+        this.id = id;
 
         this.tier = tier;
 
@@ -23,12 +21,6 @@ public class Category {
     public Integer getId () {
 
         return id;
-
-    }
-
-    public String getName () {
-
-        return name;
 
     }
 
@@ -41,7 +33,7 @@ public class Category {
     @Override
     public String toString () {
 
-        return getId() + " " + getName() + " " + getTier();
+        return  getName() + " " + getTier();
 
     }
 

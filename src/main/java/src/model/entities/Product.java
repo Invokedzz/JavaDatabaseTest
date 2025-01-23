@@ -2,8 +2,6 @@ package src.model.entities;
 
 public class Product {
 
-    private Integer id;
-
     private String name;
 
     private Double price;
@@ -12,31 +10,31 @@ public class Product {
 
     public Product () {}
 
-    public Product ( Integer id, String name, Double price ) {
+    public Product ( String name ) {
 
-        this.id = id;
+        this.name = name;
+
+    }
+
+    public Product (String name, Double price, Category category) {
 
         this.name = name;
 
         this.price = price;
 
-    }
-
-    public Integer getId () {
-
-        return id;
-
-    }
-
-    public Double getPrice () {
-
-        return price;
+        this.category = category;
 
     }
 
     public String getName () {
 
         return name;
+
+    }
+
+    public Double getPrice () {
+
+        return price;
 
     }
 
@@ -49,8 +47,7 @@ public class Product {
     @Override
     public String toString () {
 
-        return getId() + " " + getName() + " "
-                + getPrice() + " " + getCategory();
+        return getName() + " " + getPrice();
 
     }
 

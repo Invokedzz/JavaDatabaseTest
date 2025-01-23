@@ -22,13 +22,18 @@ public class ProductTable implements DatabaseContract {
             connection = DB.getConnection();
 
             statement = connection.prepareStatement(
+
                     "INSERT INTO public.\"Product\" "
-                            + "(name, price) "
-                            + "VALUES (?, ?)" );
+                            + "(name, price, id_category) "
+                            + "VALUES (?, ?, ?)"
+
+            );
 
             statement.setString(1, product.getName());
 
             statement.setDouble(2, product.getPrice());
+
+            statement.setInt(3, product.getCategory().getId());
 
             int rows = statement.executeUpdate();
 
