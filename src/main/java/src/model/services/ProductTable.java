@@ -64,6 +64,46 @@ public class ProductTable implements DatabaseContract {
     @Override
     public void display () {
 
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+
+                    "SELECT * FROM public.\"Product\""
+
+            );
+
+            ResultSet set = statement.executeQuery();
+
+            while (set.next()) {
+
+                String name = set.getString("name");
+
+                double price = set.getDouble("price");
+
+                int id_category = set.getInt("id_category");
+
+                System.out.println(name + " " + price + " " + id_category);
+
+            }
+
+        } catch (SQLException exception) {
+
+            System.out.println(exception.getMessage());
+
+        } finally {
+
+            DB.closeConnections(connection);
+
+            DB.closeStatements(statement);
+
+        }
+
     }
 
 }

@@ -1,4 +1,4 @@
 package src.model.entities.UserEntities;
 
-public class Admin {
+public class Admin extends User {
 }

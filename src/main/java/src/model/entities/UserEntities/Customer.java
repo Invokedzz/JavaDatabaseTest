@@ -1,4 +1,4 @@
 package src.model.entities.UserEntities;
 
-public class Customer {
+public class Customer extends User {
 }

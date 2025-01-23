@@ -1,7 +1,9 @@
 package src.application;
 
 import src.model.entities.ProdEntities.Category;
+
 import src.model.entities.ProdEntities.Product;
+
 import src.model.services.*;
 
 public class Program {
@@ -18,17 +20,19 @@ public class Program {
 
         Product product = new Product("Mouse", 50.0, cat);
 
-        System.out.println(product.getCategory());
-
-        //CategoryTable catTable = new CategoryTable(cat);
+        CategoryTable catTable = new CategoryTable(cat);
 
         ProductTable prodTable = new ProductTable(product);
 
         // fix the connection issue
 
-        prodTable.insert();
+        //prodTable.insert();
 
         //catTable.insert();
+
+        //catTable.display();
+
+        prodTable.display();
 
 
     }

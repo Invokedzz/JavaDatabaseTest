@@ -68,6 +68,44 @@ public class CategoryTable implements DatabaseContract {
     @Override
     public void display () {
 
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+
+                    "SELECT * FROM public.\"Category\""
+
+            );
+
+            ResultSet set = statement.executeQuery();
+
+            while (set.next()) {
+
+                String name = set.getString("name");
+
+                int tier = set.getInt("tier");
+
+                System.out.println(name + " " + tier);
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeStatements(statement);
+
+            DB.closeConnections(connection);
+
+        }
+
     }
 
 }
