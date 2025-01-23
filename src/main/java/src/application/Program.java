@@ -12,30 +12,30 @@ public class Program {
 
     public static void main (String[] args) {
 
-        runCategoryTable();
+        runTables();
 
     }
 
-    private static void runCategoryTable () {
+    private static void runTables () {
 
         Category cat = new Category(1, "Electronics", 1);
 
-        CategoryTable catTable = new CategoryTable();
+        Product product = new Product("Mouse", 50.0, cat);
 
-        catTable.insert(cat);
+        System.out.println(product.getCategory());
 
-        runProductTable(cat);
+        //CategoryTable catTable = new CategoryTable(cat);
+
+        ProductTable prodTable = new ProductTable(product);
+
+        // fix the connection issue
+
+        prodTable.insert();
+
+        //catTable.insert();
+
 
     }
 
-    private static void runProductTable (Category cat) {
-
-        Product product = new Product("Computer", 400.0, cat);
-
-        ProductTable prodTable = new ProductTable();
-
-        prodTable.insert(product);
-
-    }
 
 }

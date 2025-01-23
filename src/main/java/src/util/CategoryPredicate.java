@@ -8,6 +8,6 @@ import java.util.function.Predicate;
 public interface CategoryPredicate extends Predicate <Category> {
 
     @Override
-    boolean test (Category category);
+    boolean test (Category cat);
 
 }

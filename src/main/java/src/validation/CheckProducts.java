@@ -8,25 +8,9 @@ import src.util.ProductPredicate;
 
 public class CheckProducts {
 
-    private Product product;
+    public Product validateProduct (Product prod, ProductPredicate predicate) {
 
-    public CheckProducts () {}
-
-    public CheckProducts (Product product) {
-
-        this.product = product;
-
-    }
-
-    public Product getProduct () {
-
-        return product;
-
-    }
-
-    public Product validateProduct (Product product, ProductPredicate predicate) {
-
-        if (predicate.test(getProduct())) return product;
+        if (predicate.test(prod)) return prod;
 
         throw new ProductException("Enter a valid product!");
 

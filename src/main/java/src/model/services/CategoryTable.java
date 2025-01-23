@@ -11,8 +11,22 @@ import java.sql.*;
 
 public class CategoryTable implements DatabaseContract {
 
+    private Category category;
+
+    public CategoryTable () {}
+
+    public CategoryTable (Category category) {
+
+        this.category = category;
+
+    }
+
+    // Name: Electronics, tier: 1
+    //  Name: Tools, tier: 2
+    // Name: Clothes, tier: 3
+
     @Override
-    public void insert (Product product) {
+    public void insert () {
 
         Connection connection = null;
 
@@ -24,15 +38,15 @@ public class CategoryTable implements DatabaseContract {
 
             statement = connection.prepareStatement(
 
-                    "INSERT INTO public.\"category\" " +
-                            "(name, tier) "
+                    "INSERT INTO public.\"Category\" "
+                            + "(name, tier) "
                             + "VALUES (?, ?)"
 
             );
 
-            statement.setString(1, product.getCategory().getName());
+            statement.setString(1, category.getName());
 
-            statement.setInt(2, product.getCategory().getTier());
+            statement.setInt(2, category.getTier());
 
             int rows = statement.executeUpdate();
 

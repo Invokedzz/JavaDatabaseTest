@@ -8,25 +8,9 @@ import src.util.CategoryPredicate;
 
 public class CheckCategories {
 
-    private Category category;
+    public Category validateCategory (Category cat, CategoryPredicate predicate) {
 
-    public CheckCategories () {}
-
-    public CheckCategories (Category category) {
-
-        this.category = category;
-
-    }
-
-    public Category getCategory () {
-
-        return category;
-
-    }
-
-    public Category validateCategory (Category category, CategoryPredicate predicate) {
-
-        if (predicate.test(category)) return category;
+        if (predicate.test(cat)) return cat;
 
         throw new CategoryException("Enter a valid category for your product!");
 

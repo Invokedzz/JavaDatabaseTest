@@ -4,7 +4,7 @@ import src.model.entities.Product;
 
 public interface DatabaseContract {
 
-    void insert ( Product product );
+    void insert ();
 
     void display ();
 
