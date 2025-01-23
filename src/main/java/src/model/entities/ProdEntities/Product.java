@@ -1,4 +1,4 @@
-package src.model.entities;
+package src.model.entities.ProdEntities;
 
 public class Product {
 

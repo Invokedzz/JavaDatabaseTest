@@ -1,7 +1,6 @@
 package src.model.services;
 
-import src.model.entities.Category;
-import src.model.entities.Product;
+import src.model.entities.ProdEntities.Category;
 
 import src.db.DB;
 

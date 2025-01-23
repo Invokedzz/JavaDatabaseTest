@@ -1,12 +1,8 @@
 package src.application;
 
-import src.model.entities.*;
-
+import src.model.entities.ProdEntities.Category;
+import src.model.entities.ProdEntities.Product;
 import src.model.services.*;
-
-import src.util.*;
-
-import src.validation.*;
 
 public class Program {
 

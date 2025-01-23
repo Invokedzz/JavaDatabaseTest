@@ -2,7 +2,7 @@ package src.validation;
 
 import src.exceptions.CategoryException;
 
-import src.model.entities.Category;
+import src.model.entities.ProdEntities.Category;
 
 import src.util.CategoryPredicate;
 

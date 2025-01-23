@@ -4,7 +4,7 @@ import src.db.DB;
 
 import src.db.DbException;
 
-import src.model.entities.Product;
+import src.model.entities.ProdEntities.Product;
 
 import java.sql.*;
 

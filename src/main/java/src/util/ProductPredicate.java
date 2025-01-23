@@ -1,6 +1,6 @@
 package src.util;
 
-import src.model.entities.Product;
+import src.model.entities.ProdEntities.Product;
 
 import java.util.function.Predicate;
 
