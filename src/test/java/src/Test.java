@@ -1,8 +1,11 @@
 package src;
 
+import src.model.entities.ProdEntities.*;
+
 import src.model.entities.UserEntities.*;
 
-import src.model.enums.TypeUser;
+import src.model.enums.*;
+
 import src.validation.*;
 
 public class Test {
@@ -15,7 +18,9 @@ public class Test {
 
     public static void main (String[] args) {
 
-        validateComponents();
+        // validateComponents();
+
+        validateCategories();
 
     }
 
@@ -35,9 +40,13 @@ public class Test {
 
     }
 
-    private static void runDBStuff () {
+    private static void validateCategories () {
 
+        Category category = new Category(1, TypeProduct.CLOTHES, 3);
 
+        CheckCategories checkCategories = new CheckCategories();
+
+        System.out.println(checkCategories.test(category));
 
     }
 
