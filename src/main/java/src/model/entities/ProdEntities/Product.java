@@ -1,26 +1,32 @@
 package src.model.entities.ProdEntities;
 
+import src.model.enums.ProductAvailability;
+
 public class Product {
 
     private String name;
 
     private Double price;
 
+    private ProductAvailability availability;
+
     private Category category;
 
     public Product () {}
 
-    public Product ( String name ) {
+    public Product (String name) {
 
         this.name = name;
 
     }
 
-    public Product (String name, Double price, Category category) {
+    public Product (String name, Double price, ProductAvailability availability, Category category) {
 
         this.name = name;
 
         this.price = price;
+
+        this.availability = availability;
 
         this.category = category;
 
@@ -38,6 +44,12 @@ public class Product {
 
     }
 
+    public ProductAvailability getAvailability () {
+
+        return availability;
+
+    }
+
     public Category getCategory () {
 
         return category;
@@ -47,7 +59,11 @@ public class Product {
     @Override
     public String toString () {
 
-        return getName() + " " + getPrice();
+        StringBuilder sb;
+
+        sb = new StringBuilder();
+
+        return sb.toString();
 
     }
 
