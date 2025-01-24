@@ -12,9 +12,11 @@ public abstract class User {
 
     private String password;
 
+    private TypeUser typeUser;
+
     public User () {}
 
-    public User (Integer id, String name, String lastName, String password) {
+    public User (Integer id, String name, String lastName, String password, TypeUser typeUser) {
 
         this.id = id;
 
@@ -23,6 +25,8 @@ public abstract class User {
         this.lastName = lastName;
 
         this.password = password;
+
+        this.typeUser = typeUser;
 
     }
 
@@ -41,6 +45,27 @@ public abstract class User {
     public String getPassword () {
 
         return password;
+
+    }
+
+    public TypeUser getTypeUser () {
+
+        return typeUser;
+
+    }
+
+    @Override
+    public String toString () {
+
+        StringBuilder sb;
+
+        sb = new StringBuilder();
+
+        sb.append("NAME: ").append(getName())
+                .append(" ").append(getLastName())
+                .append(" TYPE: ").append(getTypeUser());
+
+        return sb.toString();
 
     }
 

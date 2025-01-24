@@ -1,18 +1,22 @@
 package src.model.entities.ProdEntities;
 
+import src.model.enums.TypeProduct;
+
 public class Category extends Product {
 
     private Integer id;
+
+    private TypeProduct type;
 
     private Integer tier;
 
     public Category () {}
 
-    public Category ( Integer id, String name, Integer tier ) {
-
-        super( name );
+    public Category (Integer id, TypeProduct type, Integer tier ) {
 
         this.id = id;
+
+        this.type = type;
 
         this.tier = tier;
 
@@ -21,6 +25,12 @@ public class Category extends Product {
     public Integer getId () {
 
         return id;
+
+    }
+
+    public TypeProduct getType () {
+
+        return type;
 
     }
 
@@ -33,7 +43,11 @@ public class Category extends Product {
     @Override
     public String toString () {
 
-        return  getName() + " " + getTier();
+        StringBuilder sb;
+
+        sb = new StringBuilder();
+
+        return sb.toString();
 
     }
 

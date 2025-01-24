@@ -17,25 +17,6 @@ public class Program {
 
     private static void runTables () {
 
-        Category cat = new Category(1, "Electronics", 1);
-
-        Product product = new Product("Mouse", 50.0, cat);
-
-        CategoryTable catTable = new CategoryTable(cat);
-
-        ProductTable prodTable = new ProductTable(product);
-
-        // fix the connection issue -> fixed
-        // don't forget to validate each one of the database elements!
-
-        //prodTable.insert();
-
-        //catTable.insert();
-
-        //catTable.display();
-
-        prodTable.display();
-
 
     }
 
