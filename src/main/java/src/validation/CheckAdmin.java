@@ -15,7 +15,11 @@ public class CheckAdmin implements UserPredicate {
     @Override
     public boolean test (User user) {
 
-        return false;
+        return user.getTypeUser() == TypeUser.ADMIN
+                && !user.getName().isEmpty() &&
+                !user.getLastName().isEmpty() &&
+                user.getPassword().length() > 3 &&
+                user.getPassword().length() <= 8;
 
     }
 
