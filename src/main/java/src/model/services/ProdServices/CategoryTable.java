@@ -5,6 +5,7 @@ import src.model.entities.ProdEntities.Category;
 import src.db.DB;
 
 import src.db.DbException;
+
 import src.model.services.DatabaseContract;
 
 import java.sql.*;
@@ -79,7 +80,7 @@ public class CategoryTable implements DatabaseContract {
 
             statement = connection.prepareStatement(
 
-                    "SELECT * FROM public.\"Category\""
+                    "SELECT * FROM \"Stock\".\"Category\""
 
             );
 
@@ -87,11 +88,11 @@ public class CategoryTable implements DatabaseContract {
 
             while (set.next()) {
 
-                String name = set.getString("name");
-
                 int tier = set.getInt("tier");
 
-                System.out.println(name + " " + tier);
+                String type = set.getString("typeproduct");
+
+                System.out.println(type + " " + tier);
 
             }
 
