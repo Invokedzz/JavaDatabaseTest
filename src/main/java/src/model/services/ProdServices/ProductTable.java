@@ -39,7 +39,7 @@ public class ProductTable implements DatabaseContract {
 
             statement = connection.prepareStatement(
 
-                    "INSERT INTO public.\"Product\" "
+                    "INSERT INTO \"Stock\".\"Product\" "
                             + "(name, price, quantity, availability, id_category) "
                             + "VALUES (?, ?, ?, ?, ?)"
 
@@ -53,7 +53,7 @@ public class ProductTable implements DatabaseContract {
 
             statement.setString(4, product.getAvailability().name());
 
-            statement.setInt(3, product.getCategory().getId());
+            statement.setInt(5, product.getCategory().getId());
 
             int rows = statement.executeUpdate();
 
@@ -80,7 +80,7 @@ public class ProductTable implements DatabaseContract {
 
             statement = connection.prepareStatement(
 
-                    "SELECT * FROM public.\"Product\""
+                    "SELECT * FROM \"Stock\".\"Product\""
 
             );
 

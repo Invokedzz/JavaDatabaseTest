@@ -45,9 +45,9 @@ public class CategoryTable implements DatabaseContract {
 
             );
 
-            statement.setString(1, category.getType().name());
+            statement.setString(2, category.getType().name());
 
-            statement.setInt(2, category.getTier());
+            statement.setInt(1, category.getTier());
 
             int rows = statement.executeUpdate();
 
