@@ -10,6 +10,8 @@ public class Product {
 
     private ProductAvailability availability;
 
+    private Integer quantity;
+
     private Category category;
 
     public Product () {}
@@ -20,11 +22,13 @@ public class Product {
 
     }
 
-    public Product (String name, Double price, ProductAvailability availability, Category category) {
+    public Product (String name, Double price, Integer quantity, ProductAvailability availability, Category category) {
 
         this.name = name;
 
         this.price = price;
+
+        this.quantity = quantity;
 
         this.availability = availability;
 
@@ -44,9 +48,17 @@ public class Product {
 
     }
 
+    public Integer getQuantity () {
+
+        return quantity;
+
+    }
+
     public ProductAvailability getAvailability () {
 
-        return availability;
+        if (getQuantity() == 0) return availability = ProductAvailability.OUT_OF_STOCK;
+
+        return availability = ProductAvailability.IN_STOCK;
 
     }
 
@@ -62,6 +74,11 @@ public class Product {
         StringBuilder sb;
 
         sb = new StringBuilder();
+
+        sb.append("NAME: ").append(getName())
+                .append(" PRICE: ").append(getPrice())
+                .append(" QUANTITY: ").append(getQuantity())
+                .append(" AVAILABILITY: ").append(getAvailability());
 
         return sb.toString();
 

@@ -8,12 +8,12 @@ import src.model.enums.TypeUser;
 
 import src.util.UserPredicate;
 
-import java.util.function.Predicate;
-
 public class CheckAdmin implements UserPredicate {
 
     @Override
     public boolean test (User user) {
+
+        // I need to review this shit
 
         return user.getTypeUser() == TypeUser.ADMIN
                 && !user.getName().isEmpty() &&

@@ -17,7 +17,7 @@ public class CheckCategories implements CategoryPredicate {
     @Override
     public boolean test (Category cat) {
 
-        if (cat.getType() == TypeProduct.ELECTRONICS && cat.getTier() == 1) return true;
+        if (cat.getType().equals(TypeProduct.ELECTRONICS) && cat.getTier() == 1) return true;
 
         else if (cat.getType() == TypeProduct.TOOLS && cat.getTier() == 2) return true;
 

@@ -40,14 +40,18 @@ public class ProductTable implements DatabaseContract {
             statement = connection.prepareStatement(
 
                     "INSERT INTO public.\"Product\" "
-                            + "(name, price, id_category) "
-                            + "VALUES (?, ?, ?)"
+                            + "(name, price, quantity, availability, id_category) "
+                            + "VALUES (?, ?, ?, ?, ?)"
 
             );
 
             statement.setString(1, product.getName());
 
             statement.setDouble(2, product.getPrice());
+
+            statement.setInt(3, product.getQuantity());
+
+            statement.setString(4, product.getAvailability().name());
 
             statement.setInt(3, product.getCategory().getId());
 
