@@ -8,19 +8,19 @@ import src.model.enums.*;
 
 import src.validation.*;
 
-public class Test {
+public class ValidationsTest {
 
     // ok don't mind me, but I'm going to test A LOT of stuff here
     // yeah, the class "Test" was created to actually test stuff
     // very original of my part
 
-    // Integer id, String name, String lastName, String password, TypeUser typeUser
+    // Integer id, String name, String lastName, String password, TypeUser type
 
     public static void main (String[] args) {
 
-        // validateComponents();
+        // validateComponents(); validateCategories();
 
-        validateCategories();
+        validateProducts();
 
     }
 
@@ -28,11 +28,13 @@ public class Test {
 
         Admin admin = new Admin(1, "Mr.Duck", "Qua", "8392", TypeUser.ADMIN);
 
-        Customer customer = new Customer(2, "Mr.Goose", "Occk", "982398", TypeUser.CUSTOMER);
+        Customer customer = new Customer(2, "Mr.Goose", "Occ", "982398", TypeUser.CUSTOMER);
 
         CheckAdmin checkAdmin = new CheckAdmin();
 
         CheckCustomers checkCustomer = new CheckCustomers();
+
+        System.out.println(customer);
 
         System.out.println(checkAdmin.test(admin)); // it's working
 
@@ -46,7 +48,22 @@ public class Test {
 
         CheckCategories checkCategories = new CheckCategories();
 
-        System.out.println(checkCategories.test(category));
+        System.out.println(checkCategories.test(category)); // validated
+
+    }
+
+    private static void validateProducts () {
+
+        // String name, Double price, Integer quantity,  ProductAvailability availability, Category cat
+
+        Product product = new Product("Computer", 100.0, 1,
+                ProductAvailability.IN_STOCK, new Category());
+
+        CheckProducts checkProducts = new CheckProducts();
+
+        System.out.println(checkProducts.test(product));
+
+        System.out.println(product);
 
     }
 

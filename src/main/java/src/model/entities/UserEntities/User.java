@@ -62,8 +62,8 @@ public abstract class User {
         sb = new StringBuilder();
 
         sb.append("NAME: ").append(getName())
-                .append(" ").append(getLastName())
-                .append(" TYPE: ").append(getTypeUser());
+                .append(", LAST NAME: ").append(getLastName())
+                .append(", TYPE: ").append(getTypeUser());
 
         return sb.toString();
 

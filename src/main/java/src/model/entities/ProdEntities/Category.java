@@ -47,6 +47,9 @@ public class Category extends Product {
 
         sb = new StringBuilder();
 
+        sb.append("TYPE: ").append(getType())
+                .append(" TIER: ").append(getTier());
+
         return sb.toString();
 
     }

@@ -38,13 +38,13 @@ public class CategoryTable implements DatabaseContract {
 
             statement = connection.prepareStatement(
 
-                    "INSERT INTO public.\"Category\" "
-                            + "(name, tier) "
+                    "INSERT INTO \"Stock\".\"Category\" "
+                            + "(tier, typeproduct) "
                             + "VALUES (?, ?)"
 
             );
 
-            statement.setString(1, category.getName());
+            statement.setString(1, category.getType().name());
 
             statement.setInt(2, category.getTier());
 
