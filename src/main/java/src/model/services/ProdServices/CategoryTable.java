@@ -5,6 +5,7 @@ import src.model.entities.ProdEntities.Category;
 import src.db.DB;
 
 import src.db.DbException;
+
 import src.model.services.DatabaseContract;
 
 import java.sql.*;
@@ -44,9 +45,9 @@ public class CategoryTable implements DatabaseContract {
 
             );
 
-            statement.setString(1, category.getType().name());
+            statement.setString(2, category.getType().name());
 
-            statement.setInt(2, category.getTier());
+            statement.setInt(1, category.getTier());
 
             int rows = statement.executeUpdate();
 
@@ -79,7 +80,7 @@ public class CategoryTable implements DatabaseContract {
 
             statement = connection.prepareStatement(
 
-                    "SELECT * FROM public.\"Category\""
+                    "SELECT * FROM \"Stock\".\"Category\""
 
             );
 
@@ -87,11 +88,11 @@ public class CategoryTable implements DatabaseContract {
 
             while (set.next()) {
 
-                String name = set.getString("name");
-
                 int tier = set.getInt("tier");
 
-                System.out.println(name + " " + tier);
+                String type = set.getString("typeproduct");
+
+                System.out.println(type + " " + tier);
 
             }
 
@@ -106,6 +107,16 @@ public class CategoryTable implements DatabaseContract {
             DB.closeConnections(connection);
 
         }
+
+    }
+
+    @Override
+    public void deleteElement() {
+
+    }
+
+    @Override
+    public void deleteAll() {
 
     }
 

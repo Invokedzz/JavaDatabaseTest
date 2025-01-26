@@ -11,11 +11,13 @@ public class CheckCustomers implements UserPredicate {
     @Override
     public boolean test (User user) {
 
-        return user.getTypeUser() == TypeUser.CUSTOMER
-                && !user.getName().isEmpty() &&
-                !user.getLastName().isEmpty() &&
-                user.getPassword().length() > 3 &&
-                user.getPassword().length() <= 8;
+        return user.getTypeUser() == TypeUser.CUSTOMER &&
+                user.getName().length() >= 2 &&
+                user.getName().length() <= 10 &&
+                user.getLastName().length() >= 2 &&
+                user.getLastName().length() <= 12 &&
+                user.getPassword().length() > 5 &&
+                user.getPassword().length() <= 15;
 
     }
 

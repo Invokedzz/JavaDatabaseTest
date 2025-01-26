@@ -18,9 +18,9 @@ public class ValidationsTest {
 
     public static void main (String[] args) {
 
-        // validateComponents(); validateCategories();
+       validateCategories();
 
-        validateProducts();
+       // validateAdmin();validateCustomer();
 
     }
 
@@ -44,11 +44,13 @@ public class ValidationsTest {
 
     private static void validateCategories () {
 
-        Category category = new Category(1, TypeProduct.CLOTHES, 3);
+        Category category = new Category(2, TypeProduct.TOOLS, 2);
 
         CheckCategories checkCategories = new CheckCategories();
 
-        System.out.println(checkCategories.test(category)); // validated
+        checkCategories.test(category); // validated
+
+        System.out.println(category);
 
     }
 
@@ -64,6 +66,34 @@ public class ValidationsTest {
         System.out.println(checkProducts.test(product));
 
         System.out.println(product);
+
+    }
+
+    private static void validateAdmin () {
+
+        Admin admin = new Admin(1, "Paul", "WA", "721", TypeUser.ADMIN);
+
+        CheckAdmin checkAdmin = new CheckAdmin();
+
+        boolean hmm = checkAdmin.test(admin);
+
+        System.out.println(admin);
+
+        System.out.println(hmm);
+
+    }
+
+    private static void validateCustomer () {
+
+        Customer customer = new Customer(3, "Mr.Duck", "Quak", "y78xz8", TypeUser.CUSTOMER);
+
+        CheckCustomers checkCustomers = new CheckCustomers();
+
+        boolean cup = checkCustomers.test(customer);
+
+        System.out.println(cup);
+
+        System.out.println(customer);
 
     }
 

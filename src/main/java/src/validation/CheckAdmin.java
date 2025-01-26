@@ -1,7 +1,5 @@
 package src.validation;
 
-import src.model.entities.UserEntities.Admin;
-
 import src.model.entities.UserEntities.User;
 
 import src.model.enums.TypeUser;
@@ -14,12 +12,15 @@ public class CheckAdmin implements UserPredicate {
     public boolean test (User user) {
 
         // I need to review this shit
+        // this shit was reviewed
 
         return user.getTypeUser() == TypeUser.ADMIN
-                && !user.getName().isEmpty() &&
-                !user.getLastName().isEmpty() &&
-                user.getPassword().length() > 3 &&
-                user.getPassword().length() <= 8;
+                && user.getName().length() >= 2 &&
+                user.getName().length() <= 10 &&
+                user.getLastName().length() >= 2 &&
+                user.getLastName().length() <= 12 &&
+                user.getPassword().length() > 5 &&
+                user.getPassword().length() <= 15;
 
     }
 
