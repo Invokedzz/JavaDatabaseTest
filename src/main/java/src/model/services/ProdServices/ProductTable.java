@@ -117,8 +117,37 @@ public class ProductTable implements DatabaseContract {
 
     }
 
+    // WARNING: this function deletes the ENTIRE table
     @Override
     public void deleteAll() {
+
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "DELETE FROM \"Stock\".\"Product\""
+            );
+
+            statement.executeUpdate();
+
+            System.out.println("All the products were successfully deleted!");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeStatements(statement);
+
+            DB.closeConnections(connection);
+
+        }
 
     }
 

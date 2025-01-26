@@ -115,8 +115,35 @@ public class CategoryTable implements DatabaseContract {
 
     }
 
+    // WARNING: this function deletes the ENTIRE table
     @Override
     public void deleteAll() {
+
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "DELETE FROM \"Stock\".\"Category\""
+            );
+
+            System.out.println("All the categories were deleted successfully!");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeStatements(statement);
+
+            DB.closeConnections(connection);
+
+        }
 
     }
 
