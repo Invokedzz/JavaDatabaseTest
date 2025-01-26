@@ -53,12 +53,7 @@ public class DatabaseTest {
 
         CheckProducts checkProducts = new CheckProducts();
 
-        ProductTable prodTable = new ProductTable(product);
-
-        // we need to validate id_category
-        // don't forget about this
-
-        prodTable.display();
+        checkProducts.test(product);
 
     }
 

@@ -18,11 +18,9 @@ public class ValidationsTest {
 
     public static void main (String[] args) {
 
-        // validateComponents(); validateCategories();validateProducts();
+       validateCategories();
 
-        validateAdmin();
-
-        validateCustomer();
+       // validateAdmin();validateCustomer();
 
     }
 
@@ -46,11 +44,13 @@ public class ValidationsTest {
 
     private static void validateCategories () {
 
-        Category category = new Category(1, TypeProduct.CLOTHES, 3);
+        Category category = new Category(2, TypeProduct.TOOLS, 2);
 
         CheckCategories checkCategories = new CheckCategories();
 
-        System.out.println(checkCategories.test(category)); // validated
+        checkCategories.test(category); // validated
+
+        System.out.println(category);
 
     }
 

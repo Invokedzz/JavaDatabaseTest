@@ -28,15 +28,33 @@ public class Category extends Product {
 
     }
 
+    public void setId (Integer id) {
+
+        this.id = id;
+
+    }
+
     public TypeProduct getType () {
 
         return type;
 
     }
 
+    public void setType (TypeProduct type) {
+
+        this.type = type;
+
+    }
+
     public Integer getTier() {
 
         return tier;
+
+    }
+
+    public void setTier (Integer tier) {
+
+        this.tier = tier;
 
     }
 
@@ -48,7 +66,8 @@ public class Category extends Product {
         sb = new StringBuilder();
 
         sb.append("TYPE: ").append(getType())
-                .append(" TIER: ").append(getTier());
+                .append(" TIER: ").append(getTier())
+                .append(" ID: ").append(getId());
 
         return sb.toString();
 

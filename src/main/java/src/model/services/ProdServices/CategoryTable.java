@@ -110,4 +110,14 @@ public class CategoryTable implements DatabaseContract {
 
     }
 
+    @Override
+    public void deleteElement() {
+
+    }
+
+    @Override
+    public void deleteAll() {
+
+    }
+
 }

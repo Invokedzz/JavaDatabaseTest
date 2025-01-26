@@ -6,4 +6,8 @@ public interface DatabaseContract {
 
     void display ();
 
+    void deleteElement ();
+
+    void deleteAll ();
+
 }

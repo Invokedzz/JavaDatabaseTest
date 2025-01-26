@@ -112,4 +112,14 @@ public class ProductTable implements DatabaseContract {
 
     }
 
+    @Override
+    public void deleteElement() {
+
+    }
+
+    @Override
+    public void deleteAll() {
+
+    }
+
 }
