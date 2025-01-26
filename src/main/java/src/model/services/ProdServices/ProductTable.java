@@ -1,5 +1,7 @@
 package src.model.services.ProdServices;
 
+import java.util.Scanner;
+
 import src.db.DB;
 
 import src.db.DbException;
@@ -11,6 +13,8 @@ import src.model.services.DatabaseContract;
 import java.sql.*;
 
 public class ProductTable implements DatabaseContract {
+
+    Scanner sc = new Scanner(System.in);
 
     private Product product;
 
@@ -113,13 +117,41 @@ public class ProductTable implements DatabaseContract {
     }
 
     @Override
-    public void deleteElement() {
+    public void deleteComponent () {
+
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "DELETE FROM \"Stock\".\"Product\" WHERE id = ?"
+            );
+
+            statement.setInt(1, sc.nextInt());
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeConnections(connection);
+
+            DB.closeStatements(statement);
+
+        }
 
     }
 
     // WARNING: this function deletes the ENTIRE table
     @Override
-    public void deleteAll() {
+    public void deleteAll () {
 
         Connection connection = null;
 

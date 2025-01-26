@@ -9,10 +9,13 @@ import src.db.DbException;
 import src.model.services.DatabaseContract;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class CategoryTable implements DatabaseContract {
 
     private Category category;
+
+    Scanner sc = new Scanner(System.in);
 
     public CategoryTable () {}
 
@@ -111,7 +114,35 @@ public class CategoryTable implements DatabaseContract {
     }
 
     @Override
-    public void deleteElement() {
+    public void deleteComponent () {
+
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "DELETE FROM \"Stock\".\"Category\" WHERE id = ?"
+            );
+
+            statement.setInt(1, sc.nextInt());
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeStatements(statement);
+
+            DB.closeConnections(connection);
+
+        }
 
     }
 

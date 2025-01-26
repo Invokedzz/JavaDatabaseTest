@@ -57,7 +57,9 @@ public class DatabaseTest {
 
         ProductTable prodTable = new ProductTable(product);
 
-        prodTable.display();
+        //prodTable.display();
+
+        prodTable.deleteComponent();
 
         //prodTable.deleteAll();
 
