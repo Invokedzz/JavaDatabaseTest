@@ -20,7 +20,7 @@ public class DatabaseTest {
 
     public static void main (String[] args) {
 
-        testTableCategory();
+       testTableCategory();
 
     }
 
@@ -54,6 +54,12 @@ public class DatabaseTest {
         CheckProducts checkProducts = new CheckProducts();
 
         checkProducts.test(product);
+
+        ProductTable prodTable = new ProductTable(product);
+
+        prodTable.display();
+
+        //prodTable.deleteAll();
 
     }
 
