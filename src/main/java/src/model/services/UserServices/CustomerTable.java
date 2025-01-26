@@ -15,7 +15,7 @@ public class CustomerTable implements DatabaseContract {
     }
 
     @Override
-    public void deleteElement () {
+    public void deleteComponent () {
 
     }
 
