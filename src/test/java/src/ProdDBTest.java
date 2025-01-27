@@ -22,9 +22,9 @@ public class ProdDBTest {
 
     public static void main (String[] args) {
 
-      // testTableCategory();
+       testTableCategory();
 
-        checkHashedPasswords();
+        //checkHashedPasswords();
 
     }
 
@@ -61,11 +61,7 @@ public class ProdDBTest {
 
         ProductTable prodTable = new ProductTable(product);
 
-        //prodTable.display();
-
-        prodTable.deleteComponent();
-
-        //prodTable.deleteAll();
+        prodTable.updatePrice();
 
     }
 

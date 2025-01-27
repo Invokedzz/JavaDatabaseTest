@@ -186,10 +186,74 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     @Override
     public void updateName() {
 
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "UPDATE \"Stock\".\"Product\" set name = ? WHERE id = ?"
+            );
+
+            statement.setString(1, "Basketball");
+
+            statement.setInt(2, sc.nextInt());
+
+            statement.executeUpdate();
+
+            System.out.println("The element was updated successfully!");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeConnections(connection);
+
+            DB.closeStatements(statement);
+
+        }
+
     }
 
     @Override
     public void updatePrice() {
+
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "UPDATE \"Stock\".\"Product\" set price = ? WHERE id = ?"
+            );
+
+            statement.setInt(1, 1000);
+
+            statement.setInt(2, sc.nextInt());
+
+            statement.executeUpdate();
+
+            System.out.println("The element was updated successfully!");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeConnections(connection);
+
+            DB.closeStatements(statement);
+
+        }
 
     }
 
