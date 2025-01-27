@@ -16,11 +16,15 @@ import src.validation.CheckCategories;
 
 import src.validation.CheckProducts;
 
+import src.security.PassHash;
+
 public class DatabaseTest {
 
     public static void main (String[] args) {
 
-       testTableCategory();
+      // testTableCategory();
+
+        checkHashedPasswords();
 
     }
 
@@ -62,6 +66,19 @@ public class DatabaseTest {
         prodTable.deleteComponent();
 
         //prodTable.deleteAll();
+
+    }
+
+    private static void checkHashedPasswords () {
+
+        String randomPassword = "73289";
+
+        String hashed = PassHash.generateHash(randomPassword);
+
+        System.out.println(hashed); // omg the hash is real!?
+
+        if (PassHash.checkChosenHash(randomPassword, hashed)) System.out.println("Yeah they're the same password");
+        else System.out.println("No this is not true!");
 
     }
 

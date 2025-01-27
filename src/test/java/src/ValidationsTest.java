@@ -18,9 +18,11 @@ public class ValidationsTest {
 
     public static void main (String[] args) {
 
-       validateCategories();
+       //validateCategories();
 
        // validateAdmin();validateCustomer();
+
+        validateProducts();
 
     }
 

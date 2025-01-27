@@ -9,6 +9,7 @@ import src.db.DbException;
 import src.model.services.DatabaseContract;
 
 import java.sql.*;
+
 import java.util.Scanner;
 
 public class CategoryTable implements DatabaseContract {
