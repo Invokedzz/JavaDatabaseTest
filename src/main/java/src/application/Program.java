@@ -1,25 +1,13 @@
 package src.application;
 
-import src.model.entities.ProdEntities.Category;
-
-import src.model.entities.ProdEntities.Product;
-
-import src.model.services.ProdServices.CategoryTable;
-
-import src.model.services.ProdServices.ProductTable;
+import src.db.DB;
 
 public class Program {
 
     public static void main (String[] args) {
 
-        runTables();
+        System.out.println(DB.getConnection());
 
     }
-
-    private static void runTables () {
-
-
-    }
-
 
 }

@@ -2,9 +2,7 @@ package src.model.services.ProdServices;
 
 import src.model.entities.ProdEntities.Category;
 
-import src.db.DB;
-
-import src.db.DbException;
+import src.db.*;
 
 import src.model.services.DatabaseContract;
 
