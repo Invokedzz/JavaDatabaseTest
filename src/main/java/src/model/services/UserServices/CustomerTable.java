@@ -2,19 +2,19 @@ package src.model.services.UserServices;
 
 import src.model.entities.UserEntities.Customer;
 
-import src.model.services.DatabaseContract;
-
-import src.model.entities.UserEntities.Admin;
+import src.model.enums.TypeUser;
+import src.model.services.DatabaseGeneralContract;
 
 import src.db.DB;
 
 import src.db.DbException;
+import src.security.PassHash;
 
 import java.sql.*;
 
 import java.util.Scanner;
 
-public class CustomerTable implements DatabaseContract {
+public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
     Scanner sc = new Scanner(System.in);
 
@@ -30,6 +30,42 @@ public class CustomerTable implements DatabaseContract {
 
     @Override
     public void insert () {
+
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "INSERT INTO \"User\".\"Customer\" " +
+                            "(name, password, typeuser)" +
+                            " VALUES (?, ?, ?)"
+            );
+
+            statement.setString(1, customer.getName() + " " + customer.getLastName());
+
+            String hashedPassword = PassHash.generateHash(customer.getPassword());
+
+            statement.setString(2, hashedPassword);
+
+            statement.setString(3, TypeUser.CUSTOMER.name());
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeConnections(connection);
+
+            DB.closeStatements(statement);
+
+        }
 
     }
 
@@ -137,5 +173,9 @@ public class CustomerTable implements DatabaseContract {
 
     }
 
+    @Override
+    public void updateName() {
+
+    }
 
 }

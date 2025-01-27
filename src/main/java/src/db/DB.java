@@ -16,7 +16,7 @@ public class DB {
 
         try {
 
-            if ( connection == null ) {
+            if (connection == null) {
 
                 Properties properties = loadProperties();
 
@@ -26,7 +26,7 @@ public class DB {
 
             }
 
-        } catch ( SQLException exception ) {
+        } catch (SQLException exception) {
 
             throw new DbException( exception.getMessage() );
 
@@ -38,15 +38,15 @@ public class DB {
 
     private static Properties loadProperties () {
 
-        try ( FileInputStream fileInputStream = new FileInputStream("db.properties") ) {
+        try (FileInputStream fileInputStream = new FileInputStream("db.properties")) {
 
             Properties properties = new Properties();
 
-            properties.load( fileInputStream );
+            properties.load(fileInputStream);
 
             return properties;
 
-        } catch ( IOException exception ) {
+        } catch (IOException exception) {
 
             throw new DbException( exception.getMessage() );
 

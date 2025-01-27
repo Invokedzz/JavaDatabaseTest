@@ -1,6 +1,6 @@
 package src.model.services;
 
-public interface DatabaseContract {
+public interface DatabaseGeneralContract {
 
     void insert ();
 

@@ -1,6 +1,6 @@
 package src.model.services.UserServices;
 
-import src.model.services.DatabaseContract;
+import src.model.services.DatabaseGeneralContract;
 
 import src.model.entities.UserEntities.Admin;
 
@@ -8,11 +8,13 @@ import src.db.DB;
 
 import src.db.DbException;
 
+import src.security.PassHash;
+
 import java.sql.*;
 
 import java.util.Scanner;
 
-public class AdminTable implements DatabaseContract {
+public class AdminTable implements DatabaseGeneralContract, UserContract {
 
     Scanner sc = new Scanner(System.in);
 
@@ -28,6 +30,42 @@ public class AdminTable implements DatabaseContract {
 
     @Override
     public void insert () {
+
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "INSERT INTO \"User\".\"Admin\"" +
+                            " (name, password, typeuser)" +
+                            " VALUES (?,?,?)"
+            );
+
+            statement.setString(1, admin.getName() + " " + admin.getLastName());
+
+            String hashPassword = PassHash.generateHash(admin.getPassword());
+
+            statement.setString(2, hashPassword);
+
+            statement.setString(3, admin.getTypeUser().name());
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeConnections(connection);
+
+            DB.closeStatements(statement);
+
+        }
 
     }
 
@@ -134,5 +172,10 @@ public class AdminTable implements DatabaseContract {
 
     }
 
+
+    @Override
+    public void updateName() {
+
+    }
 
 }
