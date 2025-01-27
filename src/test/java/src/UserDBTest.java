@@ -31,7 +31,7 @@ public class UserDBTest {
 
         CustomerTable customerTable = new CustomerTable(customer);
 
-        customerTable.deleteAll();
+        customerTable.deleteComponent();
 
     }
 
