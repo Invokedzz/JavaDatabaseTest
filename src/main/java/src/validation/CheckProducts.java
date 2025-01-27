@@ -38,13 +38,13 @@ public class CheckProducts implements ProductPredicate {
 
         }
 
-        if (p.getAvailability() == type &&
+        if (p.getAvailability().equals(type) &&
                 p.getName().length() > 1 &&
                 p.getName().length() <= 12 &&
                 p.getPrice() > 0 &&
                 p.getQuantity() > 0) return true;
 
-        else if (p.getAvailability() == type &&
+        else if (p.getAvailability().equals(type) &&
                 p.getName().length() > 1
                 && p.getName().length() <= 12
                 && p.getPrice() > 0 &&

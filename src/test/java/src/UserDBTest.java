@@ -5,25 +5,38 @@ import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
 import src.model.services.UserServices.AdminTable;
 import src.model.services.UserServices.CustomerTable;
+import src.security.PassHash;
+import src.validation.CheckAdmin;
 import src.validation.CheckCustomers;
 
 public class UserDBTest {
 
     public static void main (String[] args) {
 
-       // testUserAdmin();
+        testUserAdmin();
 
-        testUserCustomer();
+        //testUserCustomer();
 
     }
 
     private static void testUserAdmin () {
 
-        Admin admin = new Admin();
+        Admin admin = new Admin(1, "Mr.Duck", "Quak", "password", TypeUser.ADMIN);
+
+        String hashedPassword = PassHash.generateHash(admin.getPassword());
+
+        System.out.println(hashedPassword);
+
+        boolean isTrue = PassHash.checkChosenHash(admin.getPassword(), hashedPassword);
+
+        System.out.println(isTrue);
 
         AdminTable adTable = new AdminTable(admin);
 
-        adTable.deleteAll();
+        CheckAdmin checkAdmin = new CheckAdmin();
+
+       // if (checkAdmin.test(admin)) adTable.insert();
+        //else System.out.println("Make the L!");
 
     }
 
@@ -35,8 +48,10 @@ public class UserDBTest {
 
         CustomerTable customerTable = new CustomerTable(customer);
 
-        if (checkCustomers.test(customer)) customerTable.insert();
-        else System.out.println("Faz o L!");
+      //  if (checkCustomers.test(customer)) customerTable.insert();
+       // else System.out.println("Faz o L!");
+
+        if (checkCustomers.test(customer)) customerTable.display();
 
     }
 

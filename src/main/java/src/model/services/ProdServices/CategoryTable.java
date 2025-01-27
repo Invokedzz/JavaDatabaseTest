@@ -4,13 +4,13 @@ import src.model.entities.ProdEntities.Category;
 
 import src.db.*;
 
-import src.model.services.DatabaseContract;
+import src.model.services.DatabaseGeneralContract;
 
 import java.sql.*;
 
 import java.util.Scanner;
 
-public class CategoryTable implements DatabaseContract {
+public class CategoryTable implements DatabaseGeneralContract {
 
     private Category category;
 

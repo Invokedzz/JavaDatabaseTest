@@ -8,11 +8,11 @@ import src.db.DbException;
 
 import src.model.entities.ProdEntities.Product;
 
-import src.model.services.DatabaseContract;
+import src.model.services.DatabaseGeneralContract;
 
 import java.sql.*;
 
-public class ProductTable implements DatabaseContract {
+public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
     Scanner sc = new Scanner(System.in);
 
@@ -182,5 +182,16 @@ public class ProductTable implements DatabaseContract {
         }
 
     }
+
+    @Override
+    public void updateName() {
+
+    }
+
+    @Override
+    public void updatePrice() {
+
+    }
+
 
 }

@@ -3,9 +3,7 @@ package src.model.services.UserServices;
 import src.model.entities.UserEntities.Customer;
 
 import src.model.enums.TypeUser;
-import src.model.services.DatabaseContract;
-
-import src.model.entities.UserEntities.Admin;
+import src.model.services.DatabaseGeneralContract;
 
 import src.db.DB;
 
@@ -16,7 +14,7 @@ import java.sql.*;
 
 import java.util.Scanner;
 
-public class CustomerTable implements DatabaseContract {
+public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
     Scanner sc = new Scanner(System.in);
 
@@ -175,5 +173,9 @@ public class CustomerTable implements DatabaseContract {
 
     }
 
+    @Override
+    public void updateName() {
+
+    }
 
 }
