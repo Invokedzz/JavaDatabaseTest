@@ -2,8 +2,10 @@ package src;
 
 import src.model.entities.UserEntities.Admin;
 import src.model.entities.UserEntities.Customer;
+import src.model.enums.TypeUser;
 import src.model.services.UserServices.AdminTable;
 import src.model.services.UserServices.CustomerTable;
+import src.validation.CheckCustomers;
 
 public class UserDBTest {
 
@@ -27,11 +29,14 @@ public class UserDBTest {
 
     private static void testUserCustomer () {
 
-        Customer customer = new Customer();
+        Customer customer = new Customer(1, "Paul", "Walker", "iwjdwds", TypeUser.CUSTOMER);
+
+        CheckCustomers checkCustomers = new CheckCustomers();
 
         CustomerTable customerTable = new CustomerTable(customer);
 
-        customerTable.deleteComponent();
+        if (checkCustomers.test(customer)) customerTable.insert();
+        else System.out.println("Faz o L!");
 
     }
 
