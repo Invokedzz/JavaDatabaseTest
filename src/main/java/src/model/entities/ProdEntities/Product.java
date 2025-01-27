@@ -56,9 +56,13 @@ public class Product {
 
     public ProductAvailability getAvailability () {
 
-        if (getQuantity() == 0) return availability = ProductAvailability.OUT_OF_STOCK;
+        return availability;
 
-        return availability = ProductAvailability.IN_STOCK;
+    }
+
+    public void setAvailability (ProductAvailability availability) {
+
+        this.availability = availability;
 
     }
 

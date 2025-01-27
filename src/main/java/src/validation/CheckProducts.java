@@ -18,10 +18,25 @@ public class CheckProducts implements ProductPredicate {
     @Override
     public boolean test (Product p) {
 
+        // I'm lazy, so I'm going to validate ALL this stuff with if/else >:(
+
         ProductAvailability type;
 
-        if (p.getQuantity() > 0) type = ProductAvailability.IN_STOCK;
-        else type = ProductAvailability.OUT_OF_STOCK;
+        if (p.getQuantity() > 0) {
+
+            type = ProductAvailability.IN_STOCK;
+
+            p.setAvailability(type);
+
+        }
+
+        else {
+
+            type = ProductAvailability.OUT_OF_STOCK;
+
+            p.setAvailability(type);
+
+        }
 
         if (p.getAvailability() == type &&
                 p.getName().length() > 1 &&
