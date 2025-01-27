@@ -2,7 +2,27 @@ package src.model.services.UserServices;
 
 import src.model.services.DatabaseContract;
 
+import src.model.entities.UserEntities.Admin;
+
+import src.db.DB;
+
+import src.db.DbException;
+
+import java.sql.*;
+
+import java.util.Scanner;
+
 public class AdminTable implements DatabaseContract {
+
+    private Admin admin;
+
+    public AdminTable () {}
+
+    public AdminTable (Admin admin) {
+
+        this.admin = admin;
+
+    }
 
     @Override
     public void insert () {
@@ -21,6 +41,34 @@ public class AdminTable implements DatabaseContract {
 
     @Override
     public void deleteAll () {
+
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                "DELETE FROM \"User\".\"Admin\""
+            );
+
+            statement.executeUpdate();
+
+            System.out.println("All the tables were deleted successfully!");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeConnections(connection);
+
+            DB.closeStatements(statement);
+
+        }
 
     }
 

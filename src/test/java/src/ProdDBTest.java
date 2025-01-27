@@ -18,7 +18,7 @@ import src.validation.CheckProducts;
 
 import src.security.PassHash;
 
-public class DatabaseTest {
+public class ProdDBTest {
 
     public static void main (String[] args) {
 

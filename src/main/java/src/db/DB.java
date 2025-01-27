@@ -36,20 +36,6 @@ public class DB {
 
     }
 
-    private static void closeConnection () {
-
-        try {
-
-            if ( connection != null ) connection.close();
-
-        } catch ( SQLException exception ) {
-
-            throw new DbException( exception.getMessage() );
-
-        }
-
-    }
-
     private static Properties loadProperties () {
 
         try ( FileInputStream fileInputStream = new FileInputStream("db.properties") ) {
