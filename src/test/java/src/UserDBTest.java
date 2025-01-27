@@ -13,9 +13,9 @@ public class UserDBTest {
 
     public static void main (String[] args) {
 
-        testUserAdmin();
+        //testUserAdmin();
 
-        //testUserCustomer();
+        testUserCustomer();
 
     }
 
@@ -35,8 +35,7 @@ public class UserDBTest {
 
         CheckAdmin checkAdmin = new CheckAdmin();
 
-       // if (checkAdmin.test(admin)) adTable.insert();
-        //else System.out.println("Make the L!");
+        adTable.updateName();
 
     }
 
@@ -48,10 +47,7 @@ public class UserDBTest {
 
         CustomerTable customerTable = new CustomerTable(customer);
 
-      //  if (checkCustomers.test(customer)) customerTable.insert();
-       // else System.out.println("Faz o L!");
-
-        if (checkCustomers.test(customer)) customerTable.display();
+        if (checkCustomers.test(customer)) customerTable.updateName();
 
     }
 

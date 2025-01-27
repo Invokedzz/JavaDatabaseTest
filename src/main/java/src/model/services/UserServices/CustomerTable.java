@@ -176,6 +176,38 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void updateName() {
 
+        Connection connection = null;
+
+        PreparedStatement statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "UPDATE \"User\".\"Customer\" set name = ? WHERE id = ?"
+            );
+
+            statement.setString(1, "Asuka");
+
+            statement.setInt(2, sc.nextInt());
+
+            statement.executeUpdate();
+
+            System.out.println("The element was updated successfully!");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeConnections(connection);
+
+            DB.closeStatements(statement);
+
+        }
+
     }
 
 }
