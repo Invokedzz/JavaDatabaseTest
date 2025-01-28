@@ -13,14 +13,16 @@ public class CreateUser extends JFrame {
 
     private JTextField usernameField;
     private JTextField lastNameField;
+    private JTextField emailField;
     private JPasswordField passwordField;
     private JButton createButton;
+    private JButton exitPageButton;
 
     public CreateUser () {
 
             setTitle("Create Account");
-            setLayout(new FlowLayout());
-            setSize(300, 200);
+            setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
+            setSize(300, 300);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             setLocationRelativeTo(null);
 
@@ -30,7 +32,11 @@ public class CreateUser extends JFrame {
 
             lastNameField = new JTextField(15);
 
+            emailField = new JTextField(15);
+
             createButton = new JButton("Create");
+
+            exitPageButton = new JButton("Exit");
 
             createButton.addActionListener(e -> {
 
@@ -38,9 +44,11 @@ public class CreateUser extends JFrame {
 
                 String lastName = lastNameField.getText();
 
+                String email = emailField.getText();
+
                 String password = new String(passwordField.getPassword());
 
-                Customer customer = new Customer(username, lastName, password, TypeUser.CUSTOMER);
+                Customer customer = new Customer(username, lastName, email, password, TypeUser.CUSTOMER);
 
                 CustomerTable customerTable = new CustomerTable(customer);
 
@@ -60,6 +68,10 @@ public class CreateUser extends JFrame {
 
             });
 
+            exitPageButton.addActionListener(e -> {
+                dispose();
+            });
+
             add(new JLabel("Name:"));
 
             add(usernameField);
@@ -73,6 +85,8 @@ public class CreateUser extends JFrame {
             add(passwordField);
 
             add(createButton);
+
+            add(exitPageButton);
 
             setVisible(true);
 

@@ -5,7 +5,6 @@ import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
 import src.model.services.UserServices.AdminTable;
 import src.model.services.UserServices.CustomerTable;
-import src.security.PassHash;
 import src.validation.CheckAdmin;
 import src.validation.CheckCustomers;
 
@@ -19,7 +18,8 @@ public class UserDBTest {
 
     private static void testUserAdmin () {
 
-        Admin admin = new Admin("Mr.Duck", "Quak", "1qaz2345", TypeUser.ADMIN);
+        Admin admin = new Admin("Mr.Duck", "Quak", "mrduck@gmail.com",
+                "1qaz2345", TypeUser.ADMIN);
 
         CheckAdmin checkAdmin = new CheckAdmin();
 
@@ -31,7 +31,8 @@ public class UserDBTest {
 
     private static void testUserCustomer () {
 
-        Customer customer = new Customer("Paul", "Walker", "iwjdwds", TypeUser.CUSTOMER);
+        Customer customer = new Customer("Paul", "Walker", "paulwalker@hotmail.com",
+                "iwjdwds", TypeUser.CUSTOMER);
 
         CheckCustomers checkCustomers = new CheckCustomers();
 

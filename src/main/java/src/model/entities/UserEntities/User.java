@@ -8,17 +8,21 @@ public abstract class User {
 
     private String lastName;
 
+    private String email;
+
     private String password;
 
     private TypeUser typeUser;
 
     public User () {}
 
-    public User (String name, String lastName, String password, TypeUser typeUser) {
+    public User (String name, String lastName, String email, String password, TypeUser typeUser) {
 
         this.name = name;
 
         this.lastName = lastName;
+
+        this.email = email;
 
         this.password = password;
 
@@ -35,6 +39,12 @@ public abstract class User {
     public String getLastName () {
 
         return lastName;
+
+    }
+
+    public String getEmail () {
+
+        return email;
 
     }
 
