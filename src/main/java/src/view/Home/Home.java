@@ -1,14 +1,17 @@
 package src.view.Home;
 
+import src.view.Forms.CreateUser;
+
 import javax.swing.*;
+
 import java.awt.*;
+
 
 public class Home extends JFrame {
 
     public Home () {
 
         setTitle("Home");
-        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -32,14 +35,26 @@ public class Home extends JFrame {
         int y = (getHeight() - 70) / 2;
 
         JButton btnCreateAccount = new JButton("Create Account");
+
         btnCreateAccount.setBounds(x, y, 250, 70);
+
         btnCreateAccount.setFont(new Font("Helvetica", Font.PLAIN, 20));
+
+        btnCreateAccount.addActionListener(e -> new CreateUser());
+
         add(btnCreateAccount);
 
         JButton btnQuitApp = new JButton("Quit");
+
         btnQuitApp.setBounds(x, y + 100, 250, 70);
+
         btnQuitApp.setFont(new Font("Helvetica", Font.PLAIN, 15));
+
+        btnQuitApp.addActionListener(e -> System.exit(0));
+
         add(btnQuitApp);
+
+        setVisible(true);
 
     }
 
