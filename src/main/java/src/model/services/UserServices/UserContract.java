@@ -4,6 +4,6 @@ public interface UserContract {
 
     void updateName (String name, Integer id);
 
-    void checkUserById (Integer id);
+    boolean checkUserById (Integer id);
 
 }

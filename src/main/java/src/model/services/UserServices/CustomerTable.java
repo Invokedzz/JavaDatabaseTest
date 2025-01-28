@@ -15,6 +15,8 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
     private PreparedStatement statement;
 
+    private ResultSet set;
+
     public CustomerTable () {}
 
     public CustomerTable (Customer customer) {
@@ -79,7 +81,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
                     "SELECT * FROM \"User\".\"Customer\""
             );
 
-            ResultSet set = statement.executeQuery();
+            set = statement.executeQuery();
 
             while (set.next()) {
 
@@ -206,9 +208,45 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public void checkUserById (Integer id) {
+    public boolean checkUserById (Integer id) {
 
         connection = null;
+
+        statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM \"User\".\"Customer\" WHERE id = ?"
+            );
+
+            statement.setInt(1, id);
+
+            set = statement.executeQuery();
+
+            if (set.next()) {
+
+                int count = set.getInt(1);
+
+                return count > 0;
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeStatements(statement);
+
+            DB.closeConnections(connection);
+
+        }
+
+        return false;
 
     }
 

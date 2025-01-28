@@ -14,6 +14,8 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
     private PreparedStatement statement;
 
+    private ResultSet set;
+
     public AdminTable () {}
 
     public AdminTable (Admin admin) {
@@ -78,7 +80,7 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
               "SELECT * FROM \"User\".\"Admin\""
             );
 
-            ResultSet set = statement.executeQuery();
+            set = statement.executeQuery();
 
             while (set.next()) {
 
@@ -205,7 +207,45 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public void checkUserById(Integer id) {
+    public boolean checkUserById(Integer id) {
+
+        connection = null;
+
+        statement = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "SELECT COUNT (*) FROM \"User\".\"Admin\" WHERE id = ?"
+            );
+
+            statement.setInt(1, id);
+
+            set = statement.executeQuery();
+
+            if (set.next()) {
+
+                int count = set.getInt(1);
+
+                return count > 0;
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeConnections(connection);
+
+            DB.closeStatements(statement);
+
+        }
+
+        return false;
 
     }
 

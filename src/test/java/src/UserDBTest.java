@@ -13,14 +13,19 @@ public class UserDBTest {
 
     public static void main (String[] args) {
 
-        //testUserAdmin();
-
-        testUserCustomer();
+        testUserAdmin();
 
     }
 
     private static void testUserAdmin () {
 
+        Admin admin = new Admin("Mr.Duck", "Quak", "1qaz2345", TypeUser.ADMIN);
+
+        CheckAdmin checkAdmin = new CheckAdmin();
+
+        AdminTable adminTable = new AdminTable(admin);
+
+        if (checkAdmin.test(admin)) System.out.println(adminTable.checkUserById(2));
 
     }
 
