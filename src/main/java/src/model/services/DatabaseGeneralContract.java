@@ -6,7 +6,7 @@ public interface DatabaseGeneralContract {
 
     void display ();
 
-    void deleteComponent ();
+    void deleteComponent (Integer id);
 
     void deleteAll ();
 

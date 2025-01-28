@@ -1,24 +1,19 @@
 package src.model.services.UserServices;
 
 import src.model.entities.UserEntities.Customer;
-
 import src.model.enums.TypeUser;
 import src.model.services.DatabaseGeneralContract;
-
-import src.db.DB;
-
-import src.db.DbException;
+import src.db.*;
 import src.security.PassHash;
-
 import java.sql.*;
-
-import java.util.Scanner;
 
 public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
-    Scanner sc = new Scanner(System.in);
-
     private Customer customer;
+
+    private Connection connection;
+
+    private PreparedStatement statement;
 
     public CustomerTable () {}
 
@@ -31,9 +26,9 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void insert () {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -72,9 +67,9 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void display () {
 
-        Connection connection;
+        connection = null;
 
-        PreparedStatement statement;
+        statement = null;
 
         try {
 
@@ -105,11 +100,11 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public void deleteComponent () {
+    public void deleteComponent (Integer id) {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -119,7 +114,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
                     "DELETE FROM \"User\".\"Customer\" WHERE id = ?"
             );
 
-            statement.setInt(1, sc.nextInt());
+            statement.setInt(1, id);
 
             statement.executeUpdate();
 
@@ -143,9 +138,9 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void deleteAll () {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -174,11 +169,11 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public void updateName() {
+    public void updateName (String name, Integer id) {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -188,9 +183,9 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
                     "UPDATE \"User\".\"Customer\" set name = ? WHERE id = ?"
             );
 
-            statement.setString(1, "Asuka");
+            statement.setString(1, name);
 
-            statement.setInt(2, sc.nextInt());
+            statement.setInt(2, id);
 
             statement.executeUpdate();
 
@@ -207,6 +202,13 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
             DB.closeStatements(statement);
 
         }
+
+    }
+
+    @Override
+    public void checkUserById (Integer id) {
+
+        connection = null;
 
     }
 

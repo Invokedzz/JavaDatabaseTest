@@ -1,24 +1,18 @@
 package src.model.services.UserServices;
 
 import src.model.services.DatabaseGeneralContract;
-
 import src.model.entities.UserEntities.Admin;
-
-import src.db.DB;
-
-import src.db.DbException;
-
+import src.db.*;
 import src.security.PassHash;
-
 import java.sql.*;
-
-import java.util.Scanner;
 
 public class AdminTable implements DatabaseGeneralContract, UserContract {
 
-    Scanner sc = new Scanner(System.in);
-
     private Admin admin;
+
+    private Connection connection;
+
+    private PreparedStatement statement;
 
     public AdminTable () {}
 
@@ -31,9 +25,9 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void insert () {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -72,9 +66,9 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void display () {
 
-        Connection connection;
+        connection = null;
 
-        PreparedStatement statement;
+        statement = null;
 
         try {
 
@@ -105,11 +99,11 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public void deleteComponent () {
+    public void deleteComponent (Integer id) {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -119,7 +113,7 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
                     "DELETE FROM \"User\".\"Admin\" WHERE id = ?"
             );
 
-            statement.setInt(1, sc.nextInt());
+            statement.setInt(1, id);
 
             statement.executeUpdate();
 
@@ -142,9 +136,9 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void deleteAll () {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -174,11 +168,11 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
 
     @Override
-    public void updateName() {
+    public void updateName(String name, Integer id) {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -188,9 +182,9 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
                     "UPDATE \"User\".\"Admin\" set name = ? WHERE id = ?"
             );
 
-            statement.setString(1, "Mr.Dog");
+            statement.setString(1, name);
 
-            statement.setInt(2, sc.nextInt());
+            statement.setInt(2, id);
 
             statement.executeUpdate();
 
@@ -207,6 +201,11 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
             DB.closeStatements(statement);
 
         }
+
+    }
+
+    @Override
+    public void checkUserById(Integer id) {
 
     }
 

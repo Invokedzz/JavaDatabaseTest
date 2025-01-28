@@ -1,22 +1,17 @@
 package src.model.services.ProdServices;
 
-import java.util.Scanner;
-
-import src.db.DB;
-
-import src.db.DbException;
-
+import src.db.*;
 import src.model.entities.ProdEntities.Product;
-
 import src.model.services.DatabaseGeneralContract;
-
 import java.sql.*;
 
 public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
-    Scanner sc = new Scanner(System.in);
-
     private Product product;
+
+    private Connection connection;
+
+    private PreparedStatement statement;
 
     public ProductTable () {}
 
@@ -33,9 +28,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     @Override
     public void insert () {
 
-        Connection connection;
+        connection = null;
 
-        PreparedStatement statement;
+        statement = null;
 
         try {
 
@@ -59,9 +54,7 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
             statement.setInt(5, product.getCategory().getId());
 
-            int rows = statement.executeUpdate();
-
-            System.out.printf("Rows Affected: %s", rows);
+            statement.executeUpdate();
 
         } catch ( SQLException exception ) {
 
@@ -74,9 +67,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     @Override
     public void display () {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -117,11 +110,11 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     }
 
     @Override
-    public void deleteComponent () {
+    public void deleteComponent (Integer id) {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -131,7 +124,7 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
                     "DELETE FROM \"Stock\".\"Product\" WHERE id = ?"
             );
 
-            statement.setInt(1, sc.nextInt());
+            statement.setInt(1, id);
 
             statement.executeUpdate();
 
@@ -153,9 +146,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     @Override
     public void deleteAll () {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -184,11 +177,11 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     }
 
     @Override
-    public void updateName() {
+    public void updateName(String name, Integer id) {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -198,9 +191,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
                     "UPDATE \"Stock\".\"Product\" set name = ? WHERE id = ?"
             );
 
-            statement.setString(1, "Basketball");
+            statement.setString(1, name);
 
-            statement.setInt(2, sc.nextInt());
+            statement.setInt(2, id);
 
             statement.executeUpdate();
 
@@ -221,11 +214,11 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     }
 
     @Override
-    public void updatePrice() {
+    public void updatePrice (Double price, Integer id) {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -235,9 +228,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
                     "UPDATE \"Stock\".\"Product\" set price = ? WHERE id = ?"
             );
 
-            statement.setInt(1, 1000);
+            statement.setDouble(1, price);
 
-            statement.setInt(2, sc.nextInt());
+            statement.setInt(2, id);
 
             statement.executeUpdate();
 

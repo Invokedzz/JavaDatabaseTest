@@ -2,8 +2,8 @@ package src.model.services.ProdServices;
 
 public interface ProductContract {
 
-    void updateName ();
+    void updateName (String name, Integer id);
 
-    void updatePrice ();
+    void updatePrice (Double price, Integer id);
 
 }

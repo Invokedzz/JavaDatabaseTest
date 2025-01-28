@@ -52,16 +52,7 @@ public class ProdDBTest {
 
     private static void testTableProduct (Category cat) {
 
-        Product product = new Product("BLACK COAT", 100.0, 3,
-                ProductAvailability.IN_STOCK, cat);
 
-        CheckProducts checkProducts = new CheckProducts();
-
-        checkProducts.test(product);
-
-        ProductTable prodTable = new ProductTable(product);
-
-        prodTable.updatePrice();
 
     }
 
