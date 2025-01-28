@@ -1,12 +1,10 @@
 package src;
 
 import src.model.entities.ProdEntities.*;
-
 import src.model.entities.UserEntities.*;
-
 import src.model.enums.*;
-
 import src.validation.*;
+import src.security.ValidateMail;
 
 public class ValidationsTest {
 
@@ -18,19 +16,25 @@ public class ValidationsTest {
 
     public static void main (String[] args) {
 
-       //validateCategories();
+        validateComponents();
 
-       // validateAdmin();validateCustomer();
+        validateCategories();
+
+        validateAdmin();
+
+        validateCustomer();
 
         validateProducts();
+
+        isEmailValid();
 
     }
 
     private static void validateComponents () {
 
-        Admin admin = new Admin("Mr.Duck", "Qua", "8392", TypeUser.ADMIN);
+        Admin admin = new Admin("Mr.Duck", "Qua", "", "8392", TypeUser.ADMIN);
 
-        Customer customer = new Customer("Mr.Goose", "Occ", "982398", TypeUser.CUSTOMER);
+        Customer customer = new Customer("Mr.Goose", "Occ", "","982398", TypeUser.CUSTOMER);
 
         CheckAdmin checkAdmin = new CheckAdmin();
 
@@ -52,6 +56,8 @@ public class ValidationsTest {
 
         checkCategories.test(category); // validated
 
+        System.out.println("ValidateCategories function: ");
+
         System.out.println(category);
 
     }
@@ -65,6 +71,8 @@ public class ValidationsTest {
 
         CheckProducts checkProducts = new CheckProducts();
 
+        System.out.println("ValidateProducts function: ");
+
         System.out.println(checkProducts.test(product));
 
         System.out.println(product);
@@ -73,11 +81,13 @@ public class ValidationsTest {
 
     private static void validateAdmin () {
 
-        Admin admin = new Admin("Paul", "WA", "721", TypeUser.ADMIN);
+        Admin admin = new Admin("Paul", "WA", "", "721", TypeUser.ADMIN);
 
         CheckAdmin checkAdmin = new CheckAdmin();
 
         boolean hmm = checkAdmin.test(admin);
+
+        System.out.println("ValidateAdmin function: ");
 
         System.out.println(admin);
 
@@ -87,15 +97,27 @@ public class ValidationsTest {
 
     private static void validateCustomer () {
 
-        Customer customer = new Customer("Mr.Duck", "Quak", "y78xz8", TypeUser.CUSTOMER);
+        Customer customer = new Customer("Mr.Duck", "Qua", "", "y78xz8", TypeUser.CUSTOMER);
 
         CheckCustomers checkCustomers = new CheckCustomers();
 
         boolean cup = checkCustomers.test(customer);
 
+        System.out.println("ValidateCustomer function: ");
+
         System.out.println(cup);
 
         System.out.println(customer);
+
+    }
+
+    private static void isEmailValid () {
+
+        boolean trueOrFalse = ValidateMail.checkMail("paulwalker@gmail.com");
+
+        System.out.println("IsEmailValid function: ");
+
+        System.out.println(trueOrFalse);
 
     }
 
