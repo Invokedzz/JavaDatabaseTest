@@ -19,6 +19,11 @@
             <artifactId>stripe-java</artifactId>
             <version>28.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout-swing</artifactId>
+            <version>4.2</version>
+        </dependency>
     </dependencies>
 
     <properties>
