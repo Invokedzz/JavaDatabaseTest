@@ -4,8 +4,6 @@ import src.model.enums.TypeUser;
 
 public abstract class User {
 
-    private Integer id;
-
     private String name;
 
     private String lastName;
@@ -16,9 +14,7 @@ public abstract class User {
 
     public User () {}
 
-    public User (Integer id, String name, String lastName, String password, TypeUser typeUser) {
-
-        this.id = id;
+    public User (String name, String lastName, String password, TypeUser typeUser) {
 
         this.name = name;
 

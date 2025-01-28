@@ -10,9 +10,9 @@ public class Customer extends User {
 
     }
 
-    public Customer (Integer id, String name, String lastName, String password, TypeUser typeUser) {
+    public Customer (String name, String lastName, String password, TypeUser typeUser) {
 
-        super(id, name, lastName, password, typeUser);
+        super(name, lastName, password, typeUser);
 
     }
 
