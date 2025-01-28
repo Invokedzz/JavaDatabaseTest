@@ -1,20 +1,17 @@
 package src.model.services.ProdServices;
 
 import src.model.entities.ProdEntities.Category;
-
 import src.db.*;
-
 import src.model.services.DatabaseGeneralContract;
-
 import java.sql.*;
-
-import java.util.Scanner;
 
 public class CategoryTable implements DatabaseGeneralContract {
 
     private Category category;
 
-    Scanner sc = new Scanner(System.in);
+    private Connection connection;
+
+    private PreparedStatement statement;
 
     public CategoryTable () {}
 
@@ -31,9 +28,9 @@ public class CategoryTable implements DatabaseGeneralContract {
     @Override
     public void insert () {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -51,9 +48,7 @@ public class CategoryTable implements DatabaseGeneralContract {
 
             statement.setInt(1, category.getTier());
 
-            int rows = statement.executeUpdate();
-
-            System.out.println("Rows affected: " + rows);
+            statement.executeUpdate();
 
         } catch (SQLException exception) {
 
@@ -72,9 +67,9 @@ public class CategoryTable implements DatabaseGeneralContract {
     @Override
     public void display () {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -113,11 +108,11 @@ public class CategoryTable implements DatabaseGeneralContract {
     }
 
     @Override
-    public void deleteComponent () {
+    public void deleteComponent (Integer id) {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
@@ -127,7 +122,7 @@ public class CategoryTable implements DatabaseGeneralContract {
                     "DELETE FROM \"Stock\".\"Category\" WHERE id = ?"
             );
 
-            statement.setInt(1, sc.nextInt());
+            statement.setInt(1, id);
 
             statement.executeUpdate();
 
@@ -149,9 +144,9 @@ public class CategoryTable implements DatabaseGeneralContract {
     @Override
     public void deleteAll() {
 
-        Connection connection = null;
+        connection = null;
 
-        PreparedStatement statement = null;
+        statement = null;
 
         try {
 
