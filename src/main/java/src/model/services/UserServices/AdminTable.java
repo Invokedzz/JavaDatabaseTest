@@ -211,8 +211,36 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public String getStoredPassword(String email) {
-        return "";
+    public String getStoredPassword (String email) {
+
+        connection = null;
+
+        statement = null;
+
+        String storedPass = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "SELECT password FROM \"User\".\"Admin\" WHERE email = ?"
+            );
+
+            statement.setString(1, email);
+
+            set = statement.executeQuery();
+
+            if (set.next()) storedPass = set.getString("password");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return storedPass;
+
     }
 
     @Override

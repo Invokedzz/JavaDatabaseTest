@@ -1,4 +1,4 @@
-package manualtests.manualdbtests;
+package manualtests;
 
 import src.model.entities.ProdEntities.Category;
 

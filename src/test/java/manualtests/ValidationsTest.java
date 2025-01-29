@@ -1,4 +1,4 @@
-package manualtests.manualvalidationtests;
+package manualtests;
 
 import src.model.entities.ProdEntities.*;
 import src.model.entities.UserEntities.*;
