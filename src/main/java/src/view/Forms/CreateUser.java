@@ -22,7 +22,7 @@ public class CreateUser extends JFrame {
 
             setTitle("Create Account");
             setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
-            setSize(300, 300);
+            setSize(300, 320);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             setLocationRelativeTo(null);
 
@@ -68,9 +68,7 @@ public class CreateUser extends JFrame {
 
             });
 
-            exitPageButton.addActionListener(e -> {
-                dispose();
-            });
+            exitPageButton.addActionListener(e -> dispose());
 
             add(new JLabel("Name:"));
 
@@ -79,6 +77,10 @@ public class CreateUser extends JFrame {
             add(new JLabel("Last Name:"));
 
             add(lastNameField);
+
+            add(new JLabel("Email:"));
+
+            add(emailField);
 
             add(new JLabel("Password:"));
 

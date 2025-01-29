@@ -38,17 +38,19 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
             statement = connection.prepareStatement(
                     "INSERT INTO \"User\".\"Customer\" " +
-                            "(name, password, typeuser)" +
-                            " VALUES (?, ?, ?)"
+                            "(name, email, password, typeuser)" +
+                            " VALUES (?, ?, ?, ?)"
             );
 
             statement.setString(1, customer.getName() + " " + customer.getLastName());
 
             String hashedPassword = PassHash.generateHash(customer.getPassword());
 
-            statement.setString(2, hashedPassword);
+            statement.setString(2, customer.getEmail());
 
-            statement.setString(3, TypeUser.CUSTOMER.name());
+            statement.setString(3, hashedPassword);
+
+            statement.setString(4, TypeUser.CUSTOMER.name());
 
             statement.executeUpdate();
 
@@ -87,9 +89,11 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
                 String name = set.getString("name");
 
+                String email = set.getString("email");
+
                 String type = set.getString("typeuser");
 
-                System.out.println("NAME: " + name + " TYPE: " + type);
+                System.out.println("NAME: " + name + " TYPE: " + type + " EMAIL: " + email);
 
             }
 
@@ -204,6 +208,39 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
             DB.closeStatements(statement);
 
         }
+
+    }
+
+    @Override
+    public String getStoredPassword (String email) {
+
+        connection = null;
+
+        statement = null;
+
+        String storedPass = null;
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "SELECT password FROM \"User\".\"Customer\" WHERE email = ?"
+            );
+
+            statement.setString(1, email);
+
+            set = statement.executeQuery();
+
+            if (set.next()) storedPass = set.getString("password");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return storedPass;
 
     }
 

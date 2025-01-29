@@ -1,9 +1,8 @@
 package src.validation;
 
 import src.model.entities.UserEntities.User;
-
 import src.model.enums.TypeUser;
-
+import src.security.MailServ;
 import src.util.UserPredicate;
 
 public class CheckAdmin implements UserPredicate {
@@ -20,7 +19,8 @@ public class CheckAdmin implements UserPredicate {
                 user.getLastName().length() >= 2 &&
                 user.getLastName().length() <= 12 &&
                 user.getPassword().length() > 5 &&
-                user.getPassword().length() <= 15;
+                user.getPassword().length() <= 15 &&
+                MailServ.checkMail(user.getEmail());
 
     }
 

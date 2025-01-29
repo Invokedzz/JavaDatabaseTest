@@ -4,7 +4,7 @@ import src.model.entities.ProdEntities.*;
 import src.model.entities.UserEntities.*;
 import src.model.enums.*;
 import src.validation.*;
-import src.security.ValidateMail;
+import src.security.MailServ;
 
 public class ValidationsTest {
 
@@ -97,7 +97,8 @@ public class ValidationsTest {
 
     private static void validateCustomer () {
 
-        Customer customer = new Customer("Mr.Duck", "Qua", "", "y78xz8", TypeUser.CUSTOMER);
+        Customer customer = new Customer("Mr.Duck", "Qua", "mrduck@gmail.com",
+                "y78xz8", TypeUser.CUSTOMER);
 
         CheckCustomers checkCustomers = new CheckCustomers();
 
@@ -113,7 +114,7 @@ public class ValidationsTest {
 
     private static void isEmailValid () {
 
-        boolean trueOrFalse = ValidateMail.checkMail("paulwalker@gmail.com");
+        boolean trueOrFalse = MailServ.checkMail("paulwalker@gmail.com");
 
         System.out.println("IsEmailValid function: ");
 

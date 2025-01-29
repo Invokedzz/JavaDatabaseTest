@@ -25,7 +25,7 @@ public class UserDBTest {
 
         AdminTable adminTable = new AdminTable(admin);
 
-        if (checkAdmin.test(admin)) System.out.println(adminTable.checkUserById(2));
+        adminTable.insert();
 
     }
 
