@@ -1,20 +1,12 @@
-package src;
+package manualtests.manualdbtests;
 
 import src.model.entities.ProdEntities.Category;
-
-import src.model.entities.ProdEntities.Product;
-
-import src.model.enums.ProductAvailability;
 
 import src.model.enums.TypeProduct;
 
 import src.model.services.ProdServices.CategoryTable;
 
-import src.model.services.ProdServices.ProductTable;
-
 import src.validation.CheckCategories;
-
-import src.validation.CheckProducts;
 
 import src.security.PassHash;
 

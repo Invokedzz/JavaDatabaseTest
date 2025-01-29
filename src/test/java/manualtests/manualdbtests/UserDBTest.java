@@ -1,4 +1,4 @@
-package src;
+package manualtests.manualdbtests;
 
 import src.model.entities.UserEntities.Admin;
 import src.model.entities.UserEntities.Customer;
