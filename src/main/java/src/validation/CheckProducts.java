@@ -2,9 +2,7 @@ package src.validation;
 
 import src.exceptions.ProductException;
 import src.model.entities.ProdEntities.Product;
-
 import src.model.enums.ProductAvailability;
-
 import src.util.ProductPredicate;
 
 public class CheckProducts implements ProductPredicate {

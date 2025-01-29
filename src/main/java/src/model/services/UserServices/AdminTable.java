@@ -37,17 +37,19 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
             statement = connection.prepareStatement(
                     "INSERT INTO \"User\".\"Admin\"" +
-                            " (name, password, typeuser)" +
-                            " VALUES (?,?,?)"
+                            " (name, email, password, typeuser)" +
+                            " VALUES (?,?,?,?)"
             );
 
             statement.setString(1, admin.getName() + " " + admin.getLastName());
 
             String hashPassword = PassHash.generateHash(admin.getPassword());
 
-            statement.setString(2, hashPassword);
+            statement.setString(2, admin.getEmail());
 
-            statement.setString(3, admin.getTypeUser().name());
+            statement.setString(3, hashPassword);
+
+            statement.setString(4, admin.getTypeUser().name());
 
             statement.executeUpdate();
 
@@ -86,9 +88,11 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
                 String name = set.getString("name");
 
+                String email = set.getString("email");
+
                 String type = set.getString("typeuser");
 
-                System.out.println("NAME: " + name + " TYPE: " + type);
+                System.out.println("NAME: " + name + " TYPE: " + type + " EMAIL: " + email);
 
             }
 
@@ -204,6 +208,11 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
         }
 
+    }
+
+    @Override
+    public String getStoredPassword(String email) {
+        return "";
     }
 
     @Override

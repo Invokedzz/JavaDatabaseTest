@@ -2,7 +2,7 @@ package src.security;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
-public class ValidateMail {
+public class MailServ {
 
     public static boolean checkMail (String mail) {
 
