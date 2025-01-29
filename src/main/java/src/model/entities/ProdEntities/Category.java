@@ -12,7 +12,7 @@ public class Category extends Product {
 
     public Category () {}
 
-    public Category (Integer id, TypeProduct type, Integer tier ) {
+    public Category (Integer id, TypeProduct type, Integer tier) {
 
         this.id = id;
 
