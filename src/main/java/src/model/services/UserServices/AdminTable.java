@@ -97,11 +97,9 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public void deleteComponent (Integer id) {
+    public void deleteComponent (Connection connection, Integer id) {
 
         try {
-
-            connection = DB.getConnection();
 
             statement = connection.prepareStatement(
                     "DELETE FROM \"User\".\"Admin\" WHERE id = ?"
@@ -116,12 +114,6 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
 
         }
 
@@ -191,26 +183,24 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public Admin obtainUserProperties (Integer id) {
+    public Admin obtainUserProperties (Connection connection, Integer id) {
         return new Admin();
     }
 
 
     @Override
-    public Integer obtainUserId(Connection connect, String email) {
+    public Integer obtainUserId(Connection connection, String email) {
         return 0;
     }
 
     @Override
-    public String getStoredPassword (String email) {
+    public String getStoredPassword (Connection connect, String email) {
 
         String storedPass = null;
 
         try {
 
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
+            statement = connect.prepareStatement(
                     "SELECT password FROM \"User\".\"Admin\" WHERE email = ?"
             );
 

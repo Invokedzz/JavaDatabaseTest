@@ -1,12 +1,14 @@
 package src.model.services;
 
+import java.sql.Connection;
+
 public interface DatabaseGeneralContract {
 
     void insert ();
 
     void display ();
 
-    void deleteComponent (Integer id);
+    void deleteComponent (Connection connection, Integer id);
 
     void deleteAll ();
 

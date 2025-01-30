@@ -7,11 +7,11 @@ public interface UserContract {
 
     void updateName (String name, Integer id);
 
-    User obtainUserProperties (Integer id);
+    User obtainUserProperties (Connection connection, Integer id);
 
     Integer obtainUserId (Connection connect, String email);
 
-    String getStoredPassword (String email);
+    String getStoredPassword (Connection connection, String email);
 
     boolean checkUserById (Integer id);
 

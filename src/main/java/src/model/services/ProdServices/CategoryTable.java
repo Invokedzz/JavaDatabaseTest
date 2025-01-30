@@ -100,7 +100,7 @@ public class CategoryTable implements DatabaseGeneralContract {
     }
 
     @Override
-    public void deleteComponent (Integer id) {
+    public void deleteComponent (Connection connection, Integer id) {
 
         try {
 
