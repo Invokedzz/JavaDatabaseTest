@@ -32,9 +32,9 @@ public class ValidationsTest {
 
     private static void validateComponents () {
 
-        Admin admin = new Admin("Mr.Duck", "Qua", "", "8392", TypeUser.ADMIN);
+        Admin admin = new Admin("Mr.Duck", "", "8392", TypeUser.ADMIN);
 
-        Customer customer = new Customer("Mr.Goose", "Occ", "","982398", TypeUser.CUSTOMER);
+        Customer customer = new Customer("Mr.Goose", "","982398", TypeUser.CUSTOMER);
 
         CheckAdmin checkAdmin = new CheckAdmin();
 
@@ -81,7 +81,7 @@ public class ValidationsTest {
 
     private static void validateAdmin () {
 
-        Admin admin = new Admin("Paul", "WA", "", "721", TypeUser.ADMIN);
+        Admin admin = new Admin("Paul", "", "721", TypeUser.ADMIN);
 
         CheckAdmin checkAdmin = new CheckAdmin();
 
@@ -97,7 +97,7 @@ public class ValidationsTest {
 
     private static void validateCustomer () {
 
-        Customer customer = new Customer("Mr.Duck", "Qua", "mrduck@gmail.com",
+        Customer customer = new Customer("Mr.Duck", "mrduck@gmail.com",
                 "y78xz8", TypeUser.CUSTOMER);
 
         CheckCustomers checkCustomers = new CheckCustomers();

@@ -12,7 +12,6 @@ import java.awt.*;
 public class CreateUser extends JFrame {
 
     private JTextField usernameField;
-    private JTextField lastNameField;
     private JTextField emailField;
     private JPasswordField passwordField;
     private JButton createButton;
@@ -30,8 +29,6 @@ public class CreateUser extends JFrame {
 
             passwordField = new JPasswordField(15);
 
-            lastNameField = new JTextField(15);
-
             emailField = new JTextField(15);
 
             createButton = new JButton("Create");
@@ -42,13 +39,11 @@ public class CreateUser extends JFrame {
 
                 String username = usernameField.getText();
 
-                String lastName = lastNameField.getText();
-
                 String email = emailField.getText();
 
                 String password = new String(passwordField.getPassword());
 
-                Customer customer = new Customer(username, lastName, email, password, TypeUser.CUSTOMER);
+                Customer customer = new Customer(username, email, password, TypeUser.CUSTOMER);
 
                 CustomerTable customerTable = new CustomerTable(customer);
 
@@ -73,10 +68,6 @@ public class CreateUser extends JFrame {
             add(new JLabel("Name:"));
 
             add(usernameField);
-
-            add(new JLabel("Last Name:"));
-
-            add(lastNameField);
 
             add(new JLabel("Email:"));
 

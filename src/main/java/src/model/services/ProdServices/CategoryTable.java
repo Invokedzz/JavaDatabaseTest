@@ -28,10 +28,6 @@ public class CategoryTable implements DatabaseGeneralContract {
     @Override
     public void insert () {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -66,10 +62,6 @@ public class CategoryTable implements DatabaseGeneralContract {
 
     @Override
     public void display () {
-
-        connection = null;
-
-        statement = null;
 
         try {
 
@@ -110,10 +102,6 @@ public class CategoryTable implements DatabaseGeneralContract {
     @Override
     public void deleteComponent (Integer id) {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -142,11 +130,7 @@ public class CategoryTable implements DatabaseGeneralContract {
 
     // WARNING: this function deletes the ENTIRE table
     @Override
-    public void deleteAll() {
-
-        connection = null;
-
-        statement = null;
+    public void deleteAll () {
 
         try {
 

@@ -31,16 +31,12 @@ class CustomerTableTest {
     @BeforeEach
     void setUp() {
 
-        customer = new Customer("John", "Greed", "johngreed901@gmail.com",
+        customer = new Customer("John Greed", "johngreed901@gmail.com",
                 "ILoveMoney", TypeUser.CUSTOMER);
 
         checkCustomers = new CheckCustomers();
 
         connection = DB.getConnection();
-
-        statement = null;
-
-        set = null;
 
     }
 
