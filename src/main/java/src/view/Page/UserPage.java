@@ -26,6 +26,7 @@ public class UserPage extends JFrame {
         setTitle("User");
         setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        getContentPane().setBackground(new Color(245, 245, 245));
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(800,600);
@@ -48,7 +49,19 @@ public class UserPage extends JFrame {
 
             deleteBtn.addActionListener(e -> {
 
-                new DeleteUserAccount(connection, userId);
+                int response = JOptionPane.showConfirmDialog(null, "Do you really want to proceed?",
+                        "Confirm"
+                        , JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                if (response == JOptionPane.YES_OPTION) {
+
+                    new DeleteUserAccount(connection, userId);
+
+                    dispose();
+
+                }
+
+                else dispose();
 
             });
 
