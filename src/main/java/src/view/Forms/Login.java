@@ -2,11 +2,10 @@ package src.view.Forms;
 
 import src.db.DB;
 import src.db.DbException;
-import src.model.entities.UserEntities.Customer;
 import src.model.services.UserServices.CustomerTable;
 import src.security.LoginServ;
 import src.security.UserSession;
-import src.view.Page.ProductsPage;
+import src.view.Page.UserPage;
 
 import javax.swing.*;
 
@@ -42,39 +41,35 @@ public class Login extends JFrame {
 
         loginBtn.addActionListener(e -> {
 
-            try (Connection connection = DB.getConnection()) {
+            Connection connection;
 
-                String email = emailField.getText();
+            connection = DB.getConnection();
 
-                Integer userId = getUserIdByEmail(connection, email);
+            String email = emailField.getText();
 
-                String password = new String(passwordField.getPassword());
+            Integer userId = getUserIdByEmail(connection, email);
 
-                if (userId != null) {
+            String password = new String(passwordField.getPassword());
 
-                    String storedPass = getStoredPasswordByEmail(email);
+            if (userId != null) {
 
-                    UserSession.userId = userId;
+                String storedPass = getStoredPasswordByEmail(connection, email);
 
-                    if (isLoginValid(email, password, storedPass)) {
+                UserSession.userId = userId;
 
-                        JOptionPane.showMessageDialog(this, "Login successful!");
+                if (isLoginValid(email, password, storedPass)) {
 
-                        new ProductsPage(userId);
+                    JOptionPane.showMessageDialog(this, "Login successful!");
 
-                        dispose();
+                    new UserPage(connection, userId);
 
-                    }
+                    dispose();
 
                 }
 
-                else JOptionPane.showMessageDialog(this, "Account not found!");
-
-            } catch (SQLException exception) {
-
-                throw new DbException(exception.getMessage());
-
             }
+
+            else JOptionPane.showMessageDialog(this, "Account not found!");
 
         });
 
@@ -99,17 +94,25 @@ public class Login extends JFrame {
     }
 
     private Integer getUserIdByEmail (Connection connection, String email) {
+
         customerTable = new CustomerTable();
+
         return customerTable.obtainUserId(connection, email);
+
     }
 
-    private String getStoredPasswordByEmail (String email) {
+    private String getStoredPasswordByEmail (Connection connection, String email) {
+
         customerTable = new CustomerTable();
-        return customerTable.getStoredPassword(email);
+
+        return customerTable.getStoredPassword(connection, email);
+
     }
 
     private boolean isLoginValid(String email, String password, String storedPassword) {
+
         return LoginServ.isLoginValid(email, password, storedPassword);
+
     }
 
 }

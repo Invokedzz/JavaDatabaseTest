@@ -54,12 +54,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
             throw new DbException(exception.getMessage());
 
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
-
         }
 
     }
@@ -98,11 +92,9 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public void deleteComponent (Integer id) {
+    public void deleteComponent (Connection connection, Integer id) {
 
         try {
-
-            connection = DB.getConnection();
 
             statement = connection.prepareStatement(
                     "DELETE FROM \"User\".\"Customer\" WHERE id = ?"
@@ -118,14 +110,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
             throw new DbException(exception.getMessage());
 
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
-
         }
-
 
     }
 
@@ -192,11 +177,9 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public Customer obtainUserProperties (Integer id) {
+    public Customer obtainUserProperties (Connection connection, Integer id) {
 
         try {
-
-            connection = DB.getConnection();
 
             statement = connection.prepareStatement(
                     "SELECT * FROM \"User\".\"Customer\" WHERE id = ?"
@@ -221,12 +204,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeStatements(statement);
-
-            DB.closeConnections(connection);
 
         }
 
@@ -253,10 +230,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
             throw new DbException(exception.getMessage());
 
-        } finally {
-
-            DB.closeStatements(statement);
-
         }
 
         return null;
@@ -264,15 +237,13 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public String getStoredPassword (String email) {
+    public String getStoredPassword (Connection connect, String email) {
 
         String storedPass = null;
 
         try {
 
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
+            statement = connect.prepareStatement(
                     "SELECT password FROM \"User\".\"Customer\" WHERE email = ?"
             );
 
@@ -285,10 +256,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeStatements(statement);
 
         }
 

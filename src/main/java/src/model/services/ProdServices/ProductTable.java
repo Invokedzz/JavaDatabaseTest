@@ -102,7 +102,7 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     }
 
     @Override
-    public void deleteComponent (Integer id) {
+    public void deleteComponent (Connection connection, Integer id) {
 
         try {
 
@@ -119,12 +119,6 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
 
         }
 
