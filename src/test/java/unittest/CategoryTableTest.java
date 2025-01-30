@@ -2,6 +2,7 @@ package unittest;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.db.DB;
 import src.db.DbException;
@@ -27,10 +28,6 @@ class CategoryTableTest {
 
         connection = DB.getConnection();
 
-        statement = null;
-
-        set = null;
-
     }
 
     @AfterAll
@@ -45,6 +42,7 @@ class CategoryTableTest {
     }
 
     @Test
+    @DisplayName("INSERT test")
     void insert() {
 
         try {
@@ -72,6 +70,7 @@ class CategoryTableTest {
     }
 
     @Test
+    @DisplayName("SELECT * test")
     void display() {
 
         try {

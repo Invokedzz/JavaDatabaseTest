@@ -27,10 +27,6 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void insert () {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -41,7 +37,7 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
                             " VALUES (?,?,?,?)"
             );
 
-            statement.setString(1, admin.getName() + " " + admin.getLastName());
+            statement.setString(1, admin.getName());
 
             String hashPassword = PassHash.generateHash(admin.getPassword());
 
@@ -69,10 +65,6 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
     @Override
     public void display () {
-
-        connection = null;
-
-        statement = null;
 
         try {
 
@@ -107,10 +99,6 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void deleteComponent (Integer id) {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -142,10 +130,6 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void deleteAll () {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -174,11 +158,7 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
 
     @Override
-    public void updateName(String name, Integer id) {
-
-        connection = null;
-
-        statement = null;
+    public void updateName (String name, Integer id) {
 
         try {
 
@@ -211,11 +191,18 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
+    public Admin obtainUserProperties (Integer id) {
+        return new Admin();
+    }
+
+
+    @Override
+    public Integer obtainUserId(Connection connect, String email) {
+        return 0;
+    }
+
+    @Override
     public String getStoredPassword (String email) {
-
-        connection = null;
-
-        statement = null;
 
         String storedPass = null;
 
@@ -244,11 +231,7 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public boolean checkUserById(Integer id) {
-
-        connection = null;
-
-        statement = null;
+    public boolean checkUserById (Integer id) {
 
         try {
 

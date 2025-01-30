@@ -33,16 +33,12 @@ class AdminTableTest {
     @BeforeEach
     void setUp() {
 
-        admin = new Admin("Paul", "Wrath", "paulwrath@gmail.com",
+        admin = new Admin("Paul Wrath", "paulwrath@gmail.com",
                 "I'mTheBest", TypeUser.ADMIN);
 
         checkAdmin = new CheckAdmin();
 
         connection = DB.getConnection();
-
-        statement = null;
-
-        set = null;
 
     }
 

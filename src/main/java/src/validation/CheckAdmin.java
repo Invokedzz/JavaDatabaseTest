@@ -14,10 +14,8 @@ public class CheckAdmin implements UserPredicate {
         // this shit was reviewed
 
         return user.getTypeUser() == TypeUser.ADMIN
-                && user.getName().length() >= 2 &&
-                user.getName().length() <= 10 &&
-                user.getLastName().length() >= 2 &&
-                user.getLastName().length() <= 12 &&
+                && user.getName().length() >= 3 &&
+                user.getName().length() <= 20 &&
                 user.getPassword().length() > 5 &&
                 user.getPassword().length() <= 15 &&
                 MailServ.checkMail(user.getEmail());

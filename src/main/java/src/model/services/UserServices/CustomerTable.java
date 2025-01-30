@@ -28,10 +28,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void insert () {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -42,7 +38,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
                             " VALUES (?, ?, ?, ?)"
             );
 
-            statement.setString(1, customer.getName() + " " + customer.getLastName());
+            statement.setString(1, customer.getName());
 
             String hashedPassword = PassHash.generateHash(customer.getPassword());
 
@@ -70,10 +66,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
     @Override
     public void display () {
-
-        connection = null;
-
-        statement = null;
 
         try {
 
@@ -108,10 +100,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void deleteComponent (Integer id) {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -144,10 +132,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     @Override
     public void deleteAll () {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -176,10 +160,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
     @Override
     public void updateName (String name, Integer id) {
-
-        connection = null;
-
-        statement = null;
 
         try {
 
@@ -212,11 +192,79 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
+    public Customer obtainUserProperties (Integer id) {
+
+        try {
+
+            connection = DB.getConnection();
+
+            statement = connection.prepareStatement(
+                    "SELECT * FROM \"User\".\"Customer\" WHERE id = ?"
+            );
+
+            statement.setInt(1, id);
+
+            set = statement.executeQuery();
+
+            if (set.next()) {
+
+                String name = set.getString("name");
+
+                String email = set.getString("email");
+
+                String password = set.getString("password");
+
+                return new Customer(name, email, password, TypeUser.CUSTOMER);
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeStatements(statement);
+
+            DB.closeConnections(connection);
+
+        }
+
+        return null;
+
+    }
+
+    @Override
+    public Integer obtainUserId (Connection connect, String email) {
+
+        try {
+
+            statement = connect.prepareStatement(
+                    "SELECT id FROM \"User\".\"Customer\" WHERE email = ?"
+            );
+
+            statement.setString(1, email);
+
+            set = statement.executeQuery();
+
+            if (set.next()) return set.getInt(1);
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        } finally {
+
+            DB.closeStatements(statement);
+
+        }
+
+        return null;
+
+    }
+
+    @Override
     public String getStoredPassword (String email) {
-
-        connection = null;
-
-        statement = null;
 
         String storedPass = null;
 
@@ -238,6 +286,10 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
             throw new DbException(exception.getMessage());
 
+        } finally {
+
+            DB.closeStatements(statement);
+
         }
 
         return storedPass;
@@ -246,10 +298,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
     @Override
     public boolean checkUserById (Integer id) {
-
-        connection = null;
-
-        statement = null;
 
         try {
 

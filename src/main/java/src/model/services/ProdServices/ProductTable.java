@@ -28,10 +28,6 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     @Override
     public void insert () {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -66,10 +62,6 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
     @Override
     public void display () {
-
-        connection = null;
-
-        statement = null;
 
         try {
 
@@ -112,10 +104,6 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     @Override
     public void deleteComponent (Integer id) {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -146,10 +134,6 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     @Override
     public void deleteAll () {
 
-        connection = null;
-
-        statement = null;
-
         try {
 
             connection = DB.getConnection();
@@ -177,11 +161,7 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     }
 
     @Override
-    public void updateName(String name, Integer id) {
-
-        connection = null;
-
-        statement = null;
+    public void updateName (String name, Integer id) {
 
         try {
 
@@ -215,10 +195,6 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
     @Override
     public void updatePrice (Double price, Integer id) {
-
-        connection = null;
-
-        statement = null;
 
         try {
 

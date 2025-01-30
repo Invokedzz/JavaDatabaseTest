@@ -18,7 +18,7 @@ public class UserDBTest {
 
     private static void testUserAdmin () {
 
-        Admin admin = new Admin("Mr.Duck", "Quak", "mrduck@gmail.com",
+        Admin admin = new Admin("Mr.Duck", "mrduck@gmail.com",
                 "1qaz2345", TypeUser.ADMIN);
 
         CheckAdmin checkAdmin = new CheckAdmin();
@@ -31,7 +31,7 @@ public class UserDBTest {
 
     private static void testUserCustomer () {
 
-        Customer customer = new Customer("Paul", "Walker", "paulwalker@hotmail.com",
+        Customer customer = new Customer("Paul", "paulwalker@hotmail.com",
                 "iwjdwds", TypeUser.CUSTOMER);
 
         CheckCustomers checkCustomers = new CheckCustomers();

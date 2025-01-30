@@ -6,8 +6,6 @@ public abstract class User {
 
     private String name;
 
-    private String lastName;
-
     private String email;
 
     private String password;
@@ -16,11 +14,9 @@ public abstract class User {
 
     public User () {}
 
-    public User (String name, String lastName, String email, String password, TypeUser typeUser) {
+    public User (String name, String email, String password, TypeUser typeUser) {
 
         this.name = name;
-
-        this.lastName = lastName;
 
         this.email = email;
 
@@ -41,12 +37,6 @@ public abstract class User {
     public String getName () {
 
         return name;
-
-    }
-
-    public String getLastName () {
-
-        return lastName;
 
     }
 
@@ -76,7 +66,6 @@ public abstract class User {
         sb = new StringBuilder();
 
         sb.append("NAME: ").append(getName())
-                .append(", LAST NAME: ").append(getLastName())
                 .append(", TYPE: ").append(getTypeUser());
 
         return sb.toString();
