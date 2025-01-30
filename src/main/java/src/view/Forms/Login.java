@@ -30,6 +30,7 @@ public class Login extends JFrame {
         setTitle("Login");
         setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        getContentPane().setBackground(new Color(245, 245, 245));
         setSize(300, 220);
         setLocationRelativeTo(null);
 
@@ -51,25 +52,31 @@ public class Login extends JFrame {
 
             String password = new String(passwordField.getPassword());
 
-            if (userId != null) {
+            if (userId == null) {
 
-                String storedPass = getStoredPasswordByEmail(connection, email);
+                JOptionPane.showMessageDialog(this, "Account not found!");
 
-                UserSession.userId = userId;
-
-                if (isLoginValid(email, password, storedPass)) {
-
-                    JOptionPane.showMessageDialog(this, "Login successful!");
-
-                    new UserPage(connection, userId);
-
-                    dispose();
-
-                }
+                return;
 
             }
 
-            else JOptionPane.showMessageDialog(this, "Account not found!");
+            String storedPass = getStoredPasswordByEmail(connection, email);
+
+            UserSession.userId = userId;
+
+            if (!isLoginValid(email, password, storedPass)) {
+
+                JOptionPane.showMessageDialog(this, "Something went wrong. Please, try again!");
+
+                return;
+
+            }
+
+            JOptionPane.showMessageDialog(this, "Login successful!");
+
+            new UserPage(connection, userId);
+
+            dispose();
 
         });
 

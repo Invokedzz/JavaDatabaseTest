@@ -16,14 +16,15 @@ public class Home extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
+        getContentPane().setBackground(new Color(245, 245, 245));
         setSize(800,600);
         setLayout(null);
 
-        JLabel labelWelcome = new JLabel("Welcome to the Porky Store!", JLabel.CENTER);
+        JLabel labelWelcome = createCenteredLabel("Welcome to the Porky Store!", 50, 50, new Font("Arial", Font.BOLD, 30), Color.BLACK);
 
-        JLabel explanationLabel = new JLabel("Create an account, and buy our products!", JLabel.CENTER);
+        JLabel explanationLabel = createCenteredLabel("Create an account, and buy our products!", 70, 100, new Font("Arial", Font.PLAIN, 16), Color.DARK_GRAY);
 
-        JLabel otherLabelForExplanation = new JLabel("Or, If you have an account, log in!", JLabel.CENTER);
+        JLabel otherLabelForExplanation = createCenteredLabel("Or, if you have an account, log in!", 110, 100, new Font("Arial", Font.PLAIN, 16), Color.DARK_GRAY);
 
         labelWelcome.setBounds(0, 50, getWidth(), 50);
 
@@ -72,6 +73,20 @@ public class Home extends JFrame {
         add(btnQuitApp);
 
         setVisible(true);
+
+    }
+
+    private JLabel createCenteredLabel(String text, int top, int height, Font font, Color color) {
+
+        JLabel label = new JLabel(text, JLabel.CENTER);
+
+        label.setBounds(0, top, getWidth(), height);
+
+        label.setFont(font);
+
+        label.setForeground(color);
+
+        return label;
 
     }
 
