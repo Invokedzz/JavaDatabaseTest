@@ -1,7 +1,6 @@
-package src.view.Page;
+package src.view.page;
 
 import src.model.services.UserServices.CustomerTable;
-import src.view.Home.Home;
 
 import javax.swing.*;
 import java.sql.Connection;

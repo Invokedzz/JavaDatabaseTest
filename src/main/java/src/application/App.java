@@ -1,6 +1,6 @@
 package src.application;
 
-import src.view.Home.Home;
+import src.view.home.Home;
 
 public class App {
 

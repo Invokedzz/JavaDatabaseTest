@@ -1,4 +1,4 @@
-package src.view.Page;
+package src.view.page;
 
 public class ProductPage {
 }

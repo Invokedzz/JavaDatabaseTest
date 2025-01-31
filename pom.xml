@@ -35,6 +35,17 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.opencagedata</groupId>
+            <artifactId>jopencage</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.caelum.stella</groupId>
+            <artifactId>caelum-stella-core</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
