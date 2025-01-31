@@ -1,4 +1,4 @@
-package src.view.Forms;
+package src.view.forms;
 
 import net.miginfocom.swing.MigLayout;
 import src.model.entities.UserEntities.Customer;

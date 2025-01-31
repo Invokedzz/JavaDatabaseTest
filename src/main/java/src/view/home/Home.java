@@ -1,7 +1,7 @@
-package src.view.Home;
+package src.view.home;
 
-import src.view.Forms.CreateUser;
-import src.view.Forms.Login;
+import src.view.forms.CreateUser;
+import src.view.forms.Login;
 
 import javax.swing.*;
 

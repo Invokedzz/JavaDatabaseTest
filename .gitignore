@@ -8,6 +8,7 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 db.properties
+src/main/java/src/api/keys
 .idea/libraries/
 *.iws
 *.iml

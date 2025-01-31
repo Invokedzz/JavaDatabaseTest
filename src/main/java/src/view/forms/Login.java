@@ -1,17 +1,15 @@
-package src.view.Forms;
+package src.view.forms;
 
 import src.db.DB;
-import src.db.DbException;
 import src.model.services.UserServices.CustomerTable;
 import src.security.LoginServ;
 import src.security.UserSession;
-import src.view.Page.UserPage;
+import src.view.page.UserPage;
 
 import javax.swing.*;
 
 import java.awt.*;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class Login extends JFrame {
 
