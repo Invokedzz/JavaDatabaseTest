@@ -2,8 +2,8 @@ package unittest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import settings.ValidCpf;
 import src.security.CpfServ;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CpfServTest {
@@ -14,7 +14,7 @@ class CpfServTest {
     @DisplayName("Testing a valid CPF")
     void testingAValidCpf () {
 
-        randomCpf = "02760448436";
+        randomCpf = ValidCpf.VALID_CPF;
 
         assertTrue(CpfServ.validateUserCpf(randomCpf));
 

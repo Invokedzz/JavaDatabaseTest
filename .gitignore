@@ -9,6 +9,7 @@ target/
 .idea/compiler.xml
 db.properties
 src/main/java/src/api/keys
+src/test/java/settings
 .idea/libraries/
 *.iws
 *.iml

@@ -4,7 +4,7 @@ public final class Address {
 
     private String CEP; // user can't alter this information
 
-    private Integer number;
+    private String number;
 
     private String complement;
 
@@ -14,7 +14,7 @@ public final class Address {
 
     public Address () {}
 
-    public Address (String CEP, Integer number, String complement, String neighbourhood, String city) {
+    public Address (String CEP, String number, String complement, String neighbourhood, String city) {
 
         this.CEP = CEP;
 
@@ -52,10 +52,20 @@ public final class Address {
 
     }
 
-    public Integer getNumber () {
+    public String getNumber () {
 
         return number;
 
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "CEP='" + CEP + '\'' +
+                ", number='" + number + '\'' +
+                ", complement='" + complement + '\'' +
+                ", neighbourhood='" + neighbourhood + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }
