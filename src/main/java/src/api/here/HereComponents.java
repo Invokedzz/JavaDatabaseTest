@@ -1,20 +1,23 @@
 package src.api.here;
 
 import src.api.keys.HereKey;
+import src.exceptions.HereApiException;
 import src.model.entities.UserEntities.Address;
 import com.google.gson.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.net.*;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
 public class HereComponents {
 
-    public static boolean isAddressValid(Address address) {
+    public static Address obtainAddressThroughApi (Address address) {
 
         try {
 
-            String obtainAddress = String.format("%s+%s+%s", address.getNeighbourhood(), address.getNumber(), address.getCity());
+            String obtainAddress = String.format("%s+%s+%s", address.getLabel(), address.getNumber(), address.getCity());
 
             String encodedAddress = URLEncoder.encode(obtainAddress, StandardCharsets.UTF_8);
 
@@ -23,54 +26,51 @@ public class HereComponents {
                     "?q=" + encodedAddress +
                     "&apiKey=" + HereKey.HERE_KEY;
 
-            URL url = new URL(urlString);
+            URI uri = new URI(urlString);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-Type", "application/json");
+            var client = HttpClient.newHttpClient();
+            var request = HttpRequest.newBuilder(uri)
+                    .header("Content-Type", "application/json")
+                    .build();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
+            var response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            String jsonResponse = response.toString();
-
-            System.out.println(jsonResponse);
+            String jsonResponse = response.body();
 
             JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
 
-            System.out.println(jsonObject);
-
             JsonObject firstItem = jsonObject.getAsJsonArray("items").get(0).getAsJsonObject();
-            JsonObject address1 = firstItem.getAsJsonObject("address");
 
-            System.out.println(address);
+            JsonObject findCurrentAddress = firstItem.getAsJsonObject("address");
 
-            String label = address1.has("label") ? address1.get("label").getAsString() : "Label não encontrado";
-            String houseNumber = address1.has("houseNumber") ? address1.get("houseNumber").getAsString() : "Número não encontrado";
-            String city = address1.has("city") ? address1.get("city").getAsString() : "Cidade não encontrada";
+            return findElements(address.getCEP(), address.getComplement(), findCurrentAddress);
 
-                System.out.println(label);
+        } catch (URISyntaxException | IOException | InterruptedException exception) {
 
-                System.out.println(houseNumber);
+            throw new HereApiException(exception.getMessage());
 
-                System.out.println(city);
-
-            return true;
-
-        } catch (Exception e) {
-            return false;
         }
+
     }
 
-    public static void main(String[] args) {
-        boolean isValid = isAddressValid(new Address("","183", "11x", "sexo", "San Paolo"));
-        System.out.println(isValid);
+    private static Address findElements (String CEP, String complement, JsonObject currentAddress) {
+
+        String label = currentAddress.get("label").getAsString();
+
+        String houseNumber = currentAddress.get("houseNumber").getAsString();
+
+        String city = currentAddress.get("city").getAsString();
+
+        return new Address(CEP, houseNumber, complement, label, city);
+
+    }
+
+    public static void main (String[] args) {
+
+        Address address = obtainAddressThroughApi(new Address("", "280", "11D", "Pedro II", "Campina Grande"));
+
+        System.out.println(address);
+
     }
 
 }
