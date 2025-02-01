@@ -8,7 +8,7 @@ public final class Address {
 
     private String complement;
 
-    private String neighbourhood;
+    private String label;
 
     private String city;
 
@@ -22,7 +22,7 @@ public final class Address {
 
         this.complement = complement;
 
-        this.neighbourhood = neighbourhood;
+        this.label = neighbourhood;
 
         this.city = city;
 
@@ -40,9 +40,9 @@ public final class Address {
 
     }
 
-    public String getNeighbourhood () {
+    public String getLabel () {
 
-        return neighbourhood;
+        return label;
 
     }
 
@@ -64,7 +64,7 @@ public final class Address {
                 "CEP='" + CEP + '\'' +
                 ", number='" + number + '\'' +
                 ", complement='" + complement + '\'' +
-                ", neighbourhood='" + neighbourhood + '\'' +
+                ", neighbourhood='" + label + '\'' +
                 ", city='" + city + '\'' +
                 '}';
     }

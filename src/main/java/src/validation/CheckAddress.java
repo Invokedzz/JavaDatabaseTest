@@ -12,7 +12,7 @@ public class CheckAddress implements AddressPredicate {
         return CpfServ.validateUserCpf(address.getCEP()) &&
                 address.getNumber() != null &&
                 address.getCity() != null &&
-                address.getNeighbourhood() != null &&
+                address.getLabel() != null &&
                 !address.getComplement().isEmpty();
 
     }
