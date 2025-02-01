@@ -1,6 +1,7 @@
 package src.security;
 
 import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
 
 public class CpfServ {
 
@@ -8,7 +9,23 @@ public class CpfServ {
 
         CPFValidator cpfValidator = new CPFValidator();
 
-        return cpfValidator.isEligible(cpf);
+        if (cpfValidator.isEligible(cpf)) {
+
+            try {
+
+                cpfValidator.assertValid(cpf);
+
+                return true;
+
+            } catch (InvalidStateException exception) {
+
+                throw new InvalidStateException(exception.getInvalidMessages());
+
+            }
+
+        }
+
+        return false;
 
     }
 
