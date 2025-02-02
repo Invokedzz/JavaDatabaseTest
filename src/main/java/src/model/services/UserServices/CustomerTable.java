@@ -1,5 +1,6 @@
 package src.model.services.UserServices;
 
+import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
 import src.model.services.DatabaseGeneralContract;
@@ -11,6 +12,8 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
     private Customer customer;
 
+    private Address address;
+
     private Connection connection;
 
     private PreparedStatement statement;
@@ -19,9 +22,11 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
     public CustomerTable () {}
 
-    public CustomerTable (Customer customer) {
+    public CustomerTable (Customer customer, Address address) {
 
         this.customer = customer;
+
+        this.address = address;
 
     }
 
@@ -34,8 +39,8 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
             statement = connection.prepareStatement(
                     "INSERT INTO \"User\".\"Customer\" " +
-                            "(name, email, password, typeuser)" +
-                            " VALUES (?, ?, ?, ?)"
+                            "(name, email, password, typeuser, cep, housenumber, neighbourhood, complement, city)" +
+                            " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
             statement.setString(1, customer.getName());
@@ -47,6 +52,16 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
             statement.setString(3, hashedPassword);
 
             statement.setString(4, TypeUser.CUSTOMER.name());
+
+            statement.setString(5, address.getCEP());
+
+            statement.setString(6, address.getNumber());
+
+            statement.setString(7, address.getLabel());
+
+            statement.setString(8, address.getComplement());
+
+            statement.setString(9, address.getCity());
 
             statement.executeUpdate();
 

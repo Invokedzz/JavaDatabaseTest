@@ -1,5 +1,6 @@
 package manualtests;
 
+import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Admin;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
@@ -36,7 +37,7 @@ public class UserDBTest {
 
         CheckCustomers checkCustomers = new CheckCustomers();
 
-        CustomerTable customerTable = new CustomerTable(customer);
+        CustomerTable customerTable = new CustomerTable(customer, new Address());
 
         if (checkCustomers.test(customer)) customerTable.display();
 

@@ -65,12 +65,4 @@ public class HereComponents {
 
     }
 
-    public static void main (String[] args) {
-
-        Address address = obtainAddressThroughApi(new Address("", "280", "11D", "Pedro II", "Campina Grande"));
-
-        System.out.println(address);
-
-    }
-
 }

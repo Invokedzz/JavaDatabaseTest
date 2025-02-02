@@ -11,10 +11,10 @@ public final class Address {
     private String label;
 
     private String city;
-
+    
     public Address () {}
 
-    public Address (String CEP, String number, String complement, String neighbourhood, String city) {
+    public Address (String CEP, String number, String complement, String label, String city) {
 
         this.CEP = CEP;
 
@@ -22,7 +22,7 @@ public final class Address {
 
         this.complement = complement;
 
-        this.label = neighbourhood;
+        this.label = label;
 
         this.city = city;
 
