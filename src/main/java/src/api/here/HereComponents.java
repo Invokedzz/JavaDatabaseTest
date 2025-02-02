@@ -4,6 +4,8 @@ import src.api.keys.HereKey;
 import src.exceptions.HereApiException;
 import src.model.entities.UserEntities.Address;
 import com.google.gson.*;
+import src.validation.CheckAddress;
+
 import java.io.IOException;
 import java.net.*;
 import java.net.http.HttpClient;
@@ -12,6 +14,8 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
 public class HereComponents {
+
+    private static CheckAddress checkAddress;
 
     public static Address obtainAddressThroughApi (Address address) {
 
@@ -61,7 +65,7 @@ public class HereComponents {
 
         String city = currentAddress.get("city").getAsString();
 
-        return new Address(CEP, houseNumber, complement, label, city);
+        return new Address(CEP, complement, label, houseNumber, city);
 
     }
 
