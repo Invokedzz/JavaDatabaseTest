@@ -50,25 +50,13 @@ public class Login extends JFrame {
 
             String password = new String(passwordField.getPassword());
 
-            if (userId == null) {
-
-                JOptionPane.showMessageDialog(this, "Account not found!");
-
-                return;
-
-            }
+            if (!messageIfAccountWasNotFound(userId)) return;
 
             String storedPass = getStoredPasswordByEmail(connection, email);
 
             UserSession.userId = userId;
 
-            if (!isLoginValid(email, password, storedPass)) {
-
-                JOptionPane.showMessageDialog(this, "Something went wrong. Please, try again!");
-
-                return;
-
-            }
+            if (!invalidLoginMessage(email, password, storedPass)) return;
 
             JOptionPane.showMessageDialog(this, "Login successful!");
 
@@ -98,6 +86,20 @@ public class Login extends JFrame {
 
     }
 
+    private boolean messageIfAccountWasNotFound (Integer userId) {
+
+        if (userId == null) {
+
+            JOptionPane.showMessageDialog(this, "Account not found!");
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
     private Integer getUserIdByEmail (Connection connection, String email) {
 
         customerTable = new CustomerTable();
@@ -117,6 +119,20 @@ public class Login extends JFrame {
     private boolean isLoginValid(String email, String password, String storedPassword) {
 
         return LoginServ.isLoginValid(email, password, storedPassword);
+
+    }
+
+    private boolean invalidLoginMessage (String email, String password, String storedPass) {
+
+        if (!isLoginValid(email, password, storedPass)) {
+
+            JOptionPane.showMessageDialog(this, "Something went wrong. Please, try again!");
+
+            return false;
+
+        }
+
+        return true;
 
     }
 
