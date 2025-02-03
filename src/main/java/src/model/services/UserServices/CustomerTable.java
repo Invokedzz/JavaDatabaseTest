@@ -159,7 +159,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
     }
 
     @Override
-    public void updateName (String name, Integer id) {
+    public void updateName (Connection connection, String name, Integer id) {
 
         try {
 
@@ -180,12 +180,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
 
         }
 
@@ -314,6 +308,34 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
         }
 
         return false;
+
+    }
+
+    public void updateCustomer (Connection connection, String name, String email, String password, Integer id) {
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "UPDATE \"User\".\"Customer\" " +
+                            "SET name = ?, email = ?, password = ?" +
+                            " WHERE id = ?"
+            );
+
+            statement.setString(1, name);
+
+            statement.setString(2, email);
+
+            statement.setString(3, password);
+
+            statement.setInt(4, id);
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
 
     }
 

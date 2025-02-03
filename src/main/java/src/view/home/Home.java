@@ -1,6 +1,6 @@
 package src.view.home;
 
-import src.view.forms.CreateUser;
+import src.view.forms.RegisterUser;
 import src.view.forms.Login;
 
 import javax.swing.*;
@@ -44,7 +44,7 @@ public class Home extends JFrame {
 
         btnCreateAccount.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
-        btnCreateAccount.addActionListener(e -> new CreateUser());
+        btnCreateAccount.addActionListener(e -> new RegisterUser());
 
         add(btnCreateAccount);
 

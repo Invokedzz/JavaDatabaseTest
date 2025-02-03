@@ -4,20 +4,19 @@ import net.miginfocom.swing.MigLayout;
 import src.model.entities.UserEntities.Customer;
 import src.model.services.UserServices.CustomerTable;
 import src.security.PassHash;
-import src.security.PassInput;
+import src.validation.CheckElementsInOrderToUpdate;
+import src.view.validations.user.page.CheckElementsSentByUser;
+import src.view.validations.user.page.ComparePasswordsInOrderToUpdate;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
-import java.util.Objects;
 
 public class UserPage extends JFrame {
 
-    private final JTextField usernameField, oldPasswordField, newPasswordField;
+    private final JTextField usernameField, emailField, oldPasswordField, newPasswordField;
 
-    private JButton editBtn;
-
-    private JButton deleteBtn;
+    private final JButton editBtn, showMoreStuffBtn, deleteBtn;
 
     public UserPage(Connection connection, Integer userId) {
 
@@ -31,9 +30,13 @@ public class UserPage extends JFrame {
 
         editBtn = new JButton("Update Profile");
 
+        showMoreStuffBtn = new JButton("Show more info");
+
         deleteBtn = new JButton("Delete Account");
 
         CustomerTable customerTable = new CustomerTable();
+
+        CheckElementsInOrderToUpdate elements = new CheckElementsInOrderToUpdate();
 
         Customer customer = customerTable.obtainUserProperties(connection, userId);
 
@@ -49,21 +52,29 @@ public class UserPage extends JFrame {
 
         oldPasswordField = setJPasswordField();
 
+        emailField = setCustomerEmailTextField(customer);
+
         newPasswordField = setJPasswordField();
 
         editBtn.addActionListener(e -> {
 
             // PassHash, Database, CheckCustomer
 
-            if (!PassHash.checkChosenHash(oldPasswordField.getText(), customer.getPassword())) {
+        if (!ComparePasswordsInOrderToUpdate.comparePasswords(this, oldPasswordField.getText(), customer)) return;
 
-                JOptionPane.showMessageDialog(this, "Wrong password! Try again!");
+        Customer ogCustomer = new Customer(usernameField.getText(), emailField.getText(), oldPasswordField.getText());
 
-                return;
+        if (!CheckElementsSentByUser.verifyElements(this, elements, ogCustomer)) return;
 
-            } else JOptionPane.showMessageDialog(this, "Success!");
+        String hashBackOgPassword = PassHash.generateHash(oldPasswordField.getText());
+
+        customerTable.updateCustomer(connection, usernameField.getText(), emailField.getText(), hashBackOgPassword, userId);
+
+        JOptionPane.showMessageDialog(this, "Profile updated!");
 
         });
+
+        showMoreStuffBtnAction(userId);
 
         deleteBtnAction(connection, userId);
 
@@ -79,9 +90,21 @@ public class UserPage extends JFrame {
 
     }
 
+    private JTextField setCustomerEmailTextField (Customer customer) {
+
+        return new JTextField(customer.getEmail(), 15);
+
+    }
+
     private JPasswordField setJPasswordField () {
 
         return new JPasswordField(15);
+
+    }
+
+    private void showMoreStuffBtnAction (Integer userId) {
+
+        showMoreStuffBtn.addActionListener(e -> new ShowMoreOfUsersInfo(userId));
 
     }
 
@@ -111,19 +134,25 @@ public class UserPage extends JFrame {
 
         add(new JLabel("Username:"));
 
-        add(usernameField);
+        add(usernameField, "span, growx");
+
+        add(new JLabel("Email:"));
+
+        add(emailField, "span, growx");
+
+        add(new JLabel("Change Password:"));
+
+        add(newPasswordField, "span, growx");
 
         add(new JLabel("Actual Password:"));
 
-        add(oldPasswordField);
+        add(oldPasswordField, "span, growx");
 
-        add(new JLabel("New Password:"));
+        add(editBtn, "split 2, growx");
 
-        add(newPasswordField);
+        add(showMoreStuffBtn, "growx");
 
-        add(editBtn);
-
-        add(deleteBtn);
+        add(deleteBtn, "span, growx, wrap");
 
     }
 

@@ -5,13 +5,15 @@ import src.model.entities.UserEntities.User;
 
 public interface UserContract {
 
-    void updateName (String name, Integer id);
+    void updateName (Connection connection, String name, Integer id);
 
     User obtainUserProperties (Connection connection, Integer id);
 
     Integer obtainUserId (Connection connect, String email);
 
     String getStoredPassword (Connection connection, String email);
+
+    void updateCustomer (Connection connection, String name, String email, String password, Integer id);
 
     boolean checkUserById (Integer id);
 

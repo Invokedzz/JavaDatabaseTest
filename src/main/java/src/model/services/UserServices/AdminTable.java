@@ -150,7 +150,7 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
 
     @Override
-    public void updateName (String name, Integer id) {
+    public void updateName (Connection connection, String name, Integer id) {
 
         try {
 
@@ -256,6 +256,10 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
         }
 
         return false;
+
+    }
+
+    public void updateCustomer (Connection connection, String name, String email, String password, Integer id) {
 
     }
 
