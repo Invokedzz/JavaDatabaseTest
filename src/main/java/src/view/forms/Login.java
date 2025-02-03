@@ -17,9 +17,7 @@ public class Login extends JFrame {
 
     private final JPasswordField passwordField;
 
-    private final JButton loginBtn;
-
-    private final JButton exitBtn;
+    private final JButton loginButton, exitButton;
 
     private CustomerTable customerTable;
 
@@ -32,13 +30,55 @@ public class Login extends JFrame {
         setSize(300, 220);
         setLocationRelativeTo(null);
 
-        emailField = new JTextField(15);
+        emailField = returnJTextFieldColumns();
 
-        passwordField = new JPasswordField(15);
+        passwordField = returnJPasswordFieldColumns();
 
-        loginBtn = new JButton("Login");
+        loginButton = new JButton("Login");
 
-        loginBtn.addActionListener(e -> {
+        createLoginBtnAction();
+
+        exitButton = new JButton("Cancel");
+
+        createExitButtonAction();
+
+        addComponents();
+
+        setVisible(true);
+
+    }
+
+    private void addComponents () {
+
+        add(new JLabel("Email:"));
+
+        add(emailField);
+
+        add(new JLabel("Password:"));
+
+        add(passwordField);
+
+        add(loginButton);
+
+        add(exitButton);
+
+    }
+
+    private JTextField returnJTextFieldColumns () {
+
+        return new JTextField(15);
+
+    }
+
+    private JPasswordField returnJPasswordFieldColumns () {
+
+        return new JPasswordField(15);
+
+    }
+
+    private void createLoginBtnAction () {
+
+        loginButton.addActionListener(e -> {
 
             Connection connection;
 
@@ -66,23 +106,11 @@ public class Login extends JFrame {
 
         });
 
-        exitBtn = new JButton("Cancel");
+    }
 
-        exitBtn.addActionListener(e -> dispose());
+    private void createExitButtonAction () {
 
-        add(new JLabel("Email:"));
-
-        add(emailField);
-
-        add(new JLabel("Password:"));
-
-        add(passwordField);
-
-        add(loginBtn);
-
-        add(exitBtn);
-
-        setVisible(true);
+        exitButton.addActionListener(e -> dispose());
 
     }
 

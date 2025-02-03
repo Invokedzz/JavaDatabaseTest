@@ -20,6 +20,80 @@ public class Home extends JFrame {
         setSize(800,600);
         setLayout(null);
 
+        setupLabels();
+
+        int x = (getWidth() - 250) / 2;
+
+        int y = (getHeight() - 70) / 2;
+
+        setupCreateBtn(x, y);
+
+        setupLoginBtn(x, y);
+
+        setupQuitBtn(x, y);
+
+        setVisible(true);
+
+    }
+
+    private void setupCreateBtn (int x, int y) {
+
+        JButton btnCreateAccount = new JButton("Create Account");
+
+        btnCreateAccount.setBounds(x, y, 250, 70);
+
+        btnCreateAccount.setFont(new Font("Helvetica", Font.PLAIN, 15));
+
+        btnCreateAccount.addActionListener(e -> new CreateUser());
+
+        add(btnCreateAccount);
+
+    }
+
+    private JLabel createCenteredLabel(String text, int top, int height, Font font, Color color) {
+
+        JLabel label = new JLabel(text, JLabel.CENTER);
+
+        label.setBounds(0, top, getWidth(), height);
+
+        label.setFont(font);
+
+        label.setForeground(color);
+
+        return label;
+
+    }
+
+    private void setupLoginBtn (int x, int y) {
+
+        JButton btnLogin = new JButton("Login");
+
+        btnLogin.setBounds(x, y + 100, 250, 70);
+
+        btnLogin.setFont(new Font("Helvetica", Font.PLAIN, 15));
+
+        btnLogin.addActionListener(e -> new Login());
+
+        add(btnLogin);
+
+    }
+
+    private void setupQuitBtn (int x, int y) {
+
+        JButton btnQuitApp = new JButton("Quit");
+
+        btnQuitApp.setBounds(x, y + 200, 250, 70);
+
+        btnQuitApp.setFont(new Font("Helvetica", Font.PLAIN, 15));
+
+        btnQuitApp.addActionListener(e -> System.exit(0));
+
+        add(btnQuitApp);
+
+    }
+
+    private void setupLabels () {
+
         JLabel labelWelcome = createCenteredLabel("Welcome to the Porky Store!", 50, 50, new Font("Arial", Font.BOLD, 30), Color.BLACK);
 
         JLabel explanationLabel = createCenteredLabel("Create an account, and buy our products!", 70, 100, new Font("Arial", Font.PLAIN, 16), Color.DARK_GRAY);
@@ -37,56 +111,6 @@ public class Home extends JFrame {
         add(explanationLabel);
 
         add(otherLabelForExplanation);
-
-        int x = (getWidth() - 250) / 2;
-
-        int y = (getHeight() - 70) / 2;
-
-        JButton btnCreateAccount = new JButton("Create Account");
-
-        btnCreateAccount.setBounds(x, y, 250, 70);
-
-        btnCreateAccount.setFont(new Font("Helvetica", Font.PLAIN, 15));
-
-        btnCreateAccount.addActionListener(e -> new CreateUser());
-
-        add(btnCreateAccount);
-
-        JButton btnLogin = new JButton("Login");
-
-        btnLogin.setBounds(x, y + 100, 250, 70);
-
-        btnLogin.setFont(new Font("Helvetica", Font.PLAIN, 15));
-
-        btnLogin.addActionListener(e -> new Login());
-
-        add(btnLogin);
-
-        JButton btnQuitApp = new JButton("Quit");
-
-        btnQuitApp.setBounds(x, y + 200, 250, 70);
-
-        btnQuitApp.setFont(new Font("Helvetica", Font.PLAIN, 15));
-
-        btnQuitApp.addActionListener(e -> System.exit(0));
-
-        add(btnQuitApp);
-
-        setVisible(true);
-
-    }
-
-    private JLabel createCenteredLabel(String text, int top, int height, Font font, Color color) {
-
-        JLabel label = new JLabel(text, JLabel.CENTER);
-
-        label.setBounds(0, top, getWidth(), height);
-
-        label.setFont(font);
-
-        label.setForeground(color);
-
-        return label;
 
     }
 

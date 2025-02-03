@@ -25,6 +25,8 @@ public class CreateUser extends JFrame {
 
         JPanel jPanel = new JPanel(new MigLayout("center center, wrap, gapy 20"));
 
+        jPanel.setPreferredSize(new Dimension(350, 800));
+
         JScrollBar bar = new JScrollBar(Adjustable.VERTICAL);
 
         jPanel.add(new JLabel("Name:"));
@@ -79,6 +81,18 @@ public class CreateUser extends JFrame {
 
     }
 
+    private void setupPanelAndScroll () {
+
+        Panel panel = new Panel();
+
+        JScrollPane scrollPane = new JScrollPane(panel);
+
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        scrollPane.setBounds(50, 30, 500, 50);
+
+    }
+
     private void setInputs () {
 
         usernameField = setJTextField();
@@ -117,64 +131,70 @@ public class CreateUser extends JFrame {
 
         setTitle("Create Account");
             setLayout(new MigLayout("center center, wrap, gapy 20"));
-            setSize(320, 600);
+            setSize(400, 600);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             getContentPane().setBackground(new Color(245, 245, 245));
             setLocationRelativeTo(null);
 
             setInputs();
 
-            Panel panel = new Panel();
-
-            JScrollPane scrollPane = new JScrollPane(panel);
-
-            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
-            scrollPane.setBounds(50, 30, 300, 50);
+            setupPanelAndScroll();
 
             JButton createButton = new JButton("Create");
 
             JButton exitPageButton = new JButton("Exit");
 
-            createButton.addActionListener(e -> {
+            createBtnAction(createButton);
 
-                Customer customer = new Customer(usernameField.getText(), emailField.getText(),
-                        new String(passwordField.getPassword()), TypeUser.CUSTOMER);
-
-                Address address = new Address(cepField.getText(), houseNumberField.getText(),
-                        complementField.getText(), neighbourhoodField.getText(), cityField.getText());
-
-                CheckAddress checkAddress = new CheckAddress();
-
-                CheckCustomers checkCustomers = new CheckCustomers();
-
-                if (!invalidCustomerMessage(checkCustomers, customer)) return;
-
-                if (!invalidPasswordMessage()) return;
-
-                if (!invalidPasswordMatchMessage()) return;
-
-                if (!invalidEmailMessage()) return;
-
-                if (!invalidAddressMessage(checkAddress, address)) return;
-
-                Address validatedAddress = HereComponents.obtainAddressThroughApi(address);
-
-                CustomerTable customerTable = new CustomerTable(customer, validatedAddress);
-
-                customerTable.insert();
-
-                JOptionPane.showMessageDialog(this, "Account created successfully!");
-
-                dispose();
-
-            });
-
-            exitPageButton.addActionListener(e -> dispose());
+            createExitBtn(exitPageButton);
 
             addJPanelAndInputs(createButton, exitPageButton);
 
             setVisible(true);
+
+    }
+
+    private void createBtnAction (JButton createButton) {
+
+        createButton.addActionListener(e -> {
+
+            Customer customer = new Customer(usernameField.getText(), emailField.getText(),
+                    new String(passwordField.getPassword()), TypeUser.CUSTOMER);
+
+            Address address = new Address(cepField.getText(), houseNumberField.getText(),
+                    complementField.getText(), neighbourhoodField.getText(), cityField.getText());
+
+            CheckAddress checkAddress = new CheckAddress();
+
+            CheckCustomers checkCustomers = new CheckCustomers();
+
+            if (!invalidCustomerMessage(checkCustomers, customer)) return;
+
+            if (!invalidPasswordMessage()) return;
+
+            if (!invalidPasswordMatchMessage()) return;
+
+            if (!invalidEmailMessage()) return;
+
+            if (!invalidAddressMessage(checkAddress, address)) return;
+
+            Address validatedAddress = HereComponents.obtainAddressThroughApi(address);
+
+            CustomerTable customerTable = new CustomerTable(customer, validatedAddress);
+
+            customerTable.insert();
+
+            JOptionPane.showMessageDialog(this, "Account created successfully!");
+
+            dispose();
+
+        });
+
+    }
+
+    private void createExitBtn (JButton exitPageButton) {
+
+        exitPageButton.addActionListener(e -> dispose());
 
     }
 
