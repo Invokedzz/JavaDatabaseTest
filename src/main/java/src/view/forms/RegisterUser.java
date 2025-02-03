@@ -6,8 +6,6 @@ import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
 import src.model.services.UserServices.CustomerTable;
-import src.security.MailServ;
-import src.security.PassInput;
 import src.validation.CheckAddress;
 import src.validation.CheckCustomers;
 import src.view.validations.user.register.RegisterEmailValidation;
@@ -18,7 +16,7 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class CreateUser extends JFrame {
+public class RegisterUser extends JFrame {
 
     private JTextField usernameField, emailField, cepField, neighbourhoodField, complementField, houseNumberField, cityField;
 
@@ -130,7 +128,7 @@ public class CreateUser extends JFrame {
 
     }
 
-    public CreateUser () {
+    public RegisterUser() {
 
         setTitle("Create Account");
             setLayout(new MigLayout("center center, wrap, gapy 20"));
