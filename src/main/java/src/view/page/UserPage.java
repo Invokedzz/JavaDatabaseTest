@@ -45,17 +45,15 @@ public class UserPage extends JFrame {
 
             }
 
-        usernameField = new JTextField(customer.getName(), 15);
+        usernameField = setCustomerNameTextField(customer);
 
-        oldPasswordField = new JPasswordField(15);
+        oldPasswordField = setJPasswordField();
 
-        newPasswordField = new JPasswordField(15);
+        newPasswordField = setJPasswordField();
 
         editBtn.addActionListener(e -> {
 
             // PassHash, Database, CheckCustomer
-
-            System.out.println(customer.getPassword());
 
             if (!PassHash.checkChosenHash(oldPasswordField.getText(), customer.getPassword())) {
 
@@ -67,11 +65,33 @@ public class UserPage extends JFrame {
 
         });
 
+        deleteBtnAction(connection, userId);
+
+        addComponents();
+
+        setVisible(true);
+
+    }
+
+    private JTextField setCustomerNameTextField (Customer customer) {
+
+        return new JTextField(customer.getName(), 15);
+
+    }
+
+    private JPasswordField setJPasswordField () {
+
+        return new JPasswordField(15);
+
+    }
+
+    private void deleteBtnAction (Connection connection, Integer userId) {
+
         deleteBtn.addActionListener(e -> {
 
             int response = JOptionPane.showConfirmDialog(null, "Do you really want to proceed?",
-                        "Confirm"
-                        , JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    "Confirm"
+                    , JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
             if (response == JOptionPane.YES_OPTION) {
 
@@ -85,6 +105,9 @@ public class UserPage extends JFrame {
 
         });
 
+    }
+
+    private void addComponents () {
 
         add(new JLabel("Username:"));
 
@@ -101,8 +124,6 @@ public class UserPage extends JFrame {
         add(editBtn);
 
         add(deleteBtn);
-
-        setVisible(true);
 
     }
 

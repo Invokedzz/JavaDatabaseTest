@@ -5,6 +5,8 @@ import src.model.services.UserServices.CustomerTable;
 import src.security.LoginServ;
 import src.security.UserSession;
 import src.view.page.UserPage;
+import src.view.validations.user.login.LoginMessageValidation;
+import src.view.validations.user.login.LoginSearchAccountValidation;
 
 import javax.swing.*;
 
@@ -90,13 +92,13 @@ public class Login extends JFrame {
 
             String password = new String(passwordField.getPassword());
 
-            if (!messageIfAccountWasNotFound(userId)) return;
+            if (!LoginSearchAccountValidation.messageIfAccountWasNotFound(this, userId)) return;
 
             String storedPass = getStoredPasswordByEmail(connection, email);
 
             UserSession.userId = userId;
 
-            if (!invalidLoginMessage(email, password, storedPass)) return;
+            if (!LoginMessageValidation.invalidLoginMessage(this, email, password, storedPass)) return;
 
             JOptionPane.showMessageDialog(this, "Login successful!");
 
@@ -114,20 +116,6 @@ public class Login extends JFrame {
 
     }
 
-    private boolean messageIfAccountWasNotFound (Integer userId) {
-
-        if (userId == null) {
-
-            JOptionPane.showMessageDialog(this, "Account not found!");
-
-            return false;
-
-        }
-
-        return true;
-
-    }
-
     private Integer getUserIdByEmail (Connection connection, String email) {
 
         customerTable = new CustomerTable();
@@ -141,26 +129,6 @@ public class Login extends JFrame {
         customerTable = new CustomerTable();
 
         return customerTable.getStoredPassword(connection, email);
-
-    }
-
-    private boolean isLoginValid(String email, String password, String storedPassword) {
-
-        return LoginServ.isLoginValid(email, password, storedPassword);
-
-    }
-
-    private boolean invalidLoginMessage (String email, String password, String storedPass) {
-
-        if (!isLoginValid(email, password, storedPass)) {
-
-            JOptionPane.showMessageDialog(this, "Something went wrong. Please, try again!");
-
-            return false;
-
-        }
-
-        return true;
 
     }
 

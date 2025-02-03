@@ -10,6 +10,9 @@ import src.security.MailServ;
 import src.security.PassInput;
 import src.validation.CheckAddress;
 import src.validation.CheckCustomers;
+import src.view.validations.user.register.RegisterEmailValidation;
+import src.view.validations.user.register.RegisterGeneralInfoValidation;
+import src.view.validations.user.register.RegisterPasswordValidation;
 
 import javax.swing.*;
 
@@ -168,15 +171,15 @@ public class CreateUser extends JFrame {
 
             CheckCustomers checkCustomers = new CheckCustomers();
 
-            if (!invalidCustomerMessage(checkCustomers, customer)) return;
+            if (!RegisterGeneralInfoValidation.invalidCustomerMessage(this, checkCustomers, customer)) return;
 
-            if (!invalidPasswordMessage()) return;
+            if (!RegisterPasswordValidation.invalidPasswordMessage(this, passwordField)) return;
 
-            if (!invalidPasswordMatchMessage()) return;
+            if (!RegisterPasswordValidation.invalidPasswordMatchMessage(this, passwordField, repeatPasswordField)) return;
 
-            if (!invalidEmailMessage()) return;
+            if (!RegisterEmailValidation.invalidEmailMessage(this, emailField)) return;
 
-            if (!invalidAddressMessage(checkAddress, address)) return;
+            if (!RegisterGeneralInfoValidation.invalidAddressMessage(this, checkAddress, address)) return;
 
             Address validatedAddress = HereComponents.obtainAddressThroughApi(address);
 
@@ -198,75 +201,5 @@ public class CreateUser extends JFrame {
 
     }
 
-    private boolean invalidCustomerMessage (CheckCustomers checkCustomers, Customer customer) {
-
-        if (!checkCustomers.test(customer)) {
-
-            JOptionPane.showMessageDialog(this,
-                    "Something went wrong. Check your inputs!");
-
-            return false;
-
-        }
-
-        return true;
-
-    }
-
-    private boolean invalidPasswordMessage () {
-
-        if (!PassInput.verifyPasswordText(new String(passwordField.getPassword()))) {
-
-            JOptionPane.showMessageDialog(this,
-                    "Your password must contain letters and numbers!");
-
-            return false;
-        }
-
-        return true;
-
-    }
-
-    private boolean invalidPasswordMatchMessage () {
-
-        if (!new String(passwordField.getPassword()).equals(new String(repeatPasswordField.getPassword()))) {
-
-            JOptionPane.showMessageDialog(this,
-                    "Passwords do NOT match!");
-
-            return false;
-        }
-
-        return true;
-
-    }
-
-    private boolean invalidEmailMessage () {
-
-        if (!MailServ.checkMail(emailField.getText())) {
-
-            JOptionPane.showMessageDialog(this, "Enter a valid email!");
-
-            return false;
-
-        }
-
-        return true;
-
-    }
-
-    private boolean invalidAddressMessage (CheckAddress checkAddress, Address address) {
-
-        if (!checkAddress.test(address)) {
-
-            JOptionPane.showMessageDialog(this, "Enter a valid address!");
-
-            return false;
-
-        }
-
-        return true;
-
-    }
 
 }
