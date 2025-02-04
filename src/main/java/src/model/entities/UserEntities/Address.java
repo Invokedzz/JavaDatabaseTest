@@ -2,7 +2,7 @@ package src.model.entities.UserEntities;
 
 public final class Address {
 
-    private String CEP; // user can't alter this information
+    private String CEP;
 
     private String number;
 
@@ -14,19 +14,20 @@ public final class Address {
     
     public Address () {}
 
-    public Address (String CEP, String number, String complement, String label, String city) {
+    public Address (String CEP, String label, String complement, String number, String city) {
 
         this.CEP = CEP;
 
-        this.number = number;
+        this.label = label;
 
         this.complement = complement;
 
-        this.label = label;
+        this.number = number;
 
         this.city = city;
 
     }
+
 
     public String getCEP () {
 

@@ -63,13 +63,15 @@ public class UserPage extends JFrame {
 
         String hashBackOgPassword = PassHash.generateHash(oldPasswordField.getText());
 
+        if (!CheckElementsSentByUser.verifyElements(this, elements, ogCustomer)) return;
+
         customerTable.updateCustomer(connection, usernameField.getText(), emailField.getText(), hashBackOgPassword, userId);
 
         JOptionPane.showMessageDialog(this, "Profile updated!");
 
         });
 
-        showMoreStuffBtnAction(userId);
+        showMoreStuffBtnAction(connection, userId);
 
         deleteBtnAction(connection, userId);
 
@@ -97,9 +99,9 @@ public class UserPage extends JFrame {
 
     }
 
-    private void showMoreStuffBtnAction (Integer userId) {
+    private void showMoreStuffBtnAction (Connection connection, Integer userId) {
 
-        showMoreStuffBtn.addActionListener(e -> new ShowMoreOfUsersInfo(userId));
+        showMoreStuffBtn.addActionListener(e -> new ShowMoreOfUsersInfo(connection, userId));
 
     }
 

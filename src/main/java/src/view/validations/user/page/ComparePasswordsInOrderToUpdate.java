@@ -19,8 +19,6 @@ public class ComparePasswordsInOrderToUpdate {
 
         }
 
-        JOptionPane.showMessageDialog(parent, "Success!");
-
         return true;
 
     }

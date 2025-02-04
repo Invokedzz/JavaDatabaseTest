@@ -1,6 +1,7 @@
 package src.model.services.UserServices;
 
 import java.sql.Connection;
+
 import src.model.entities.UserEntities.User;
 
 public interface UserContract {

@@ -8,7 +8,7 @@ import src.db.*;
 import src.security.PassHash;
 import java.sql.*;
 
-public class CustomerTable implements DatabaseGeneralContract, UserContract {
+public class CustomerTable implements DatabaseGeneralContract, UserContract, CustomerContract {
 
     private Customer customer;
 
@@ -39,7 +39,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
             statement = connection.prepareStatement(
                     "INSERT INTO \"User\".\"Customer\" " +
-                            "(name, email, password, typeuser, cep, housenumber, neighbourhood, complement, city)" +
+                            "(name, email, password, typeuser, cep, neighbourhood, complement, housenumber, city)" +
                             " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
@@ -55,11 +55,11 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
 
             statement.setString(5, address.getCEP());
 
-            statement.setString(6, address.getNumber());
+            statement.setString(6, address.getLabel());
 
-            statement.setString(7, address.getLabel());
+            statement.setString(7, address.getComplement());
 
-            statement.setString(8, address.getComplement());
+            statement.setString(8, address.getNumber());
 
             statement.setString(9, address.getCity());
 
@@ -336,6 +336,45 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract {
             throw new DbException(exception.getMessage());
 
         }
+
+    }
+
+    @Override
+    public Address obtainAddressProperties(Connection connection, Integer userId) {
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "SELECT * FROM \"User\".\"Customer\" WHERE id = ?"
+            );
+
+            statement.setInt(1, userId);
+
+            set = statement.executeQuery();
+
+            if (set.next()) {
+
+                String cep = set.getString("cep");
+
+                String housenumber = set.getString("housenumber");
+
+                String neighbourhood = set.getString("neighbourhood");
+
+                String complement = set.getString("complement");
+
+                String city = set.getString("city");
+
+                return new Address(cep, housenumber, complement, neighbourhood, city);
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return null;
 
     }
 
