@@ -1,0 +1,27 @@
+package src.view.validations.user.page;
+
+import src.model.entities.UserEntities.Customer;
+import src.model.entities.UserEntities.User;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class CheckIfCustomerIsNull {
+
+    public static boolean isThisCustomerInsideTheSystem (Component parent, User user) {
+
+        if (user == null) {
+
+            JOptionPane.showMessageDialog(parent, "Something went wrong!");
+
+            System.exit(0);
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+}

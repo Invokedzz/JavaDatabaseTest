@@ -1,6 +1,7 @@
 package src.view.validations.user.page;
 
 import src.model.entities.UserEntities.Customer;
+import src.model.entities.UserEntities.User;
 import src.security.PassHash;
 
 import javax.swing.*;
@@ -8,7 +9,7 @@ import java.awt.*;
 
 public class ComparePasswordsInOrderToUpdate {
 
-    public static boolean comparePasswords (Component parent, String oldPassword, Customer customer) {
+    public static boolean comparePasswords (Component parent, String oldPassword, User customer) {
 
         if (!PassHash.checkChosenHash(oldPassword, customer.getPassword())) {
 
