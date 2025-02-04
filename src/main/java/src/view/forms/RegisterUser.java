@@ -162,8 +162,10 @@ public class RegisterUser extends JFrame {
             Customer customer = new Customer(usernameField.getText(), emailField.getText(),
                     new String(passwordField.getPassword()), TypeUser.CUSTOMER);
 
-            Address address = new Address(cepField.getText(), houseNumberField.getText(),
-                    complementField.getText(), neighbourhoodField.getText(), cityField.getText());
+            Address address = new Address(cepField.getText(), neighbourhoodField.getText(),
+                    complementField.getText(), houseNumberField.getText(), cityField.getText());
+
+            System.out.println(address);
 
             CheckAddress checkAddress = new CheckAddress();
 

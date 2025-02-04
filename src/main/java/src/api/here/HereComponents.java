@@ -65,7 +65,7 @@ public class HereComponents {
 
         String city = currentAddress.get("city").getAsString();
 
-        return new Address(CEP, complement, label, houseNumber, city);
+        return new Address(CEP, label, complement, houseNumber, city);
 
     }
 
