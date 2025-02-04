@@ -2,6 +2,7 @@ package src.view.validations.user.register;
 
 import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
+import src.model.entities.UserEntities.User;
 import src.validation.CheckAddress;
 import src.validation.CheckCustomers;
 
@@ -10,7 +11,7 @@ import java.awt.*;
 
 public class RegisterGeneralInfoValidation {
 
-    public static boolean invalidCustomerMessage (Component parent, CheckCustomers checkCustomers, Customer customer) {
+    public static boolean invalidCustomerMessage (Component parent, CheckCustomers checkCustomers, User customer) {
 
         if (!checkCustomers.test(customer)) {
 

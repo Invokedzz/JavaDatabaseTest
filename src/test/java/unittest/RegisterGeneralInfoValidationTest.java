@@ -3,13 +3,10 @@ package unittest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import settings.ValidCpf;
-import src.db.DB;
 import src.model.entities.UserEntities.Address;
-import src.model.entities.UserEntities.Admin;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
 import src.validation.CheckAddress;
-import src.validation.CheckAdmin;
 import src.validation.CheckCustomers;
 import src.view.validations.user.register.RegisterGeneralInfoValidation;
 

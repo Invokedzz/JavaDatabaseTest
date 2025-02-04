@@ -6,6 +6,7 @@ import src.model.services.UserServices.CustomerTable;
 import src.security.PassHash;
 import src.validation.CheckElementsInOrderToUpdate;
 import src.view.validations.user.page.CheckElementsSentByUser;
+import src.view.validations.user.page.CheckIfCustomerIsNull;
 import src.view.validations.user.page.ComparePasswordsInOrderToUpdate;
 
 import javax.swing.*;
@@ -40,13 +41,7 @@ public class UserPage extends JFrame {
 
         Customer customer = customerTable.obtainUserProperties(connection, userId);
 
-            if (customer == null) {
-
-                JOptionPane.showMessageDialog(this, "Something went wrong!");
-
-                System.exit(0);
-
-            }
+        CheckIfCustomerIsNull.isThisCustomerInsideTheSystem(this, customer);
 
         usernameField = setCustomerNameTextField(customer);
 
