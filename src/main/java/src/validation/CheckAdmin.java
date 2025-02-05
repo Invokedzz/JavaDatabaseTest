@@ -22,4 +22,5 @@ public class CheckAdmin implements UserPredicate {
 
     }
 
+
 }

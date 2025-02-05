@@ -148,40 +148,6 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
     }
 
-
-    @Override
-    public void updateName (Connection connection, String name, Integer id) {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-                    "UPDATE \"User\".\"Admin\" set name = ? WHERE id = ?"
-            );
-
-            statement.setString(1, name);
-
-            statement.setInt(2, id);
-
-            statement.executeUpdate();
-
-            System.out.println("The element was updated successfully!");
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
-
-        }
-
-    }
-
     @Override
     public Admin obtainUserProperties (Connection connection, Integer id) {
         return new Admin();
@@ -259,7 +225,7 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
     }
 
-    public void updateCustomer (Connection connection, String name, String email, String password, Integer id) {
+    public void updateUser (Connection connection, String name, String email, String password, Integer id) {
 
     }
 

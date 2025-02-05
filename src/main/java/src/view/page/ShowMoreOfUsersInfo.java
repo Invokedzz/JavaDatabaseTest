@@ -10,9 +10,9 @@ import java.sql.Connection;
 
 public class ShowMoreOfUsersInfo extends JFrame {
 
-    private JTextField cepField, neighbourhoodField, houseNumberField, cityField, complementField;
+    private final JTextField cepField, neighbourhoodField, houseNumberField, cityField, complementField;
 
-    private JButton cancelBtn;
+    private final JButton cancelBtn;
 
     public ShowMoreOfUsersInfo(Connection connection, Integer userId) {
 
@@ -38,6 +38,8 @@ public class ShowMoreOfUsersInfo extends JFrame {
         complementField = setComplementField(userAddress);
 
         cityField = setCityField(userAddress);
+
+        cancelBtnAction();
 
         addComponents();
 

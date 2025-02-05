@@ -57,6 +57,8 @@ public class UserPage extends JFrame {
 
         if (!ComparePasswordsInOrderToUpdate.comparePasswords(this, oldPasswordField.getText(), customer)) return;
 
+        // need to make some changes in order to let user change his password
+
         Customer ogCustomer = new Customer(usernameField.getText(), emailField.getText(), oldPasswordField.getText());
 
         if (!CheckElementsSentByUser.verifyElements(this, elements, ogCustomer)) return;
@@ -65,7 +67,7 @@ public class UserPage extends JFrame {
 
         if (!CheckElementsSentByUser.verifyElements(this, elements, ogCustomer)) return;
 
-        customerTable.updateCustomer(connection, usernameField.getText(), emailField.getText(), hashBackOgPassword, userId);
+        customerTable.updateUser(connection, usernameField.getText(), emailField.getText(), hashBackOgPassword, userId);
 
         JOptionPane.showMessageDialog(this, "Profile updated!");
 

@@ -2,7 +2,6 @@ package src.view.forms;
 
 import src.db.DB;
 import src.model.services.UserServices.CustomerTable;
-import src.security.LoginServ;
 import src.security.UserSession;
 import src.view.page.UserPage;
 import src.view.validations.user.login.LoginMessageValidation;
@@ -13,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
 
-public class Login extends JFrame {
+public class LoginCustomer extends JFrame {
 
     private final JTextField emailField;
 
@@ -23,7 +22,7 @@ public class Login extends JFrame {
 
     private CustomerTable customerTable;
 
-    public Login () {
+    public LoginCustomer() {
 
         setTitle("Login");
         setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));

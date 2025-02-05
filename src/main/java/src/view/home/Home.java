@@ -1,7 +1,7 @@
 package src.view.home;
 
 import src.view.forms.RegisterUser;
-import src.view.forms.Login;
+import src.view.forms.LoginCustomer;
 
 import javax.swing.*;
 
@@ -72,7 +72,7 @@ public class Home extends JFrame {
 
         btnLogin.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
-        btnLogin.addActionListener(e -> new Login());
+        btnLogin.addActionListener(e -> new LoginCustomer());
 
         add(btnLogin);
 

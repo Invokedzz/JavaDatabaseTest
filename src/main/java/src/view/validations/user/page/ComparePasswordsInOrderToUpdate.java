@@ -1,6 +1,5 @@
 package src.view.validations.user.page;
 
-import src.model.entities.UserEntities.Customer;
 import src.model.entities.UserEntities.User;
 import src.security.PassHash;
 

@@ -159,33 +159,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
     }
 
     @Override
-    public void updateName (Connection connection, String name, Integer id) {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-                    "UPDATE \"User\".\"Customer\" set name = ? WHERE id = ?"
-            );
-
-            statement.setString(1, name);
-
-            statement.setInt(2, id);
-
-            statement.executeUpdate();
-
-            System.out.println("The element was updated successfully!");
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        }
-
-    }
-
-    @Override
     public Customer obtainUserProperties (Connection connection, Integer id) {
 
         try {
@@ -311,7 +284,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
 
     }
 
-    public void updateCustomer (Connection connection, String name, String email, String password, Integer id) {
+    public void updateUser (Connection connection, String name, String email, String password, Integer id) {
 
         try {
 
