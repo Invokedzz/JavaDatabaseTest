@@ -1,9 +1,13 @@
 package src.model.services.ProdServices;
 
+import src.model.entities.ProdEntities.Product;
+
+import java.sql.Connection;
+
 public interface ProductContract {
 
-    void updateName (String name, Integer id);
+    void updateProduct (Connection connection, String name, Double price, Integer quantity, Integer productId);
 
-    void updatePrice (Double price, Integer id);
+    Product obtainProductProperties (Connection connection, Integer productId);
 
 }

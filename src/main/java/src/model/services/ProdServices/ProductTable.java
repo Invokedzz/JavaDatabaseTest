@@ -2,6 +2,7 @@ package src.model.services.ProdServices;
 
 import src.db.*;
 import src.model.entities.ProdEntities.Product;
+import src.model.enums.ProductAvailability;
 import src.model.services.DatabaseGeneralContract;
 import java.sql.*;
 
@@ -155,70 +156,65 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     }
 
     @Override
-    public void updateName (String name, Integer id) {
+    public void updateProduct (Connection connection, String name, Double price, Integer quantity, Integer productId) {
 
         try {
 
-            connection = DB.getConnection();
-
             statement = connection.prepareStatement(
-                    "UPDATE \"Stock\".\"Product\" set name = ? WHERE id = ?"
+                    "UPDATE \"Stock\".\"Product\" SET name = ?, price = ?, quantity = ? WHERE id = ?"
             );
 
             statement.setString(1, name);
 
-            statement.setInt(2, id);
+            statement.setDouble(2, price);
+
+            statement.setInt(3, quantity);
 
             statement.executeUpdate();
-
-            System.out.println("The element was updated successfully!");
 
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
 
         }
 
     }
 
     @Override
-    public void updatePrice (Double price, Integer id) {
+    public Product obtainProductProperties(Connection connection, Integer productId) {
 
         try {
 
-            connection = DB.getConnection();
-
             statement = connection.prepareStatement(
-                    "UPDATE \"Stock\".\"Product\" set price = ? WHERE id = ?"
+                    "SELECT * FROM \"Stock\".\"Product\" WHERE id = ?"
             );
 
-            statement.setDouble(1, price);
+            statement.setInt(1, productId);
 
-            statement.setInt(2, id);
+            ResultSet set = statement.executeQuery();
 
-            statement.executeUpdate();
+            if (set.next()) {
 
-            System.out.println("The element was updated successfully!");
+                String name = set.getString("name");
+
+                Double price = set.getDouble("price");
+
+                Integer quantity = set.getInt("quantity");
+
+                ProductAvailability availability = ProductAvailability.valueOf(set.getString("availability"));
+
+                return new Product(name, price, quantity, availability);
+
+            }
 
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
 
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
-
         }
 
-    }
+        return null;
 
+    }
 
 }

@@ -7,7 +7,7 @@ public class Admin extends User {
     // The Admin (frontman) must have a full database access
     // They can create new Products, Categories, and stuff like that
 
-    private TypeUser typeUser;
+    private String ticket;
 
     public Admin () {
 
@@ -15,9 +15,17 @@ public class Admin extends User {
 
     }
 
-    public Admin (String name, String email, String password, TypeUser typeUser) {
+    public Admin (String name, String email, String password, TypeUser typeUser, String ticket) {
 
         super(name, email, password, typeUser);
+
+        this.ticket = ticket;
+
+    }
+
+    public String getTicket () {
+
+        return ticket;
 
     }
 

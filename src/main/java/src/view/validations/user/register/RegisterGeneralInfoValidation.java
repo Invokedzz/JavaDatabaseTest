@@ -1,7 +1,6 @@
 package src.view.validations.user.register;
 
 import src.model.entities.UserEntities.Address;
-import src.model.entities.UserEntities.Customer;
 import src.model.entities.UserEntities.User;
 import src.validation.CheckAddress;
 import src.validation.CheckCustomers;

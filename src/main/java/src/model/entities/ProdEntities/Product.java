@@ -16,12 +16,6 @@ public class Product {
 
     public Product () {}
 
-    public Product (String name) {
-
-        this.name = name;
-
-    }
-
     public Product (String name, Double price, Integer quantity, ProductAvailability availability, Category category) {
 
         this.name = name;
@@ -33,6 +27,18 @@ public class Product {
         this.availability = availability;
 
         this.category = category;
+
+    }
+
+    public Product (String name, Double price, Integer quantity, ProductAvailability availability) {
+
+        this.name = name;
+
+        this.price = price;
+
+        this.quantity = quantity;
+
+        this.availability = availability;
 
     }
 

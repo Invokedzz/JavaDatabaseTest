@@ -34,7 +34,7 @@ class AdminTableTest {
     void setUp() {
 
         admin = new Admin("Paul Wrath", "paulwrath@gmail.com",
-                "I'mTheBest", TypeUser.ADMIN);
+                "I'mTheBest", TypeUser.ADMIN, "");
 
         checkAdmin = new CheckAdmin();
 
