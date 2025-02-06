@@ -15,9 +15,9 @@ public class Admin extends User {
 
     }
 
-    public Admin (String name, String email, String password, TypeUser typeUser, String ticket) {
+    public Admin (String email, String password, TypeUser typeUser, String ticket) {
 
-        super(name, email, password, typeUser);
+        super(email, password, typeUser);
 
         this.ticket = ticket;
 

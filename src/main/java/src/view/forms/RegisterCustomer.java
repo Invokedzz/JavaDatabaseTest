@@ -16,7 +16,7 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class RegisterUser extends JFrame {
+public class RegisterCustomer extends JFrame {
 
     private JTextField usernameField, emailField, cepField, neighbourhoodField, complementField, houseNumberField, cityField;
 
@@ -128,12 +128,13 @@ public class RegisterUser extends JFrame {
 
     }
 
-    public RegisterUser() {
+    public RegisterCustomer() {
 
-        setTitle("Create Account");
+            setTitle("Create Account");
             setLayout(new MigLayout("center center, wrap, gapy 20"));
             setSize(400, 600);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setResizable(false);
             getContentPane().setBackground(new Color(245, 245, 245));
             setLocationRelativeTo(null);
 

@@ -1,6 +1,7 @@
 package src.view.home;
 
-import src.view.forms.RegisterUser;
+import src.view.forms.LoginAdmin;
+import src.view.forms.RegisterCustomer;
 import src.view.forms.LoginCustomer;
 
 import javax.swing.*;
@@ -26,6 +27,8 @@ public class Home extends JFrame {
 
         int y = (getHeight() - 70) / 2;
 
+        setupSmallButton();
+
         setupCreateBtn(x, y);
 
         setupLoginBtn(x, y);
@@ -44,7 +47,7 @@ public class Home extends JFrame {
 
         btnCreateAccount.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
-        btnCreateAccount.addActionListener(e -> new RegisterUser());
+        btnCreateAccount.addActionListener(e -> new RegisterCustomer());
 
         add(btnCreateAccount);
 
@@ -61,6 +64,20 @@ public class Home extends JFrame {
         label.setForeground(color);
 
         return label;
+
+    }
+
+    private void setupSmallButton() {
+
+        JButton smallButton = new JButton("Admin");
+
+        smallButton.setBounds(10, 10, 80, 30);
+
+        smallButton.setFont(new Font("Arial", Font.PLAIN, 12));
+
+        smallButton.addActionListener(e -> new LoginAdmin());
+
+        add(smallButton);
 
     }
 

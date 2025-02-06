@@ -36,6 +36,16 @@ public abstract class User {
 
     }
 
+    public User (String email, String password, TypeUser typeUser) {
+
+        this.email = email;
+
+        this.password = password;
+
+        this.typeUser = typeUser;
+
+    }
+
     public User (String email, String password) {
 
         this.email = email;
