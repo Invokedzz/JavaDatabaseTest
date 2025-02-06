@@ -37,20 +37,20 @@ class CheckAdminTest {
     @BeforeEach
     void setUp() {
 
-        admin = new Admin("Mr.Duck", "mrduck@gmail.com",
-                "superduck123", TypeUser.ADMIN);
+        admin = new Admin("mrduck@gmail.com",
+                "superduck123", TypeUser.ADMIN, "");
 
-        adminWithInvalidName = new Admin("M", "mrduck@gmail.com",
-                "superduck123", TypeUser.ADMIN);
+        adminWithInvalidName = new Admin("mrduck@gmail.com",
+                "superduck123", TypeUser.ADMIN, "");
 
-        adminWithInvalidPassword = new Admin("Mr.Duck", "mrduck@gmail.com",
-                "123", TypeUser.ADMIN);
+        adminWithInvalidPassword = new Admin("mrduck@gmail.com",
+                "123", TypeUser.ADMIN, "");
 
-        adminWithInvalidEmail = new Admin("Mr.Duck", "mrduck@gmail",
-                "superduck123", TypeUser.ADMIN);
+        adminWithInvalidEmail = new Admin("mrduck@gmail",
+                "superduck123", TypeUser.ADMIN, "");
 
-        adminWithInvalidType = new Admin("Mr.Duck", "mrduck@gmail.com",
-                "superduck123", TypeUser.CUSTOMER);
+        adminWithInvalidType = new Admin("mrduck@gmail.com",
+                "superduck123", TypeUser.CUSTOMER, "");
 
         checkAdmin = new CheckAdmin();
 
@@ -61,14 +61,6 @@ class CheckAdminTest {
     void validAdminTest () {
 
         assertTrue(checkAdmin.test(admin));
-
-    }
-
-    @Test
-    @DisplayName("Testing an invalid name length")
-    void invalidNameLengthTest () {
-
-        assertFalse(checkAdmin.test(adminWithInvalidName));
 
     }
 

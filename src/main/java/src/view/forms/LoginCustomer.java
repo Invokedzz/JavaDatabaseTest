@@ -27,6 +27,7 @@ public class LoginCustomer extends JFrame {
         setTitle("Login");
         setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setBackground(new Color(245, 245, 245));
         setSize(300, 220);
         setLocationRelativeTo(null);

@@ -18,6 +18,7 @@ public class ShowMoreOfUsersInfo extends JFrame {
 
         setTitle("Login");
         setLayout(new MigLayout("center center, wrap, gapy 30"));
+        setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(new Color(245, 245, 245));
         setSize(300, 620);

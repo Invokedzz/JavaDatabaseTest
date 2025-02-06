@@ -33,11 +33,11 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
             statement = connection.prepareStatement(
                     "INSERT INTO \"User\".\"Admin\"" +
-                            " (name, email, password, typeuser)" +
+                            " (ticket, email, password, typeuser)" +
                             " VALUES (?,?,?,?)"
             );
 
-            statement.setString(1, admin.getName());
+            statement.setString(1, admin.getTicket());
 
             String hashPassword = PassHash.generateHash(admin.getPassword());
 
@@ -78,13 +78,13 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
             while (set.next()) {
 
-                String name = set.getString("name");
+                String ticket = set.getString("ticket");
 
                 String email = set.getString("email");
 
                 String type = set.getString("typeuser");
 
-                System.out.println("NAME: " + name + " TYPE: " + type + " EMAIL: " + email);
+                System.out.println("NAME: " + ticket + " TYPE: " + type + " EMAIL: " + email);
 
             }
 

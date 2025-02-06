@@ -2,9 +2,9 @@ package src.security;
 
 public class PassInput {
 
-    public static boolean verifyPasswordText (String password) {
+    public static boolean verifyPasswordText (String element) {
 
-        return password.matches("^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z0-9]+$");
+        return element.matches("^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z0-9]+$");
 
     }
 
