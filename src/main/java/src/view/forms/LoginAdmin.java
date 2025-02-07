@@ -1,6 +1,8 @@
 package src.view.forms;
 
 import net.miginfocom.swing.MigLayout;
+import src.model.entities.UserEntities.Admin;
+import src.view.page.AdminPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -65,7 +67,7 @@ public class LoginAdmin extends JFrame {
 
         loginBtn.addActionListener(e -> {
 
-
+            new AdminPage();
 
         });
 
