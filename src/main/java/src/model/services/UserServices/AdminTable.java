@@ -3,10 +3,9 @@ package src.model.services.UserServices;
 import src.model.services.DatabaseGeneralContract;
 import src.model.entities.UserEntities.Admin;
 import src.db.*;
-import src.security.PassHash;
 import java.sql.*;
 
-public class AdminTable implements DatabaseGeneralContract, UserContract {
+public class AdminTable implements DatabaseGeneralContract, UserContract, AdminContract {
 
     private Admin admin;
 
@@ -124,8 +123,6 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
             statement.executeUpdate();
 
-            System.out.println("All the tables were deleted successfully!");
-
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
@@ -148,7 +145,27 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
 
     @Override
     public Integer obtainUserId(Connection connection, String email) {
-        return 0;
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "SELECT id FROM \"User\".\"Admin\" WHERE email = ?"
+            );
+
+            statement.setString(1, email);
+
+            set = statement.executeQuery();
+
+            if (set.next()) return set.getInt(1);
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return null;
+
     }
 
     @Override
@@ -218,6 +235,31 @@ public class AdminTable implements DatabaseGeneralContract, UserContract {
     }
 
     public void updateUser (Connection connection, String name, String email, String password, Integer id) {
+
+    }
+
+    @Override
+    public String getStoredTicket(Connection connection, Integer userId) {
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "SELECT ticket FROM \"User\".\"Admin\" WHERE id = ?"
+            );
+
+            statement.setInt(1, userId);
+
+            set = statement.executeQuery();
+
+            if (set.next()) return set.getString("ticket");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return null;
 
     }
 

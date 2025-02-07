@@ -1,23 +1,30 @@
 package src.view.forms;
 
 import net.miginfocom.swing.MigLayout;
-import src.model.entities.UserEntities.Admin;
+import src.db.DB;
+import src.model.services.UserServices.AdminTable;
+import src.security.UserSession;
 import src.view.page.AdminPage;
+import src.view.validations.user.login.LoginMessageValidation;
+import src.view.validations.user.login.LoginTicketValidation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
 
 public class LoginAdmin extends JFrame {
 
-    private JTextField emailField, ticketField;
+    private final JTextField emailField, ticketField;
 
-    private JPasswordField passwordField;
+    private final JPasswordField passwordField;
+
+    private AdminTable adminTable;
 
     private JButton loginBtn, cancelBtn;
 
     public LoginAdmin () {
 
-        setTitle("Login as Admin");
+        setTitle("Login as admin");
         setLayout(new MigLayout("center center, wrap, gapy 20"));
         setSize(400, 450);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -34,6 +41,8 @@ public class LoginAdmin extends JFrame {
         loginBtn = new JButton("Login");
 
         cancelBtn = new JButton("Cancel");
+
+        createLoginBtnAction();
 
         createCancelBtnAction();
 
@@ -65,11 +74,63 @@ public class LoginAdmin extends JFrame {
 
     private void createLoginBtnAction () {
 
+        // getUserIdByEmail, getStoredPasswordByEmail
+
         loginBtn.addActionListener(e -> {
 
-            new AdminPage();
+            Connection connection;
+
+            connection = DB.getConnection();
+
+            String email = emailField.getText();
+
+            String password = new String(passwordField.getPassword());
+
+            String ticket = ticketField.getText();
+
+            Integer userId = getUserIdByEmail(connection, email);
+
+            UserSession.userId = userId;
+
+            String hashedPassword = getStoredPasswordByEmail(connection, email);
+
+            String storedTicket = obtainTicketFromDB(connection, userId);
+
+            if (!LoginMessageValidation.invalidLoginMessage(this, email, password, hashedPassword)) return;
+
+            if (!LoginTicketValidation.checkSentTicket(this, ticket, storedTicket)) return;
+
+            JOptionPane.showMessageDialog(this, "Success! Logging you into the system.");
+
+            new AdminPage(connection, userId);
+
+            dispose();
 
         });
+
+    }
+
+    private Integer getUserIdByEmail (Connection connection, String email) {
+
+        adminTable = new AdminTable();
+
+        return adminTable.obtainUserId(connection, email);
+
+    }
+
+    private String obtainTicketFromDB (Connection connection, Integer userId) {
+
+        adminTable = new AdminTable();
+
+        return adminTable.getStoredTicket(connection, userId);
+
+    }
+
+    private String getStoredPasswordByEmail (Connection connection, String email) {
+
+        adminTable = new AdminTable();
+
+        return adminTable.getStoredPassword(connection, email);
 
     }
 
