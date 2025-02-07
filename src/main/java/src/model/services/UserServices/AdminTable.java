@@ -139,7 +139,37 @@ public class AdminTable implements DatabaseGeneralContract, UserContract, AdminC
 
     @Override
     public Admin obtainUserProperties (Connection connection, Integer id) {
-        return new Admin();
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "SELECT * FROM \"User\".\"Admin\" WHERE id = ?"
+            );
+
+            statement.setInt(1, id);
+
+            set = statement.executeQuery();
+
+            if (set.next()) {
+
+                String email = set.getString("email");
+
+                String ticket = set.getString("ticket");
+
+                String password = set.getString("password");
+
+                return new Admin(email, ticket, password);
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return null;
+
     }
 
 
