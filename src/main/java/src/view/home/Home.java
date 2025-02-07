@@ -1,6 +1,7 @@
 package src.view.home;
 
 import src.view.forms.LoginAdmin;
+import src.view.forms.RegisterAdmin;
 import src.view.forms.RegisterCustomer;
 import src.view.forms.LoginCustomer;
 
@@ -75,7 +76,7 @@ public class Home extends JFrame {
 
         smallButton.setFont(new Font("Arial", Font.PLAIN, 12));
 
-        smallButton.addActionListener(e -> new LoginAdmin());
+        smallButton.addActionListener(e -> new RegisterAdmin());
 
         add(smallButton);
 
