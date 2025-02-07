@@ -38,19 +38,19 @@ class CheckAdminTest {
     void setUp() {
 
         admin = new Admin("mrduck@gmail.com",
-                "superduck123", TypeUser.ADMIN, "");
+                "superduck123", "",TypeUser.ADMIN);
 
         adminWithInvalidName = new Admin("mrduck@gmail.com",
-                "superduck123", TypeUser.ADMIN, "");
+                "superduck123", "",TypeUser.ADMIN);
 
         adminWithInvalidPassword = new Admin("mrduck@gmail.com",
-                "123", TypeUser.ADMIN, "");
+                "123", "",TypeUser.ADMIN);
 
         adminWithInvalidEmail = new Admin("mrduck@gmail",
-                "superduck123", TypeUser.ADMIN, "");
+                "superduck123","", TypeUser.ADMIN);
 
         adminWithInvalidType = new Admin("mrduck@gmail.com",
-                "superduck123", TypeUser.CUSTOMER, "");
+                "superduck123",  "", TypeUser.CUSTOMER);
 
         checkAdmin = new CheckAdmin();
 

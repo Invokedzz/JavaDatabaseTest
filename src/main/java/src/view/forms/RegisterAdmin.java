@@ -16,7 +16,7 @@ public class RegisterAdmin extends JFrame {
 
     public RegisterAdmin () {
 
-        setTitle("Login");
+        setTitle("Register as admin");
         setLayout(new MigLayout("center center, wrap, gapy 30"));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);

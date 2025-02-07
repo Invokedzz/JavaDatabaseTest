@@ -24,7 +24,7 @@ public class LoginCustomer extends JFrame {
 
     public LoginCustomer() {
 
-        setTitle("Login Admin");
+        setTitle("Login as customer");
         setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -81,6 +81,8 @@ public class LoginCustomer extends JFrame {
     private void createLoginBtnAction () {
 
         loginButton.addActionListener(e -> {
+
+            // getUserIdByEmail, getStoredPasswordByEmail
 
             Connection connection;
 

@@ -20,7 +20,7 @@ public class UserDBTest {
     private static void testUserAdmin () {
 
         Admin admin = new Admin("mrduck@gmail.com",
-                "1qaz2345", TypeUser.ADMIN, "");
+                "1qaz2345", "",TypeUser.ADMIN);
 
         CheckAdmin checkAdmin = new CheckAdmin();
 
