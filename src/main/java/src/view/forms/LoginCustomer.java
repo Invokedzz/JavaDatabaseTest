@@ -24,7 +24,7 @@ public class LoginCustomer extends JFrame {
 
     public LoginCustomer() {
 
-        setTitle("Login");
+        setTitle("Login Admin");
         setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);

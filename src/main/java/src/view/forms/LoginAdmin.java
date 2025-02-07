@@ -11,7 +11,7 @@ public class LoginAdmin extends JFrame {
 
     private JPasswordField passwordField;
 
-    private JButton loginBtn, askForAccountBtn, cancelBtn;
+    private JButton loginBtn, cancelBtn;
 
     public LoginAdmin () {
 
@@ -30,8 +30,6 @@ public class LoginAdmin extends JFrame {
         passwordField = returnJPasswordFieldColumns();
 
         loginBtn = new JButton("Login");
-
-        askForAccountBtn = new JButton("Ask for Administrator Account");
 
         cancelBtn = new JButton("Cancel");
 
@@ -58,8 +56,6 @@ public class LoginAdmin extends JFrame {
         add(passwordField);
 
         add(loginBtn);
-
-        add(askForAccountBtn);
 
         add(cancelBtn);
 
