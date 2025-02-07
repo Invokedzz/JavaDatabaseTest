@@ -23,6 +23,14 @@ public class Admin extends User {
 
     }
 
+    public Admin (String email, String ticket, String password) {
+
+        super(email, password);
+
+        this.ticket = ticket;
+
+    }
+
     public String getTicket () {
 
         return ticket;
