@@ -293,4 +293,50 @@ public class AdminTable implements DatabaseGeneralContract, UserContract, AdminC
 
     }
 
+    @Override
+    public void updateEmail(Connection connection, String email, Integer userId) {
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "UPDATE \"User\".\"Admin\" SET email = ? WHERE id = ?"
+            );
+
+            statement.setString(1, email);
+
+            statement.setInt(2, userId);
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+    }
+
+    @Override
+    public void updateTicket(Connection connection, String ticket, Integer userId) {
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "UPDATE \"User\".\"Admin\" SET ticket = ? WHERE id = ?"
+            );
+
+            statement.setString(1, ticket);
+
+            statement.setInt(2, userId);
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+    }
+
 }
