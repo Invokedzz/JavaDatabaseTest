@@ -8,9 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PassHashTest {
 
-    private static String password;
-
-    private static String hashedPassword;
+    private static String password, hashedPassword;
 
     @Test
     @DisplayName("Testing a password that matches the hash")

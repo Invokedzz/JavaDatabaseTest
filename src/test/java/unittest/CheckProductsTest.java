@@ -13,11 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CheckProductsTest {
 
-    private static Product product;
-
-    private static Product outOfStockProduct;
-
-    private static Product productException;
+    private static Product product, outOfStockProduct, productException;
 
     private static CheckProducts checkProducts;
 

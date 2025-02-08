@@ -31,7 +31,7 @@ public class AdminPage extends JFrame {
 
         editProfileBtn = new JButton("Edit Profile");
 
-        cancelBtn = new JButton("Cancel");
+        cancelBtn = new JButton("Close");
 
         setBtnIcons();
 
@@ -61,7 +61,7 @@ public class AdminPage extends JFrame {
 
     private void createViewProductStockBtnAction () {
 
-        viewProductStockBtn.addActionListener(e -> new ProductCentral());
+        viewProductStockBtn.addActionListener(e -> new ProductAdministration());
 
     }
 
