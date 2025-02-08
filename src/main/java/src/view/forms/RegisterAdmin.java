@@ -1,8 +1,7 @@
 package src.view.forms;
 
 import net.miginfocom.swing.MigLayout;
-import src.security.MailServ;
-import src.view.util.SendMailToTheSupposedAdmin;
+import src.view.util.SendAccountToTheSupposedAdmin;
 import src.view.validations.user.register.RegisterEmailValidation;
 
 import javax.swing.*;
@@ -54,7 +53,7 @@ public class RegisterAdmin extends JFrame {
 
     private void createAskForAccountBtnAction () {
 
-        SendMailToTheSupposedAdmin mail = new SendMailToTheSupposedAdmin();
+        SendAccountToTheSupposedAdmin mail = new SendAccountToTheSupposedAdmin();
 
         askForAccountBtn.addActionListener(e -> {
 

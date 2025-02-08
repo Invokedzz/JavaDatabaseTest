@@ -11,7 +11,7 @@ import src.view.util.credentials.EmailData;
 
 import javax.swing.*;
 
-public class SendMailToTheSupposedAdmin {
+public class SendAccountToTheSupposedAdmin {
 
     public void sendSubjectAndMessage (String email) {
 

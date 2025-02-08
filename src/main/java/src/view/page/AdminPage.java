@@ -3,6 +3,7 @@ package src.view.page;
 import net.miginfocom.swing.MigLayout;
 import src.model.entities.UserEntities.Admin;
 import src.model.services.UserServices.AdminTable;
+import src.view.forms.EditAdminCredentials;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +21,7 @@ public class AdminPage extends JFrame {
         getContentPane().setBackground(new Color(245, 245, 245));
         setLocationRelativeTo(null);
         setResizable(false);
-        setSize(800,600);
+        setSize(800,400);
 
         AdminTable adminTable = new AdminTable();
 
@@ -35,6 +36,8 @@ public class AdminPage extends JFrame {
         setBtnIcons();
 
         createViewProductStockBtnAction();
+
+        createEditProfileBtnAction(connection, userId);
 
         createCancelBtnAction();
 
@@ -62,6 +65,12 @@ public class AdminPage extends JFrame {
 
     }
 
+    private void createEditProfileBtnAction (Connection connection, Integer userId) {
+
+        editProfileBtn.addActionListener(e -> new EditAdminCredentials(connection, userId));
+
+    }
+
     private void createCancelBtnAction () {
 
         cancelBtn.addActionListener(e -> dispose());
@@ -79,6 +88,7 @@ public class AdminPage extends JFrame {
         editProfileBtn.setIcon(profileIcon);
 
         viewProductStockBtn.setIcon(new ImageIcon(stockIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+
         editProfileBtn.setIcon(new ImageIcon(profileIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
 
     }
