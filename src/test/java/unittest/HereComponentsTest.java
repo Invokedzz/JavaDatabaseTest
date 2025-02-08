@@ -12,9 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HereComponentsTest {
 
-    private Address validAddress;
-
-    private Address invalidAddress;
+    private Address validAddress, invalidAddress;
 
     private CheckAddress checkAddress;
 

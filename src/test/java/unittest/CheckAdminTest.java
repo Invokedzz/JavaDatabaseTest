@@ -22,15 +22,7 @@ class CheckAdminTest {
 
     // super(name, lastName, email, password, typeUser);
 
-    private static Admin admin;
-
-    private static Admin adminWithInvalidName;
-
-    private static Admin adminWithInvalidPassword;
-
-    private static Admin adminWithInvalidEmail;
-
-    private static Admin adminWithInvalidType;
+    private static Admin admin, adminWithInvalidPassword, adminWithInvalidEmail, adminWithInvalidType;
 
     private static CheckAdmin checkAdmin;
 
@@ -38,10 +30,7 @@ class CheckAdminTest {
     void setUp() {
 
         admin = new Admin("mrduck@gmail.com",
-                "superduck123", "",TypeUser.ADMIN);
-
-        adminWithInvalidName = new Admin("mrduck@gmail.com",
-                "superduck123", "",TypeUser.ADMIN);
+                "superduck123", "superduck123",TypeUser.ADMIN);
 
         adminWithInvalidPassword = new Admin("mrduck@gmail.com",
                 "123", "",TypeUser.ADMIN);

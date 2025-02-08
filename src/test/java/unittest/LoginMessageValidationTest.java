@@ -15,11 +15,7 @@ class LoginMessageValidationTest {
 
     private Component parent;
 
-    private static String email;
-
-    private static String password;
-
-    private static String storedPassword;
+    private static String email, password, storedPassword;
 
     @Test
     @DisplayName("Testing valid components")

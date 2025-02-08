@@ -13,9 +13,7 @@ class LoginTicketValidationTest {
 
     private static Component parent;
 
-    private static String sentTicket;
-
-    private static String actualTicket;
+    private static String sentTicket, actualTicket;
 
     @Test
     @DisplayName("Invalid result")
