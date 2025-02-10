@@ -1,6 +1,7 @@
 package src.model.services.UserServices;
 
 import java.sql.Connection;
+import java.util.List;
 
 import src.model.entities.UserEntities.User;
 
@@ -14,6 +15,6 @@ public interface UserContract {
 
     void updateUser (Connection connection, String name, String email, String password, Integer id);
 
-    boolean checkUserById (Integer id);
+    List <String> obtainStoredEmails (Connection connection);
 
 }

@@ -87,18 +87,33 @@ public class ShowMoreOfUsersInfo extends JFrame {
     private void addComponents() {
 
         add(new JLabel("CEP:"));
+
+        cepField.setEditable(false);
+
         add(cepField);
 
         add(new JLabel("Neighbourhood:"));
+
+        neighbourhoodField.setEditable(false);
+
         add(neighbourhoodField);
 
         add(new JLabel("House Number:"));
+
+        houseNumberField.setEditable(false);
+
         add(houseNumberField);
 
         add(new JLabel("Complement:"));
+
+        complementField.setEditable(false);
+
         add(complementField);
 
         add(new JLabel("City:"));
+
+        cityField.setEditable(false);
+
         add(cityField);
 
         add(cancelBtn);

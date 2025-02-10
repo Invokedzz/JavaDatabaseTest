@@ -8,10 +8,12 @@ import src.validation.CheckElementsInOrderToUpdate;
 import src.view.validations.user.page.CheckElementsSentByUser;
 import src.view.validations.user.page.CheckIfCustomerIsNull;
 import src.view.validations.user.page.ComparePasswordsInOrderToUpdate;
+import src.view.validations.user.register.CheckIfEmailAlreadyExists;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
+import java.util.List;
 
 public class UserPage extends JFrame {
 
@@ -48,6 +50,8 @@ public class UserPage extends JFrame {
         oldPasswordField = setJPasswordField();
 
         emailField = setCustomerEmailTextField(customer);
+
+        emailField.setEditable(false);
 
         newPasswordField = setJPasswordField();
 

@@ -2,19 +2,19 @@ package src.view.forms;
 
 import net.miginfocom.swing.MigLayout;
 import src.api.here.HereComponents;
+import src.db.DB;
 import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
 import src.model.services.UserServices.CustomerTable;
 import src.validation.CheckAddress;
 import src.validation.CheckCustomers;
-import src.view.validations.user.register.RegisterEmailValidation;
-import src.view.validations.user.register.RegisterGeneralInfoValidation;
-import src.view.validations.user.register.RegisterPasswordValidation;
+import src.view.validations.user.register.*;
 
 import javax.swing.*;
-
+import java.util.List;
 import java.awt.*;
+import java.sql.Connection;
 
 public class RegisterCustomer extends JFrame {
 
@@ -160,13 +160,15 @@ public class RegisterCustomer extends JFrame {
 
         createButton.addActionListener(e -> {
 
+            Connection connection;
+
+            connection = DB.getConnection();
+
             Customer customer = new Customer(usernameField.getText(), emailField.getText(),
                     new String(passwordField.getPassword()), TypeUser.CUSTOMER);
 
             Address address = new Address(cepField.getText(), neighbourhoodField.getText(),
                     complementField.getText(), houseNumberField.getText(), cityField.getText());
-
-            System.out.println(address);
 
             CheckAddress checkAddress = new CheckAddress();
 
@@ -185,6 +187,14 @@ public class RegisterCustomer extends JFrame {
             Address validatedAddress = HereComponents.obtainAddressThroughApi(address);
 
             CustomerTable customerTable = new CustomerTable(customer, validatedAddress);
+
+            List <String> emails = customerTable.obtainStoredEmails(connection);
+
+            List <String> storedCpf = customerTable.obtainStoredCpf(connection);
+
+            if (!CheckIfEmailAlreadyExists.verifyEmailExistence(this, emailField.getText(), emails)) return;
+
+            if (!CheckIfCpfAlreadyExists.verifyCpfExistence(this, cepField.getText(), storedCpf)) return;
 
             customerTable.insert();
 

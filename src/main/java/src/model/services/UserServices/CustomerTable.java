@@ -7,6 +7,8 @@ import src.model.services.DatabaseGeneralContract;
 import src.db.*;
 import src.security.PassHash;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerTable implements DatabaseGeneralContract, UserContract, CustomerContract {
 
@@ -20,9 +22,10 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
 
     private ResultSet set;
 
-    public CustomerTable () {}
+    public CustomerTable() {
+    }
 
-    public CustomerTable (Customer customer, Address address) {
+    public CustomerTable(Customer customer, Address address) {
 
         this.customer = customer;
 
@@ -31,7 +34,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
     }
 
     @Override
-    public void insert () {
+    public void insert() {
 
         try {
 
@@ -74,7 +77,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
     }
 
     @Override
-    public void display () {
+    public void display() {
 
         try {
 
@@ -107,7 +110,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
     }
 
     @Override
-    public void deleteComponent (Connection connection, Integer id) {
+    public void deleteComponent(Connection connection, Integer id) {
 
         try {
 
@@ -130,7 +133,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
     }
 
     @Override
-    public void deleteAll () {
+    public void deleteAll() {
 
         try {
 
@@ -159,7 +162,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
     }
 
     @Override
-    public Customer obtainUserProperties (Connection connection, Integer id) {
+    public Customer obtainUserProperties(Connection connection, Integer id) {
 
         try {
 
@@ -194,7 +197,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
     }
 
     @Override
-    public Integer obtainUserId (Connection connect, String email) {
+    public Integer obtainUserId(Connection connect, String email) {
 
         try {
 
@@ -219,7 +222,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
     }
 
     @Override
-    public String getStoredPassword (Connection connect, String email) {
+    public String getStoredPassword(Connection connect, String email) {
 
         String storedPass = null;
 
@@ -245,46 +248,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
 
     }
 
-    @Override
-    public boolean checkUserById (Integer id) {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-                    "SELECT COUNT(*) FROM \"User\".\"Customer\" WHERE id = ?"
-            );
-
-            statement.setInt(1, id);
-
-            set = statement.executeQuery();
-
-            if (set.next()) {
-
-                int count = set.getInt(1);
-
-                return count > 0;
-
-            }
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeStatements(statement);
-
-            DB.closeConnections(connection);
-
-        }
-
-        return false;
-
-    }
-
-    public void updateUser (Connection connection, String name, String email, String password, Integer id) {
+    public void updateUser(Connection connection, String name, String email, String password, Integer id) {
 
         try {
 
@@ -309,6 +273,64 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
             throw new DbException(exception.getMessage());
 
         }
+
+    }
+
+    @Override
+    public List<String> obtainStoredEmails(Connection connection) {
+
+        List<String> emails = new ArrayList<>();
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "SELECT email FROM \"User\".\"Customer\""
+            );
+
+            set = statement.executeQuery();
+
+            while (set.next()) {
+
+                emails.add(set.getString("email"));
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return emails;
+
+    }
+
+    @Override
+    public List <String> obtainStoredCpf(Connection connection) {
+
+        List<String> storedCpf = new ArrayList<>();
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "SELECT cep FROM \"User\".\"Customer\""
+            );
+
+            set = statement.executeQuery();
+
+            while (set.next()) {
+
+                storedCpf.add(set.getString("cep"));
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return storedCpf;
 
     }
 
