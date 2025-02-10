@@ -4,6 +4,8 @@ import src.model.services.DatabaseGeneralContract;
 import src.model.entities.UserEntities.Admin;
 import src.db.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminTable implements DatabaseGeneralContract, UserContract, AdminContract {
 
@@ -225,26 +227,26 @@ public class AdminTable implements DatabaseGeneralContract, UserContract, AdminC
 
     }
 
+    public void updateUser (Connection connection, String name, String email, String password, Integer id) {
+
+    }
+
     @Override
-    public boolean checkUserById (Integer id) {
+    public List <String> obtainStoredEmails(Connection connection) {
+
+        List <String> emails = new ArrayList<>();
 
         try {
 
-            connection = DB.getConnection();
-
             statement = connection.prepareStatement(
-                    "SELECT COUNT (*) FROM \"User\".\"Admin\" WHERE id = ?"
+                    "SELECT email FROM \"User\".\"Admin\""
             );
-
-            statement.setInt(1, id);
 
             set = statement.executeQuery();
 
-            if (set.next()) {
+            while (set.next()) {
 
-                int count = set.getInt(1);
-
-                return count > 0;
+                emails.add(set.getString("email"));
 
             }
 
@@ -252,19 +254,9 @@ public class AdminTable implements DatabaseGeneralContract, UserContract, AdminC
 
             throw new DbException(exception.getMessage());
 
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
-
         }
 
-        return false;
-
-    }
-
-    public void updateUser (Connection connection, String name, String email, String password, Integer id) {
+        return emails;
 
     }
 
