@@ -13,44 +13,74 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CheckProductsTest {
 
-    private static Product product, outOfStockProduct, productException;
+    // String name, String price, String quantity, ProductAvailability availability, Category category
 
-    private static CheckProducts checkProducts;
+    private CheckProducts checkProducts;
 
     @BeforeEach
     void setUp() {
 
         checkProducts = new CheckProducts();
 
-        product = new Product("Ok Computer", 400.0, 10, ProductAvailability.IN_STOCK, new Category());
-
-        outOfStockProduct = new Product("OutOfStock", 400.0, 0, ProductAvailability.IN_STOCK, new Category());
-
-        productException = new Product("", 400.0, 10, ProductAvailability.IN_STOCK, new Category());
-
     }
 
     @Test
-    @DisplayName("Confirm to me if that product is true")
-    void isProductTrue () {
+    @DisplayName("Valid product")
+    void testingAValidProduct () {
+
+        Product product = new Product("Product", "200", "10", ProductAvailability.IN_STOCK);
 
         assertTrue(checkProducts.test(product));
 
     }
 
     @Test
-    @DisplayName("Confirm to me if that product is false")
-    void isProductFalse () {
+    @DisplayName("Testing a product that is out of stock")
+    void outOfStockProduct () {
 
-        assertFalse(checkProducts.test(outOfStockProduct));
+        Product product = new Product("Product", "200", "0", ProductAvailability.OUT_OF_STOCK);
+
+        assertTrue(checkProducts.test(product));
 
     }
 
     @Test
-    @DisplayName("Confirm to me if this product throws an exception")
-    void thisProductMustThrowAnException () {
+    @DisplayName("Testing an invalid product that is supposed to be out of stock")
+    void invalidOutOfStockProduct () {
 
-        assertThrows(ProductException.class, () -> checkProducts.test(productException));
+        Product product = new Product("Product", "300", "0", ProductAvailability.IN_STOCK);
+
+        assertFalse(checkProducts.test(product));
+
+    }
+
+    @Test
+    @DisplayName("Testing an invalid product that is supposed to be out of stock pt.2")
+    void otherInvalidOutOfStockProduct () {
+
+        Product product = new Product("Product", "300", "1", ProductAvailability.OUT_OF_STOCK);
+
+        assertFalse(checkProducts.test(product));
+
+    }
+
+    @Test
+    @DisplayName("Trying to insert a letter inside the quantity field")
+    void whyIsThisThingHere () {
+
+        Product product = new Product("Product", "300", "as", ProductAvailability.OUT_OF_STOCK);
+
+        assertFalse(checkProducts.test(product));
+
+    }
+
+    @Test
+    @DisplayName("Trying to insert a letter inside the price field")
+    void whyIsThisThingHerePtTwo () {
+
+        Product product = new Product("Product", "ball", "0", ProductAvailability.OUT_OF_STOCK);
+
+        assertFalse(checkProducts.test(product));
 
     }
 
