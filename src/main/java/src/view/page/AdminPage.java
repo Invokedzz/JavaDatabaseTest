@@ -35,7 +35,7 @@ public class AdminPage extends JFrame {
 
         setBtnIcons();
 
-        createViewProductStockBtnAction();
+        createViewProductStockBtnAction(connection);
 
         createEditProfileBtnAction(connection, userId);
 
@@ -59,9 +59,9 @@ public class AdminPage extends JFrame {
 
     }
 
-    private void createViewProductStockBtnAction () {
+    private void createViewProductStockBtnAction (Connection connection) {
 
-        viewProductStockBtn.addActionListener(e -> new ProductAdministration());
+        viewProductStockBtn.addActionListener(e -> new ProductAdministration(connection));
 
     }
 

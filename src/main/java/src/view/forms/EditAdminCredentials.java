@@ -1,12 +1,10 @@
 package src.view.forms;
 
-import com.stripe.model.tax.Registration;
 import net.miginfocom.swing.MigLayout;
-import src.db.DB;
 import src.model.entities.UserEntities.Admin;
 import src.model.services.UserServices.AdminTable;
 import src.view.util.TradeTicketForTheSupposedAdmin;
-import src.view.validations.user.page.CheckIfEmailsAreTheSame;
+import src.view.validations.user.forms.CheckIfEmailsAreTheSame;
 
 import javax.swing.*;
 import java.awt.*;

@@ -5,15 +5,13 @@ import src.model.entities.UserEntities.Customer;
 import src.model.services.UserServices.CustomerTable;
 import src.security.PassHash;
 import src.validation.CheckElementsInOrderToUpdate;
-import src.view.validations.user.page.CheckElementsSentByUser;
-import src.view.validations.user.page.CheckIfCustomerIsNull;
-import src.view.validations.user.page.ComparePasswordsInOrderToUpdate;
-import src.view.validations.user.register.CheckIfEmailAlreadyExists;
+import src.view.validations.user.forms.CheckElementsSentByUser;
+import src.view.validations.user.forms.CheckIfCustomerIsNull;
+import src.view.validations.user.forms.ComparePasswordsInOrderToUpdate;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
-import java.util.List;
 
 public class UserPage extends JFrame {
 

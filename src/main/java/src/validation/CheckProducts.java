@@ -14,47 +14,17 @@ public class CheckProducts implements ProductPredicate {
     // if quantity == 0, then availability == OUT_OF_STOCK
 
     @Override
-    public boolean test (Product p) {
+    public boolean test (Product product) {
 
-        // I'm lazy, so I'm going to validate ALL this stuff with if/else >:(
+        if (product.getAvailability().equals(ProductAvailability.OUT_OF_STOCK)) {
 
-        ProductAvailability type;
-
-        if (p.getQuantity() > 0) {
-
-            type = ProductAvailability.IN_STOCK;
-
-            p.setAvailability(type);
+            return product.getName().length() > 3 &&
+                    product.getName().length() <= 20;
 
         }
 
-        else {
-
-            type = ProductAvailability.OUT_OF_STOCK;
-
-            p.setAvailability(type);
-
-        }
-
-        if (p.getAvailability().equals(type) &&
-                p.getName().length() > 1 &&
-                p.getName().length() <= 12 &&
-                p.getPrice() > 0 &&
-                p.getQuantity() > 0) return true;
-
-        else if (p.getAvailability().equals(type) &&
-                p.getName().length() > 1
-                && p.getName().length() <= 12
-                && p.getPrice() > 0 &&
-                p.getQuantity() == 0) {
-
-            System.out.println("Product out of stock!");
-
-            return false;
-
-        }
-
-        throw new ProductException("Something went wrong");
+        return product.getName().length() > 3 &&
+                product.getName().length() <= 20;
 
     }
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
 import src.security.PassHash;
-import src.view.validations.user.page.ComparePasswordsInOrderToUpdate;
+import src.view.validations.user.forms.ComparePasswordsInOrderToUpdate;
 
 import java.awt.*;
 
