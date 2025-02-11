@@ -1,4 +1,4 @@
-package src.view.validations.user.page;
+package src.view.validations.user.forms;
 
 import src.model.entities.UserEntities.User;
 

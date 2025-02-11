@@ -35,7 +35,7 @@ class ProductTableTest {
 
         Category category = new Category(1, TypeProduct.ELECTRONICS, 1);
 
-        product = new Product("OK COMPUTER", 100.0, 8, ProductAvailability.IN_STOCK, category);
+        product = new Product("OK COMPUTER", "100.0", "8", ProductAvailability.IN_STOCK, category);
 
         connection = DB.getConnection();
 
@@ -69,9 +69,9 @@ class ProductTableTest {
 
             statement.setString(1, product.getName());
 
-            statement.setDouble(2, product.getPrice());
+            statement.setString(2, product.getPrice());
 
-            statement.setInt(3, product.getQuantity());
+            statement.setString(3, product.getQuantity());
 
             statement.setString(4, product.getAvailability().name());
 

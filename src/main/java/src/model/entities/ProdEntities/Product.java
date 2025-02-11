@@ -6,17 +6,17 @@ public class Product {
 
     private String name;
 
-    private Double price;
+    private String price;
 
     private ProductAvailability availability;
 
-    private Integer quantity;
+    private String quantity;
 
     private Category category;
 
     public Product () {}
 
-    public Product (String name, Double price, Integer quantity, ProductAvailability availability, Category category) {
+    public Product (String name, String price, String quantity, ProductAvailability availability, Category category) {
 
         this.name = name;
 
@@ -30,7 +30,7 @@ public class Product {
 
     }
 
-    public Product (String name, Double price, Integer quantity, ProductAvailability availability) {
+    public Product (String name, String price, String quantity, ProductAvailability availability) {
 
         this.name = name;
 
@@ -48,13 +48,13 @@ public class Product {
 
     }
 
-    public Double getPrice () {
+    public String getPrice () {
 
         return price;
 
     }
 
-    public Integer getQuantity () {
+    public String getQuantity () {
 
         return quantity;
 
