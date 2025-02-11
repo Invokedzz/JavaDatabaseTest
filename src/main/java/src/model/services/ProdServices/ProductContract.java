@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductContract {
 
-    void updateProduct (Connection connection, String name, String price, String quantity, Integer productId);
+    void updateProduct (Connection connection, String name, Double price, Integer quantity, Integer productId);
 
     List <Product> displayProducts (Connection connection);
 
