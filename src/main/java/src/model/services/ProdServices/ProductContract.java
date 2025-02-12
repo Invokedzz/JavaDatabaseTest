@@ -15,4 +15,6 @@ public interface ProductContract {
 
     Integer obtainProductId (Connection connection, String productName);
 
+    List <Product> searchForProducts (Connection connection, String product);
+
 }

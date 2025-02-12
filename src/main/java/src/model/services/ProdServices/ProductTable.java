@@ -5,6 +5,8 @@ import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
 import src.model.services.DatabaseGeneralContract;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
@@ -13,6 +15,8 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     private Connection connection;
 
     private PreparedStatement statement;
+
+    private ResultSet set;
 
     public ProductTable () {}
 
@@ -43,9 +47,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
             statement.setString(1, product.getName());
 
-            statement.setDouble(2, product.getPrice());
+            statement.setDouble(2, Double.parseDouble(product.getPrice()));
 
-            statement.setInt(3, product.getQuantity());
+            statement.setInt(3, Integer.parseInt(product.getQuantity()));
 
             statement.setString(4, product.getAvailability().name());
 
@@ -62,7 +66,14 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     }
 
     @Override
-    public void display () {
+    public void display() {
+
+    }
+
+    @Override
+    public List <Product> displayProducts (Connection connection) {
+
+        List <Product> products = new ArrayList<>();
 
         try {
 
@@ -74,17 +85,19 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
             );
 
-            ResultSet set = statement.executeQuery();
+            set = statement.executeQuery();
 
             while (set.next()) {
 
                 String name = set.getString("name");
 
-                double price = set.getDouble("price");
+                String price = set.getString("price");
 
-                int id_category = set.getInt("id_category");
+                String quantity = set.getString("quantity");
 
-                System.out.println(name + " " + price + " " + id_category);
+                ProductAvailability availability = ProductAvailability.valueOf(set.getString("availability"));
+
+                products.add(new Product(name, price, quantity, availability));
 
             }
 
@@ -92,13 +105,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
             System.out.println(exception.getMessage());
 
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
-
         }
+
+        return products;
 
     }
 
@@ -170,6 +179,8 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
             statement.setInt(3, quantity);
 
+            statement.setInt(4, productId);
+
             statement.executeUpdate();
 
         } catch (SQLException exception) {
@@ -197,9 +208,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
                 String name = set.getString("name");
 
-                Double price = set.getDouble("price");
+                String price = set.getString("price");
 
-                Integer quantity = set.getInt("quantity");
+                String quantity = set.getString("quantity");
 
                 ProductAvailability availability = ProductAvailability.valueOf(set.getString("availability"));
 
@@ -214,6 +225,70 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
         }
 
         return null;
+
+    }
+
+    @Override
+    public Integer obtainProductId(Connection connection, String productName) {
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "SELECT id FROM \"Stock\".\"Product\" WHERE name = ?"
+            );
+
+            statement.setString(1, productName);
+
+            set = statement.executeQuery();
+
+            if (set.next()) return set.getInt("id");
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return null;
+
+    }
+
+    @Override
+    public List <Product> searchForProducts(Connection connection, String product) {
+
+        List <Product> queryProducts = new ArrayList<>();
+
+        try {
+
+            statement = connection.prepareStatement("SELECT * FROM \"Stock\".\"Product\" WHERE name ILIKE ?");
+
+            statement.setString(1, "%" + product + "%");
+
+            set = statement.executeQuery();
+
+            while (set.next()) {
+
+                String name = set.getString("name");
+
+                String price = set.getString("price");
+
+                String quantity = set.getString("quantity");
+
+                ProductAvailability availability = ProductAvailability.valueOf(set.getString("availability"));
+
+                Product productFound = new Product(name, price, quantity, availability);
+
+                queryProducts.add(productFound);
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return queryProducts;
 
     }
 
