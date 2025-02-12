@@ -5,8 +5,6 @@ import src.model.entities.ProdEntities.Category;
 import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
 import src.model.services.ProdServices.ProductTable;
-import src.validation.CheckProducts;
-import src.view.forms.CreateProduct;
 import src.view.validations.product.page.AreYouSureThisProductExists;
 import src.view.validations.product.page.CheckProductInfoInOrderToUpdate;
 
