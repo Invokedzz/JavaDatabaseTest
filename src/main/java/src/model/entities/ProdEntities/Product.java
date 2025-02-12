@@ -14,6 +14,8 @@ public class Product {
 
     private Category category;
 
+    // productImg, productCode, productDescription -> I'm going to add those variables after some time
+
     public Product () {}
 
     public Product (String name, String price, String quantity, ProductAvailability availability, Category category) {

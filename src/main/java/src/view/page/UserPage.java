@@ -17,7 +17,7 @@ public class UserPage extends JFrame {
 
     private final JTextField usernameField, emailField, oldPasswordField, newPasswordField;
 
-    private final JButton editBtn, showMoreStuffBtn, deleteBtn;
+    private final JButton editBtn, showMoreStuffBtn, productsPageBtn, deleteBtn;
 
     public UserPage(Connection connection, Integer userId) {
 
@@ -32,6 +32,8 @@ public class UserPage extends JFrame {
         editBtn = new JButton("Update Profile");
 
         showMoreStuffBtn = new JButton("Show more info");
+
+        productsPageBtn = new JButton("Product Page");
 
         deleteBtn = new JButton("Delete Account");
 
@@ -77,6 +79,8 @@ public class UserPage extends JFrame {
 
         showMoreStuffBtnAction(connection, userId);
 
+        productPageBtnAction(connection);
+
         deleteBtnAction(connection, userId);
 
         addComponents();
@@ -106,6 +110,12 @@ public class UserPage extends JFrame {
     private void showMoreStuffBtnAction (Connection connection, Integer userId) {
 
         showMoreStuffBtn.addActionListener(e -> new ShowMoreOfUsersInfo(connection, userId));
+
+    }
+
+    private void productPageBtnAction (Connection connection) {
+
+        productsPageBtn.addActionListener(e -> new ProductPage(connection));
 
     }
 
@@ -149,7 +159,9 @@ public class UserPage extends JFrame {
 
         add(oldPasswordField, "span, growx");
 
-        add(editBtn, "split 2, growx");
+        add(editBtn, "split 3, growx");
+
+        add(productsPageBtn, "growx");
 
         add(showMoreStuffBtn, "growx");
 
