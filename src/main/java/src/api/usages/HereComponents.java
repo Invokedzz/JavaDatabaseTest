@@ -1,4 +1,4 @@
-package src.api.here;
+package src.api.usages;
 
 import src.api.keys.HereKey;
 import src.exceptions.HereApiException;

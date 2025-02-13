@@ -1,7 +1,7 @@
 package src.view.forms;
 
 import net.miginfocom.swing.MigLayout;
-import src.api.here.HereComponents;
+import src.api.usages.HereComponents;
 import src.db.DB;
 import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;

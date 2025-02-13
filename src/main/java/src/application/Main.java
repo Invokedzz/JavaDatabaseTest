@@ -1,12 +1,12 @@
 package src.application;
 
-import src.api.stripe.StripeServ;
+import src.api.usages.MercadoPagoComponents;
 
 public class Main {
 
     public static void main (String[] args) {
 
-        StripeServ.stripePayment(1.0);
+        System.out.println(MercadoPagoComponents.setPaymentURL("samuelnobrega902@gmail.com", "0.01", "1"));
 
     }
 
