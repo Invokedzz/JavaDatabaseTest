@@ -4,6 +4,6 @@ public enum TypeUser {
 
     CUSTOMER,
 
-    ADMIN,
+    ADMIN
 
 }

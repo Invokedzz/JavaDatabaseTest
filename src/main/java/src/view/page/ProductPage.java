@@ -1,10 +1,16 @@
 package src.view.page;
 
 import net.miginfocom.swing.MigLayout;
+import src.api.usages.MercadoPagoComponents;
+import src.api.usages.PaymentSession;
 import src.model.entities.ProdEntities.Category;
 import src.model.entities.ProdEntities.Product;
+import src.model.entities.UserEntities.Customer;
 import src.model.enums.ProductAvailability;
 import src.model.services.ProdServices.ProductTable;
+import src.model.services.UserServices.CustomerTable;
+import src.view.util.GenerateQrCode;
+import src.view.validations.payment.ProductQtyOutOfBounds;
 import src.view.validations.product.page.AreYouSureThisProductExists;
 import java.util.List;
 import src.view.validations.product.page.CheckProductInfoInOrderToUpdate;
@@ -19,7 +25,7 @@ public class ProductPage extends JFrame {
     private JTextField searchField;
     private JPanel productPanel;
 
-    public ProductPage (Connection connection) {
+    public ProductPage (Connection connection, Integer userId) {
 
             setTitle("Product Page");
             setLayout(new BorderLayout(10, 10));
@@ -62,7 +68,7 @@ public class ProductPage extends JFrame {
             ProductTable productTable = new ProductTable();
             List <Product> productList = productTable.displayProducts(connection);
 
-            displayProducts(productList, connection);
+            displayProducts(productList, connection, userId);
 
             searchButton.addActionListener(e -> {
 
@@ -70,7 +76,7 @@ public class ProductPage extends JFrame {
 
                 if (!AreYouSureThisProductExists.searchForProductInAList(this, productsFound)) return;
 
-                displayProducts(productsFound, connection);
+                displayProducts(productsFound, connection, userId);
 
             });
 
@@ -78,8 +84,10 @@ public class ProductPage extends JFrame {
 
         }
 
-        private void displayProducts(List<Product> productList, Connection connection) {
+        private void displayProducts(List<Product> productList, Connection connection, Integer userId) {
             productPanel.removeAll();
+
+            CustomerTable customerTable = new CustomerTable();
 
             ProductTable productTable = new ProductTable();
 
@@ -110,6 +118,94 @@ public class ProductPage extends JFrame {
 
                 buyProductBtn.addActionListener(e -> {
 
+                    JFrame buyDirectlyPage = new JFrame("Buy Product");
+
+                    buyDirectlyPage.setLayout(new MigLayout("center center, wrap 1, gapy 30"));
+                    buyDirectlyPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    buyDirectlyPage.getContentPane().setBackground(new Color(245, 245, 245));
+                    buyDirectlyPage.setLocationRelativeTo(null);
+                    buyDirectlyPage.setResizable(false);
+                    buyDirectlyPage.setSize(400,400);
+
+                    Product selectedProduct = productTable.obtainProductProperties(connection, productId);
+
+                    Customer customer = customerTable.obtainUserProperties(connection, userId);
+
+                    JTextField productName = new JTextField(selectedProduct.getName(), 15);
+
+                    JTextField productPrice = new JTextField(selectedProduct.getPrice(), 15);
+
+                    int totalQtyStored = Integer.parseInt(selectedProduct.getQuantity());
+
+                    if (!ProductQtyOutOfBounds.checkProductQty(this, totalQtyStored)) return;
+
+                    int nowTakeOffThisAmount = totalQtyStored - 1;
+
+                    Integer total = totalQtyStored - nowTakeOffThisAmount;
+
+                    JTextField productQuantity = new JTextField(String.valueOf(total), 15);
+
+                    JButton confirmBuy = new JButton("Confirm buy");
+
+                    confirmBuy.addActionListener(confirmEvent -> {
+
+                        JFrame paymentInfoScreen = new JFrame("Payment");
+                        paymentInfoScreen.setLayout(new MigLayout("center center, wrap 1, gapy 30"));
+                        paymentInfoScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        paymentInfoScreen.getContentPane().setBackground(new Color(245, 245, 245));
+                        paymentInfoScreen.setLocationRelativeTo(null);
+                        paymentInfoScreen.setResizable(false);
+                        paymentInfoScreen.setSize(500,550);
+
+                        MercadoPagoComponents.getPaymentParams(customer.getEmail(), selectedProduct.getPrice());
+
+                        ImageIcon qrCodeImage = GenerateQrCode.create(PaymentSession.qrCode);
+
+                        JLabel setUpQrCode = new JLabel(qrCodeImage);
+
+                        JTextField productLink = new JTextField(PaymentSession.paymentLink,25);
+
+                        JButton confirmPayment = new JButton("Confirm Payment");
+
+                        confirmPayment.addActionListener(proceedWithPayment -> {
+
+                            JOptionPane.showMessageDialog(this, "Payment was done successfully!");
+
+                            Integer updatedQuantity = Integer.parseInt(product.getQuantity()) - total;
+
+                            productTable.updateProductQuantity(connection, updatedQuantity, productId);
+
+                            dispose();
+
+                        });
+
+                        paymentInfoScreen.add(new JLabel("Copy the QR Code or the URL, and pay for the product!"));
+
+                        paymentInfoScreen.add(setUpQrCode);
+
+                        paymentInfoScreen.add(productLink);
+
+                        paymentInfoScreen.add(confirmPayment);
+
+                        paymentInfoScreen.setVisible(true);
+
+                    });
+
+                    buyDirectlyPage.add(new JLabel("Name:"));
+
+                    buyDirectlyPage.add(productName);
+
+                    buyDirectlyPage.add(new JLabel("Price:"));
+
+                    buyDirectlyPage.add(productPrice);
+
+                    buyDirectlyPage.add(new JLabel("Quantity:"));
+
+                    buyDirectlyPage.add(productQuantity);
+
+                    buyDirectlyPage.add(confirmBuy);
+
+                    buyDirectlyPage.setVisible(true);
 
                 });
 

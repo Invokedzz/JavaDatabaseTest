@@ -2,7 +2,7 @@ package src.model.entities.UserEntities;
 
 public final class Address {
 
-    private String CEP;
+    private String cep;
 
     private String number;
 
@@ -14,9 +14,9 @@ public final class Address {
     
     public Address () {}
 
-    public Address (String CEP, String label, String complement, String number, String city) {
+    public Address (String cep, String label, String complement, String number, String city) {
 
-        this.CEP = CEP;
+        this.cep = cep;
 
         this.label = label;
 
@@ -28,10 +28,17 @@ public final class Address {
 
     }
 
+    public Address (String CEP, String label) {
+
+        this.cep = CEP;
+
+        this.label = label;
+
+    }
 
     public String getCEP () {
 
-        return CEP;
+        return cep;
 
     }
 
@@ -62,7 +69,7 @@ public final class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "CEP='" + CEP + '\'' +
+                "CEP='" + cep + '\'' +
                 ", number='" + number + '\'' +
                 ", complement='" + complement + '\'' +
                 ", neighbourhood='" + label + '\'' +

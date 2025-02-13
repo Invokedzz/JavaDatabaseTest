@@ -61,45 +61,6 @@ public class CategoryTable implements DatabaseGeneralContract {
     }
 
     @Override
-    public void display () {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-
-                    "SELECT * FROM \"Stock\".\"Category\""
-
-            );
-
-            ResultSet set = statement.executeQuery();
-
-            while (set.next()) {
-
-                int tier = set.getInt("tier");
-
-                String type = set.getString("typeproduct");
-
-                System.out.println(type + " " + tier);
-
-            }
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeStatements(statement);
-
-            DB.closeConnections(connection);
-
-        }
-
-    }
-
-    @Override
     public void deleteComponent (Connection connection, Integer id) {
 
         try {
@@ -113,34 +74,6 @@ public class CategoryTable implements DatabaseGeneralContract {
             statement.setInt(1, id);
 
             statement.executeUpdate();
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeStatements(statement);
-
-            DB.closeConnections(connection);
-
-        }
-
-    }
-
-    // WARNING: this function deletes the ENTIRE table
-    @Override
-    public void deleteAll () {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-                    "DELETE FROM \"Stock\".\"Category\""
-            );
-
-            System.out.println("All the categories were deleted successfully!");
 
         } catch (SQLException exception) {
 

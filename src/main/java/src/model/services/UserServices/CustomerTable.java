@@ -77,39 +77,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
     }
 
     @Override
-    public void display() {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-                    "SELECT * FROM \"User\".\"Customer\""
-            );
-
-            set = statement.executeQuery();
-
-            while (set.next()) {
-
-                String name = set.getString("name");
-
-                String email = set.getString("email");
-
-                String type = set.getString("typeuser");
-
-                System.out.println("NAME: " + name + " TYPE: " + type + " EMAIL: " + email);
-
-            }
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        }
-
-    }
-
-    @Override
     public void deleteComponent(Connection connection, Integer id) {
 
         try {
@@ -127,35 +94,6 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
-
-        }
-
-    }
-
-    @Override
-    public void deleteAll() {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-                    "DELETE FROM \"User\".\"Customer\""
-            );
-
-            statement.executeUpdate();
-
-            System.out.println("All the tables were deleted successfully!");
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
 
         }
 

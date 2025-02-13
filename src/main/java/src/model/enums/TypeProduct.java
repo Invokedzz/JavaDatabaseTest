@@ -6,6 +6,6 @@ public enum TypeProduct {
 
     TOOLS,
 
-    CLOTHES,
+    CLOTHES
 
 }

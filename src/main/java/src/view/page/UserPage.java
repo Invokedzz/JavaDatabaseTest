@@ -79,7 +79,7 @@ public class UserPage extends JFrame {
 
         showMoreStuffBtnAction(connection, userId);
 
-        productPageBtnAction(connection);
+        productPageBtnAction(connection, userId);
 
         deleteBtnAction(connection, userId);
 
@@ -113,9 +113,9 @@ public class UserPage extends JFrame {
 
     }
 
-    private void productPageBtnAction (Connection connection) {
+    private void productPageBtnAction (Connection connection, Integer userId) {
 
-        productsPageBtn.addActionListener(e -> new ProductPage(connection));
+        productsPageBtn.addActionListener(e -> new ProductPage(connection, userId));
 
     }
 

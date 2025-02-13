@@ -66,11 +66,6 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     }
 
     @Override
-    public void display() {
-
-    }
-
-    @Override
     public List <Product> displayProducts (Connection connection) {
 
         List <Product> products = new ArrayList<>();
@@ -129,36 +124,6 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
-
-        }
-
-    }
-
-    // WARNING: this function deletes the ENTIRE table
-    @Override
-    public void deleteAll () {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-                    "DELETE FROM \"Stock\".\"Product\""
-            );
-
-            statement.executeUpdate();
-
-            System.out.println("All the products were successfully deleted!");
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeStatements(statement);
-
-            DB.closeConnections(connection);
 
         }
 
@@ -289,6 +254,29 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
         }
 
         return queryProducts;
+
+    }
+
+    @Override
+    public void updateProductQuantity(Connection connection, Integer quantity, Integer productId) {
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "UPDATE \"Stock\".\"Product\" SET quantity = ? WHERE id = ?"
+            );
+
+            statement.setInt(1, quantity);
+
+            statement.setInt(2, productId);
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
 
     }
 
