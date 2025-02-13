@@ -15,11 +15,6 @@
             <version>0.4</version>
         </dependency>
         <dependency>
-            <groupId>com.stripe</groupId>
-            <artifactId>stripe-java</artifactId>
-            <version>28.2.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.miglayout</groupId>
             <artifactId>miglayout-swing</artifactId>
             <version>4.2</version>
@@ -34,11 +29,6 @@
             <artifactId>junit-jupiter</artifactId>
             <version>5.8.2</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.opencagedata</groupId>
-            <artifactId>jopencage</artifactId>
-            <version>2.2.2</version>
         </dependency>
         <dependency>
             <groupId>br.com.caelum.stella</groupId>
@@ -59,6 +49,23 @@
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
             <version>3.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mercadopago</groupId>
+            <artifactId>sdk-java</artifactId>
+            <version>2.1.29</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.16</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
