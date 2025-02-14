@@ -6,4 +6,6 @@ public class PaymentSession {
 
     public static String qrCode;
 
+    public static String paymentId;
+
 }

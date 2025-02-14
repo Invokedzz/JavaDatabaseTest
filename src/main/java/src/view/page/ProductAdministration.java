@@ -64,7 +64,8 @@ public class ProductAdministration extends JFrame {
 
         searchButton.addActionListener(e -> {
 
-            List <Product> productsFound = productTable.searchForProducts(connection, searchField.getText());
+            List <Product> productsFound = productTable.
+                    searchForProducts(connection, searchField.getText());
 
             if (!AreYouSureThisProductExists.searchForProductInAList(this, productsFound)) return;
 

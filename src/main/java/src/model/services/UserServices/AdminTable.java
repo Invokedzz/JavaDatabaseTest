@@ -57,39 +57,6 @@ public class AdminTable implements DatabaseGeneralContract, UserContract, AdminC
     }
 
     @Override
-    public void display () {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-              "SELECT * FROM \"User\".\"Admin\""
-            );
-
-            set = statement.executeQuery();
-
-            while (set.next()) {
-
-                String ticket = set.getString("ticket");
-
-                String email = set.getString("email");
-
-                String type = set.getString("typeuser");
-
-                System.out.println("NAME: " + ticket + " TYPE: " + type + " EMAIL: " + email);
-
-            }
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        }
-
-    }
-
-    @Override
     public void deleteComponent (Connection connection, Integer id) {
 
         try {
@@ -107,33 +74,6 @@ public class AdminTable implements DatabaseGeneralContract, UserContract, AdminC
         } catch (SQLException exception) {
 
             throw new DbException(exception.getMessage());
-
-        }
-
-    }
-
-    @Override
-    public void deleteAll () {
-
-        try {
-
-            connection = DB.getConnection();
-
-            statement = connection.prepareStatement(
-                "DELETE FROM \"User\".\"Admin\""
-            );
-
-            statement.executeUpdate();
-
-        } catch (SQLException exception) {
-
-            throw new DbException(exception.getMessage());
-
-        } finally {
-
-            DB.closeConnections(connection);
-
-            DB.closeStatements(statement);
 
         }
 

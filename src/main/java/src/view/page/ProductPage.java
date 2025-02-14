@@ -5,11 +5,16 @@ import src.api.usages.MercadoPagoComponents;
 import src.api.usages.PaymentSession;
 import src.model.entities.ProdEntities.Category;
 import src.model.entities.ProdEntities.Product;
+import src.model.entities.ProdEntities.Purchases;
+import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
+import src.model.enums.OrderStatus;
 import src.model.enums.ProductAvailability;
+import src.model.services.PaymentServices.PaymentTable;
 import src.model.services.ProdServices.ProductTable;
 import src.model.services.UserServices.CustomerTable;
 import src.view.util.GenerateQrCode;
+import src.view.validations.payment.ProductQtyOutOfBounds;
 import src.view.validations.product.page.AreYouSureThisProductExists;
 import java.util.List;
 import src.view.validations.product.page.CheckProductInfoInOrderToUpdate;
@@ -130,11 +135,15 @@ public class ProductPage extends JFrame {
 
                     Customer customer = customerTable.obtainUserProperties(connection, userId);
 
+                    Address address = customerTable.obtainAddressProperties(connection, userId);
+
                     JTextField productName = new JTextField(selectedProduct.getName(), 15);
 
                     JTextField productPrice = new JTextField(selectedProduct.getPrice(), 15);
 
                     int totalQtyStored = Integer.parseInt(selectedProduct.getQuantity());
+
+                    if (!ProductQtyOutOfBounds.checkProductQty(this, totalQtyStored)) return;
 
                     int nowTakeOffThisAmount = totalQtyStored - 1;
 
@@ -142,17 +151,17 @@ public class ProductPage extends JFrame {
 
                     JTextField productQuantity = new JTextField(String.valueOf(total), 15);
 
-                    JButton confirm = new JButton("Confirm buy");
+                    JButton confirmBuy = new JButton("Confirm buy");
 
-                    confirm.addActionListener(confirmEvent -> {
+                    confirmBuy.addActionListener(confirmEvent -> {
 
-                        JFrame paymentInfoScreen = new JFrame("Time to pay!");
+                        JFrame paymentInfoScreen = new JFrame("Payment");
                         paymentInfoScreen.setLayout(new MigLayout("center center, wrap 1, gapy 30"));
                         paymentInfoScreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         paymentInfoScreen.getContentPane().setBackground(new Color(245, 245, 245));
                         paymentInfoScreen.setLocationRelativeTo(null);
                         paymentInfoScreen.setResizable(false);
-                        paymentInfoScreen.setSize(500,500);
+                        paymentInfoScreen.setSize(500,550);
 
                         MercadoPagoComponents.getPaymentParams(customer.getEmail(), selectedProduct.getPrice());
 
@@ -160,11 +169,38 @@ public class ProductPage extends JFrame {
 
                         JLabel setUpQrCode = new JLabel(qrCodeImage);
 
-                        JTextField productLink = new JTextField(PaymentSession.paymentLink,15);
+                        JTextField productLink = new JTextField(PaymentSession.paymentLink,25);
+
+                        JButton confirmPayment = new JButton("Confirm Payment");
+
+                        confirmPayment.addActionListener(proceedWithPayment -> {
+
+                            JOptionPane.showMessageDialog(this, "Payment was done successfully!");
+
+                            Integer updatedQuantity = Integer.parseInt(product.getQuantity()) - total;
+
+                            Double totalPrice = Double.parseDouble(product.getPrice());
+
+                            Purchases purchases = new Purchases(PaymentSession.paymentId, product.getName(),
+                                    totalPrice, OrderStatus.PROCESSING, customer, address);
+
+                            PaymentTable paymentTable = new PaymentTable(purchases);
+
+                            productTable.updateProductQuantity(connection, updatedQuantity, productId);
+
+                            paymentTable.insert();
+
+                            dispose();
+
+                        });
+
+                        paymentInfoScreen.add(new JLabel("Copy the QR Code or the URL, and pay for the product!"));
 
                         paymentInfoScreen.add(setUpQrCode);
 
                         paymentInfoScreen.add(productLink);
+
+                        paymentInfoScreen.add(confirmPayment);
 
                         paymentInfoScreen.setVisible(true);
 
@@ -182,7 +218,7 @@ public class ProductPage extends JFrame {
 
                     buyDirectlyPage.add(productQuantity);
 
-                    buyDirectlyPage.add(confirm);
+                    buyDirectlyPage.add(confirmBuy);
 
                     buyDirectlyPage.setVisible(true);
 

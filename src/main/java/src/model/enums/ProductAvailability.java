@@ -4,6 +4,6 @@ public enum ProductAvailability {
 
     IN_STOCK,
 
-    OUT_OF_STOCK,
+    OUT_OF_STOCK
 
 }

@@ -6,10 +6,6 @@ public interface DatabaseGeneralContract {
 
     void insert ();
 
-    void display ();
-
     void deleteComponent (Connection connection, Integer id);
-
-    void deleteAll ();
 
 }

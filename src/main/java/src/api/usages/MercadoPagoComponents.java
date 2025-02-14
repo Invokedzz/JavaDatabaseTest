@@ -42,6 +42,8 @@ public class MercadoPagoComponents {
 
             PaymentSession.qrCode = paymentRequest.getPointOfInteraction().getTransactionData().getQrCode();
 
+            PaymentSession.paymentId = String.valueOf(paymentRequest.getId());
+
         } catch (MPApiException exception) {
 
             String createExceptionText = String.format("API response: %s, status code: %s",

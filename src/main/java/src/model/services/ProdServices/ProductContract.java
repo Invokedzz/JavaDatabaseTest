@@ -17,4 +17,6 @@ public interface ProductContract {
 
     List <Product> searchForProducts (Connection connection, String product);
 
+    void updateProductQuantity (Connection connection, Integer quantity, Integer productId);
+
 }
