@@ -41,6 +41,20 @@ public class PaymentTable implements DatabaseGeneralContract, PaymentContract {
                             "VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
 
+            statement.setString(1, purchases.getTransactionId());
+
+            statement.setString(2, purchases.getProductBought());
+
+            statement.setDouble(3, purchases.getTransactionPrice());
+
+            statement.setString(4, purchases.getStatus().name());
+
+            statement.setString(5, purchases.getAddress().getCEP());
+
+            statement.setString(6, purchases.getAddress().getLabel());
+
+            statement.setString(7, purchases.getCustomer().getEmail());
+
             statement.executeUpdate();
 
         } catch (SQLException exception) {

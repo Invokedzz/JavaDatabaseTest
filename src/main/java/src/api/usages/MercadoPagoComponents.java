@@ -42,7 +42,7 @@ public class MercadoPagoComponents {
 
             PaymentSession.qrCode = paymentRequest.getPointOfInteraction().getTransactionData().getQrCode();
 
-            PaymentSession.paymentId = paymentRequest.getPointOfInteraction().getTransactionData().getTransactionId();
+            PaymentSession.paymentId = String.valueOf(paymentRequest.getId());
 
         } catch (MPApiException exception) {
 

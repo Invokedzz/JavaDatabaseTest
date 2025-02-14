@@ -287,6 +287,8 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
 
             if (set.next()) {
 
+                // String cep, String label, String complement, String number, String city
+
                 String cep = set.getString("cep");
 
                 String housenumber = set.getString("housenumber");
@@ -297,7 +299,7 @@ public class CustomerTable implements DatabaseGeneralContract, UserContract, Cus
 
                 String city = set.getString("city");
 
-                return new Address(cep, housenumber, complement, neighbourhood, city);
+                return new Address(cep, neighbourhood, complement, housenumber, city);
 
             }
 

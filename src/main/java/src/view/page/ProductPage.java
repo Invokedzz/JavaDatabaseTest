@@ -5,8 +5,12 @@ import src.api.usages.MercadoPagoComponents;
 import src.api.usages.PaymentSession;
 import src.model.entities.ProdEntities.Category;
 import src.model.entities.ProdEntities.Product;
+import src.model.entities.ProdEntities.Purchases;
+import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
+import src.model.enums.OrderStatus;
 import src.model.enums.ProductAvailability;
+import src.model.services.PaymentServices.PaymentTable;
 import src.model.services.ProdServices.ProductTable;
 import src.model.services.UserServices.CustomerTable;
 import src.view.util.GenerateQrCode;
@@ -131,6 +135,8 @@ public class ProductPage extends JFrame {
 
                     Customer customer = customerTable.obtainUserProperties(connection, userId);
 
+                    Address address = customerTable.obtainAddressProperties(connection, userId);
+
                     JTextField productName = new JTextField(selectedProduct.getName(), 15);
 
                     JTextField productPrice = new JTextField(selectedProduct.getPrice(), 15);
@@ -173,7 +179,16 @@ public class ProductPage extends JFrame {
 
                             Integer updatedQuantity = Integer.parseInt(product.getQuantity()) - total;
 
+                            Double totalPrice = Double.parseDouble(product.getPrice());
+
+                            Purchases purchases = new Purchases(PaymentSession.paymentId, product.getName(),
+                                    totalPrice, OrderStatus.PROCESSING, customer, address);
+
+                            PaymentTable paymentTable = new PaymentTable(purchases);
+
                             productTable.updateProductQuantity(connection, updatedQuantity, productId);
+
+                            paymentTable.insert();
 
                             dispose();
 
