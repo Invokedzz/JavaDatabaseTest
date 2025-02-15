@@ -11,7 +11,7 @@ import java.sql.Connection;
 
 public class AdminPage extends JFrame {
 
-    private final JButton viewProductStockBtn, editProfileBtn, cancelBtn;
+    private final JButton viewProductStockBtn, viewPaymentsBtn, editProfileBtn, cancelBtn;
 
     public AdminPage (Connection connection, Integer userId) {
 
@@ -29,6 +29,8 @@ public class AdminPage extends JFrame {
 
         viewProductStockBtn = new JButton("View Stock");
 
+        viewPaymentsBtn = new JButton("Payments");
+
         editProfileBtn = new JButton("Edit Profile");
 
         cancelBtn = new JButton("Close");
@@ -38,6 +40,8 @@ public class AdminPage extends JFrame {
         createViewProductStockBtnAction(connection);
 
         createEditProfileBtnAction(connection, userId);
+
+        createViewPaymentsBtnAction(connection);
 
         createCancelBtnAction();
 
@@ -71,6 +75,12 @@ public class AdminPage extends JFrame {
 
     }
 
+    private void createViewPaymentsBtnAction (Connection connection) {
+
+        viewPaymentsBtn.addActionListener(e -> new RegisteredPurchasePage(connection));
+
+    }
+
     private void createCancelBtnAction () {
 
         cancelBtn.addActionListener(e -> dispose());
@@ -83,9 +93,13 @@ public class AdminPage extends JFrame {
 
         ImageIcon profileIcon = new ImageIcon("/Users/samunoinv/IdeaProjects/JavaDatabaseTest/src/main/java/src/view/img/ProfileImg.png");
 
+        ImageIcon cashIcon = new ImageIcon("/Users/samunoinv/IdeaProjects/JavaDatabaseTest/src/main/java/src/view/img/cashicon.png");
+
         viewProductStockBtn.setIcon(stockIcon);
 
         editProfileBtn.setIcon(profileIcon);
+
+        viewPaymentsBtn.setIcon(new ImageIcon(cashIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
 
         viewProductStockBtn.setIcon(new ImageIcon(stockIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
 
@@ -104,6 +118,8 @@ public class AdminPage extends JFrame {
         add(new JLabel("If you need any assistance, don't hesitate to reach out!"), "cell 0 3, align center");
 
         add(viewProductStockBtn, "cell 0 4, align center");
+
+        add(viewPaymentsBtn, "cell 0 4, align center");
 
         add(editProfileBtn, "cell 0 4, align center");
 

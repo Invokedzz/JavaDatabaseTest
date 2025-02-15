@@ -22,7 +22,6 @@ import src.view.validations.product.page.CheckProductInfoInOrderToUpdate;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
-import java.util.Objects;
 
 public class ProductPage extends JFrame {
 

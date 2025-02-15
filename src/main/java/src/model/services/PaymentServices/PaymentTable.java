@@ -113,7 +113,7 @@ public class PaymentTable implements DatabaseGeneralContract, PaymentContract {
 
                 String userAddress = set.getString("payer_address");
 
-                String email = set.getString("payer_name");
+                String email = set.getString("payer_email");
 
                 purchasesList.add(new Purchases(transactionId, productBought, transactionPrice, status,
                         new Customer(email), new Address(userCep, userAddress)));

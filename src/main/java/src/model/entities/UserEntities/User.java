@@ -91,17 +91,13 @@ public abstract class User {
     }
 
     @Override
-    public String toString () {
-
-        StringBuilder sb;
-
-        sb = new StringBuilder();
-
-        sb.append("NAME: ").append(getName())
-                .append(", TYPE: ").append(getTypeUser());
-
-        return sb.toString();
-
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", typeUser=" + typeUser +
+                '}';
     }
 
 }
