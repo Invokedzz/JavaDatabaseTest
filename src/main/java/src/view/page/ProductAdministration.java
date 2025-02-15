@@ -265,5 +265,5 @@ public class ProductAdministration extends JFrame {
 
     }
 
-    }
+}
 

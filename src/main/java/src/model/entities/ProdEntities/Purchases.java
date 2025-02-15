@@ -73,4 +73,15 @@ public class Purchases {
 
     }
 
+    @Override
+    public String toString() {
+        return "Purchases{" +
+                "transactionId='" + transactionId + '\'' +
+                ", productBought='" + productBought + '\'' +
+                ", transactionPrice=" + transactionPrice +
+                ", status=" + status +
+                ", customer=" + customer +
+                ", address=" + address +
+                '}';
+    }
 }
