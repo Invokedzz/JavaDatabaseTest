@@ -14,8 +14,11 @@ import src.model.services.PaymentServices.PaymentTable;
 import src.model.services.ProdServices.ProductTable;
 import src.model.services.UserServices.CustomerTable;
 import src.view.util.GenerateQrCode;
+import src.view.util.SendEmailAfterSuccessfulPurchase;
 import src.view.validations.payment.ProductQtyOutOfBounds;
 import src.view.validations.product.page.AreYouSureThisProductExists;
+
+import java.time.LocalDate;
 import java.util.List;
 import src.view.validations.product.page.CheckProductInfoInOrderToUpdate;
 
@@ -181,13 +184,16 @@ public class ProductPage extends JFrame {
                             Double totalPrice = Double.parseDouble(product.getPrice());
 
                             Purchases purchases = new Purchases(PaymentSession.paymentId, product.getName(),
-                                    totalPrice, OrderStatus.PROCESSING, customer, address);
+                                    totalPrice, OrderStatus.PROCESSING, LocalDate.now(), customer, address);
 
                             PaymentTable paymentTable = new PaymentTable(purchases);
 
                             productTable.updateProductQuantity(connection, updatedQuantity, productId);
 
                             paymentTable.insert();
+
+                            SendEmailAfterSuccessfulPurchase.purchaseEmail(customer.getEmail(), purchases.getTransactionId(),
+                                    purchases.getDate().toString(), String.valueOf(purchases.getTransactionPrice()));
 
                             dispose();
 
