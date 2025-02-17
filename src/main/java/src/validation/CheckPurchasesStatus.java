@@ -6,13 +6,26 @@ import src.util.PurchasesPredicate;
 
 public class CheckPurchasesStatus implements PurchasesPredicate {
 
-    @Override
-    public boolean test (Purchases purchases) {
+    /*    PENDING_PAYMENT,
 
-        return purchases.getStatus().equals(OrderStatus.valueOf("PROCESSING")) ||
-                purchases.getStatus().equals(OrderStatus.valueOf("SHIPPED")) ||
-                purchases.getStatus().equals(OrderStatus.valueOf("DELIVERED")) ||
-                purchases.getStatus().equals(OrderStatus.valueOf("CANCELED"));
+    PROCESSING,
+
+    SHIPPED,
+
+    DELIVERED,
+
+    CANCELED
+
+    */
+
+    @Override
+    public boolean test(String status) {
+
+        return status.equals("PENDING_PAYMENT") ||
+                status.equals("PROCESSING") ||
+                status.equals("SHIPPED") ||
+                status.equals("DELIVERED") ||
+                status.equals("CANCELED");
 
     }
 

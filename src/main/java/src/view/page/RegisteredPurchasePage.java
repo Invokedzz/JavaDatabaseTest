@@ -11,6 +11,8 @@ import java.util.List;
 
 public class RegisteredPurchasePage extends JFrame {
 
+    private JPanel scrollPanel;
+
     public RegisteredPurchasePage (Connection connection) {
 
         setTitle("Stored Purchase Page");
@@ -21,8 +23,13 @@ public class RegisteredPurchasePage extends JFrame {
         setResizable(false);
         setSize(800, 600);
 
+        scrollPanel = new JPanel();
+        scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
+        scrollPanel.setBackground(new Color(245, 245, 245));
+
         PaymentTable paymentTable = new PaymentTable();
         List<Purchases> purchasesList = paymentTable.obtainPurchases(connection);
+        System.out.println(purchasesList);
 
         displayUpdatedPurchases(connection, paymentTable, purchasesList);
 
@@ -32,15 +39,9 @@ public class RegisteredPurchasePage extends JFrame {
 
     private void displayUpdatedPurchases (Connection connection, PaymentTable paymentTable, List <Purchases> purchasesList) {
 
-        JPanel scrollPanel = new JPanel();
-        scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
-        scrollPanel.setBackground(new Color(245, 245, 245));
-
         JScrollPane scrollPane = new JScrollPane(scrollPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-
-        scrollPanel.removeAll();
 
         add(scrollPane, BorderLayout.CENTER);
 
@@ -79,7 +80,10 @@ public class RegisteredPurchasePage extends JFrame {
             purchasePanel.add(new JLabel("Status:"), gbc);
 
             gbc.gridx = 1;
-            purchasePanel.add(new JLabel(String.valueOf(purchase.getStatus())), gbc);
+
+            JTextField statusField = new JTextField(purchase.getStatus().name(),10);
+
+            purchasePanel.add(statusField, gbc);
 
             gbc.gridx = 0;
             gbc.gridy = 4;
@@ -99,55 +103,10 @@ public class RegisteredPurchasePage extends JFrame {
             buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
 
             JButton editStatusBtn = new JButton("Edit status");
+
+            editStatusBtn.addActionListener(e -> new EditOrderStatus(connection, purchase.getTransactionId(), statusField.getText()));
+
             JButton viewMoreInfoBtn = new JButton("More info");
-
-            editStatusBtn.addActionListener(e -> {
-
-                JFrame editStatusSection = new JFrame();
-
-                editStatusSection.setTitle("Change Order Status");
-                editStatusSection.setLayout(new MigLayout("center center, wrap, gapy 20"));
-                editStatusSection.setSize(300, 300);
-                editStatusSection.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                editStatusSection.setResizable(false);
-                editStatusSection.getContentPane().setBackground(new Color(245, 245, 245));
-                editStatusSection.setLocationRelativeTo(null);
-
-                JTextField statusField = new JTextField(purchase.getStatus().name(), 15);
-
-                JButton confirmCurrentStatusBtn = new JButton("Confirm");
-
-                confirmCurrentStatusBtn.addActionListener(confirmUpdate -> {
-
-                    Integer purchaseId = paymentTable.getPurchaseId(connection, purchase.getTransactionId());
-
-                    paymentTable.updatePurchaseStatus(connection, statusField.getText(), purchaseId);
-
-                    JOptionPane.showMessageDialog(editStatusSection, "Order was updated successfully!");
-
-                    editStatusSection.dispose();
-
-                    List <Purchases> updatedList = paymentTable.obtainPurchases(connection);
-
-                    System.out.println(updatedList);
-
-                    displayUpdatedPurchases(connection, paymentTable, updatedList);
-
-                });
-
-                JButton cancelBtn = new JButton("Cancel");
-
-                cancelBtn.addActionListener(cancelPanel -> editStatusSection.dispose());
-
-                editStatusSection.add(statusField);
-
-                editStatusSection.add(confirmCurrentStatusBtn);
-
-                editStatusSection.add(cancelBtn);
-
-                editStatusSection.setVisible(true);
-
-            });
 
             buttonPanel.add(editStatusBtn);
             buttonPanel.add(viewMoreInfoBtn);
@@ -161,11 +120,6 @@ public class RegisteredPurchasePage extends JFrame {
             scrollPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
         }
-
-
-        scrollPanel.revalidate();
-
-        scrollPanel.repaint();
 
     }
 

@@ -25,7 +25,7 @@ class CheckOrderStatusUpdateTest {
         Purchases purchases = new Purchases("10283", "Product",
                 100.0, OrderStatus.valueOf("PROCESSING"), new Customer(), new Address());
 
-        assertTrue(CheckOrderStatusUpdate.orderUpdate(parent, purchases));
+        assertTrue(CheckOrderStatusUpdate.orderUpdate(parent, purchases.getStatus().name()));
 
     }
 
@@ -38,9 +38,9 @@ class CheckOrderStatusUpdateTest {
         try {
 
             Purchases purchases = new Purchases("10283", "Product",
-                    100.0, OrderStatus.valueOf("ppp"), new Customer(), new Address());
+                    100.0, OrderStatus.valueOf(""), new Customer(), new Address());
 
-            assertFalse(CheckOrderStatusUpdate.orderUpdate(parent, purchases));
+            assertFalse(CheckOrderStatusUpdate.orderUpdate(parent, purchases.getStatus().name()));
 
         } catch (IllegalArgumentException exception) {
 

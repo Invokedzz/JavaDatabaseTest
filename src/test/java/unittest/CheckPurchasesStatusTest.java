@@ -31,7 +31,7 @@ class CheckPurchasesStatusTest {
         Purchases purchases = new Purchases("", "", 100.0,
                 status, new Customer(), new Address());
 
-        assertTrue(purchasesStatus.test(purchases));
+        assertTrue(purchasesStatus.test(purchases.getStatus().name()));
 
     }
 
@@ -44,7 +44,7 @@ class CheckPurchasesStatusTest {
         Purchases purchases = new Purchases("", "", 100.0,
                 status, new Customer(), new Address());
 
-        assertTrue(purchasesStatus.test(purchases));
+        assertTrue(purchasesStatus.test(purchases.getStatus().name()));
 
     }
 
@@ -58,7 +58,7 @@ class CheckPurchasesStatusTest {
         Purchases purchases = new Purchases("", "", 100.0,
                 status, new Customer(), new Address());
 
-        assertTrue(purchasesStatus.test(purchases));
+        assertTrue(purchasesStatus.test(purchases.getStatus().name()));
 
     }
 
@@ -72,7 +72,7 @@ class CheckPurchasesStatusTest {
         Purchases purchases = new Purchases("", "", 100.0,
                 status, new Customer(), new Address());
 
-        assertTrue(purchasesStatus.test(purchases));
+        assertTrue(purchasesStatus.test(purchases.getStatus().name()));
 
     }
 

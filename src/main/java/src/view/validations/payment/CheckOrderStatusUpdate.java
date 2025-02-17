@@ -8,11 +8,11 @@ import java.awt.*;
 
 public class CheckOrderStatusUpdate {
 
-    public static boolean orderUpdate (Component parent, Purchases purchases) {
+    public static boolean orderUpdate (Component parent, String status) {
 
         CheckPurchasesStatus purchasesStatus = new CheckPurchasesStatus();
 
-        if (!purchasesStatus.test(purchases)) {
+        if (!purchasesStatus.test(status)) {
 
             JOptionPane.showMessageDialog(parent, "Enter a valid order status!");
 

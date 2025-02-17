@@ -259,7 +259,6 @@ public class ProductAdministration extends JFrame {
             productPanel.add(productItemPanel);
         }
 
-
         productPanel.revalidate();
         productPanel.repaint();
 
