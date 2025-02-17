@@ -108,6 +108,9 @@ public class RegisteredPurchasePage extends JFrame {
 
             JButton viewMoreInfoBtn = new JButton("More info");
 
+            viewMoreInfoBtn.addActionListener(event -> new DisplayABitMoreOfThePurchaseInfo(purchase.getAddress().getLabel(), purchase.getAddress().getNumber(),
+                    purchase.getAddress().getComplement(), purchase.getDate().toString()));
+
             buttonPanel.add(editStatusBtn);
             buttonPanel.add(viewMoreInfoBtn);
 

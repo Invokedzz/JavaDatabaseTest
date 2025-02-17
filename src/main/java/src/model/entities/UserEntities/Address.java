@@ -28,11 +28,15 @@ public final class Address {
 
     }
 
-    public Address (String CEP, String label) {
+    public Address (String CEP, String label, String complement, String number) {
 
         this.cep = CEP;
 
         this.label = label;
+
+        this.number = number;
+
+        this.complement = complement;
 
     }
 

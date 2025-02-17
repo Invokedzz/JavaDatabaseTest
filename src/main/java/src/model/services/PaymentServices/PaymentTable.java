@@ -9,6 +9,7 @@ import src.model.enums.OrderStatus;
 import src.model.services.DatabaseGeneralContract;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +38,9 @@ public class PaymentTable implements DatabaseGeneralContract, PaymentContract {
 
             statement = connection.prepareStatement(
                     "INSERT INTO \"Purchases\".\"PurchasesRegister\" " +
-                            "(transaction_id, product_bought, transaction_price, order_status, payer_cep, payer_address, payer_email) " +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?)"
+                            "(transaction_id, product_bought, transaction_price, order_status, payer_cep, payer_address, payer_email, " +
+                            "payer_housenumber, payer_housecomplement, purchase_date) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
             statement.setString(1, purchases.getTransactionId());
@@ -54,6 +56,12 @@ public class PaymentTable implements DatabaseGeneralContract, PaymentContract {
             statement.setString(6, purchases.getAddress().getLabel());
 
             statement.setString(7, purchases.getCustomer().getEmail());
+
+            statement.setString(8, purchases.getAddress().getNumber());
+
+            statement.setString(9, purchases.getAddress().getComplement());
+
+            statement.setDate(10, Date.valueOf(purchases.getDate()));
 
             statement.executeUpdate();
 
@@ -109,14 +117,20 @@ public class PaymentTable implements DatabaseGeneralContract, PaymentContract {
 
                 OrderStatus status = OrderStatus.valueOf(set.getString("order_status"));
 
+                LocalDate date = set.getDate("purchase_date").toLocalDate();
+
                 String userCep = set.getString("payer_cep");
 
                 String userAddress = set.getString("payer_address");
 
                 String email = set.getString("payer_email");
 
+                String houseNumber = set.getString("payer_housenumber");
+
+                String complement = set.getString("payer_housecomplement");
+
                 purchasesList.add(new Purchases(transactionId, productBought, transactionPrice, status,
-                        new Customer(email), new Address(userCep, userAddress)));
+                        date, new Customer(email), new Address(userCep, userAddress, houseNumber, complement)));
 
             }
 

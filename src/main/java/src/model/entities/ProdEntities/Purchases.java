@@ -1,9 +1,10 @@
 package src.model.entities.ProdEntities;
 
-import com.thoughtworks.qdox.model.expression.Add;
 import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.OrderStatus;
+
+import java.time.LocalDate;
 
 public class Purchases {
 
@@ -15,13 +16,15 @@ public class Purchases {
 
     private OrderStatus status;
 
+    private LocalDate date;
+
     private Customer customer;
 
     private Address address;
 
     public Purchases () {}
 
-    public Purchases (String transactionId, String productBought, Double transactionPrice, OrderStatus status, Customer customer, Address address) {
+    public Purchases (String transactionId, String productBought, Double transactionPrice, OrderStatus status, LocalDate date, Customer customer, Address address) {
 
         this.transactionId = transactionId;
 
@@ -30,6 +33,8 @@ public class Purchases {
         this.transactionPrice = transactionPrice;
 
         this.status = status;
+
+        this.date = date;
 
         this.customer = customer;
 
@@ -61,6 +66,12 @@ public class Purchases {
 
     }
 
+    public LocalDate getDate () {
+
+        return date;
+
+    }
+
     public Customer getCustomer () {
 
         return customer;
@@ -80,8 +91,10 @@ public class Purchases {
                 ", productBought='" + productBought + '\'' +
                 ", transactionPrice=" + transactionPrice +
                 ", status=" + status +
+                ", date=" + date +
                 ", customer=" + customer +
                 ", address=" + address +
                 '}';
     }
+
 }

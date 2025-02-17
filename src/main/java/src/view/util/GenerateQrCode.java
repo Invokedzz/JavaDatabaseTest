@@ -11,8 +11,6 @@ import src.exceptions.QrCodeException;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.Hashtable;
 
 public class GenerateQrCode {
