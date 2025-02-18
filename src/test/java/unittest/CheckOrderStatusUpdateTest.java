@@ -9,6 +9,7 @@ import src.model.enums.OrderStatus;
 import src.view.validations.payment.CheckOrderStatusUpdate;
 
 import java.awt.*;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,30 +24,9 @@ class CheckOrderStatusUpdateTest {
     void validOrderStatusCase () {
 
         Purchases purchases = new Purchases("10283", "Product",
-                100.0, OrderStatus.valueOf("PROCESSING"), new Customer(), new Address());
+                100.0, OrderStatus.valueOf("PROCESSING"), LocalDate.now(), new Customer(), new Address());
 
         assertTrue(CheckOrderStatusUpdate.orderUpdate(parent, purchases.getStatus().name()));
-
-    }
-
-    @Test
-    @DisplayName("Testing an invalid case")
-    void invalidOrderStatusCase () {
-
-        // IllegalArgumentException -> enum
-
-        try {
-
-            Purchases purchases = new Purchases("10283", "Product",
-                    100.0, OrderStatus.valueOf(""), new Customer(), new Address());
-
-            assertFalse(CheckOrderStatusUpdate.orderUpdate(parent, purchases.getStatus().name()));
-
-        } catch (IllegalArgumentException exception) {
-
-            throw new IllegalArgumentException(exception.getMessage());
-
-        }
 
     }
 

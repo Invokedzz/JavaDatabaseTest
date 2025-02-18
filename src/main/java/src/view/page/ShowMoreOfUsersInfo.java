@@ -12,17 +12,19 @@ public class ShowMoreOfUsersInfo extends JFrame {
 
     private final JTextField cepField, neighbourhoodField, houseNumberField, cityField, complementField;
 
-    private final JButton cancelBtn;
+    private final JButton viewPurchasesBtn, cancelBtn;
 
     public ShowMoreOfUsersInfo(Connection connection, Integer userId) {
 
-        setTitle("Login");
+        setTitle("More info");
         setLayout(new MigLayout("center center, wrap, gapy 30"));
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(new Color(245, 245, 245));
         setSize(300, 620);
         setLocationRelativeTo(null);
+
+        viewPurchasesBtn = new JButton("Purchases");
 
         cancelBtn = new JButton("Cancel");
 
@@ -40,11 +42,19 @@ public class ShowMoreOfUsersInfo extends JFrame {
 
         cityField = setCityField(userAddress);
 
+        createViewPurchasesBtnAction(connection);
+
         cancelBtnAction();
 
         addComponents();
 
         setVisible(true);
+
+    }
+
+    private void createViewPurchasesBtnAction (Connection connection) {
+
+        viewPurchasesBtn.addActionListener(e -> new UserPurchases(connection));
 
     }
 
@@ -115,6 +125,8 @@ public class ShowMoreOfUsersInfo extends JFrame {
         cityField.setEditable(false);
 
         add(cityField);
+
+        add(viewPurchasesBtn);
 
         add(cancelBtn);
 

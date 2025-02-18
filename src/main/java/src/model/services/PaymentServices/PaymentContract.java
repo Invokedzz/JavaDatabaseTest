@@ -13,4 +13,6 @@ public interface PaymentContract {
 
     void updatePurchaseStatus (Connection connection, String status, Integer purchaseId);
 
+    List <Purchases> obtainUserPurchases (Connection connection);
+
 }

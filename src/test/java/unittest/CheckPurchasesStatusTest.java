@@ -9,6 +9,8 @@ import src.model.entities.UserEntities.Customer;
 import src.model.enums.OrderStatus;
 import src.validation.CheckPurchasesStatus;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CheckPurchasesStatusTest {
@@ -29,7 +31,7 @@ class CheckPurchasesStatusTest {
         OrderStatus status = OrderStatus.valueOf("PROCESSING");
 
         Purchases purchases = new Purchases("", "", 100.0,
-                status, new Customer(), new Address());
+                status, LocalDate.now(), new Customer(), new Address());
 
         assertTrue(purchasesStatus.test(purchases.getStatus().name()));
 
@@ -42,7 +44,7 @@ class CheckPurchasesStatusTest {
         OrderStatus status = OrderStatus.valueOf("SHIPPED");
 
         Purchases purchases = new Purchases("", "", 100.0,
-                status, new Customer(), new Address());
+                status, LocalDate.now(), new Customer(), new Address());
 
         assertTrue(purchasesStatus.test(purchases.getStatus().name()));
 
@@ -56,7 +58,7 @@ class CheckPurchasesStatusTest {
         OrderStatus status = OrderStatus.valueOf("DELIVERED");
 
         Purchases purchases = new Purchases("", "", 100.0,
-                status, new Customer(), new Address());
+                status, LocalDate.now(), new Customer(), new Address());
 
         assertTrue(purchasesStatus.test(purchases.getStatus().name()));
 
@@ -70,7 +72,7 @@ class CheckPurchasesStatusTest {
         OrderStatus status = OrderStatus.valueOf("CANCELED");
 
         Purchases purchases = new Purchases("", "", 100.0,
-                status, new Customer(), new Address());
+                status, LocalDate.now(), new Customer(), new Address());
 
         assertTrue(purchasesStatus.test(purchases.getStatus().name()));
 

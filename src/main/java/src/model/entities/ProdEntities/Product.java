@@ -81,19 +81,14 @@ public class Product {
     }
 
     @Override
-    public String toString () {
-
-        StringBuilder sb;
-
-        sb = new StringBuilder();
-
-        sb.append("NAME: ").append(getName())
-                .append(" PRICE: ").append(getPrice())
-                .append(" QUANTITY: ").append(getQuantity())
-                .append(" AVAILABILITY: ").append(getAvailability());
-
-        return sb.toString();
-
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", availability=" + availability +
+                ", quantity='" + quantity + '\'' +
+                ", category=" + category +
+                '}';
     }
 
 }

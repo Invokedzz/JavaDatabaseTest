@@ -3,13 +3,11 @@ package src.view.page;
 import net.miginfocom.swing.MigLayout;
 import src.api.usages.MercadoPagoComponents;
 import src.api.usages.PaymentSession;
-import src.model.entities.ProdEntities.Category;
 import src.model.entities.ProdEntities.Product;
 import src.model.entities.ProdEntities.Purchases;
 import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.OrderStatus;
-import src.model.enums.ProductAvailability;
 import src.model.services.PaymentServices.PaymentTable;
 import src.model.services.ProdServices.ProductTable;
 import src.model.services.UserServices.CustomerTable;
@@ -17,19 +15,19 @@ import src.view.util.GenerateQrCode;
 import src.view.util.SendEmailAfterSuccessfulPurchase;
 import src.view.validations.payment.ProductQtyOutOfBounds;
 import src.view.validations.product.page.AreYouSureThisProductExists;
+import src.view.validations.product.page.CheckIfProductIsInsideTheCart;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import src.view.validations.product.page.CheckProductInfoInOrderToUpdate;
-
+import java.time.LocalDate;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
 
 public class ProductPage extends JFrame {
 
-    private JTextField searchField;
-    private JPanel productPanel;
+    private final JTextField searchField;
+    private final JPanel productPanel;
 
     public ProductPage (Connection connection, Integer userId) {
 
@@ -50,7 +48,6 @@ public class ProductPage extends JFrame {
             JButton cartBtn = new JButton();
 
             ImageIcon cartIcon = new ImageIcon("/Users/samunoinv/IdeaProjects/JavaDatabaseTest/src/main/java/src/view/img/cart - PorkyStore.png");
-
 
             cartBtn.setIcon(new ImageIcon(cartIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
 
@@ -74,7 +71,7 @@ public class ProductPage extends JFrame {
             ProductTable productTable = new ProductTable();
             List <Product> productList = productTable.displayProducts(connection);
 
-            displayProducts(productList, connection, userId);
+            displayProducts(productList, connection, cartBtn, userId);
 
             searchButton.addActionListener(e -> {
 
@@ -82,7 +79,7 @@ public class ProductPage extends JFrame {
 
                 if (!AreYouSureThisProductExists.searchForProductInAList(this, productsFound)) return;
 
-                displayProducts(productsFound, connection, userId);
+                displayProducts(productsFound, connection, cartBtn, userId);
 
             });
 
@@ -90,12 +87,16 @@ public class ProductPage extends JFrame {
 
         }
 
-        private void displayProducts(List<Product> productList, Connection connection, Integer userId) {
+        //
+
+        private void displayProducts(List<Product> productList, Connection connection, JButton cartBtn, Integer userId) {
             productPanel.removeAll();
 
             CustomerTable customerTable = new CustomerTable();
 
             ProductTable productTable = new ProductTable();
+
+            List <Product> productsInsideTheCart = new ArrayList<>();
 
             for (Product product : productList) {
 
@@ -184,7 +185,7 @@ public class ProductPage extends JFrame {
                             Double totalPrice = Double.parseDouble(product.getPrice());
 
                             Purchases purchases = new Purchases(PaymentSession.paymentId, product.getName(),
-                                    totalPrice, OrderStatus.PROCESSING, LocalDate.now(), customer, address);
+                                    totalPrice, OrderStatus.PROCESSING, LocalDate.now(), userId, customer, address);
 
                             PaymentTable paymentTable = new PaymentTable(purchases);
 
@@ -239,6 +240,14 @@ public class ProductPage extends JFrame {
 
                 addToCartBtn.addActionListener(e -> {
 
+                    Product selectedProduct = productTable.obtainProductProperties(connection, productId);
+
+                    if (!CheckIfProductIsInsideTheCart.lookInsideTheCart(this, productsInsideTheCart, selectedProduct)) return;
+
+                    productsInsideTheCart.add(selectedProduct);
+
+                    JOptionPane.showMessageDialog(this, "Product was added in the cart!");
+
                 });
 
                 productItemPanel.add(addToCartBtn);
@@ -246,6 +255,8 @@ public class ProductPage extends JFrame {
                 productPanel.add(productItemPanel);
             }
 
+
+            cartBtn.addActionListener(e -> new CartPage(connection, productsInsideTheCart));
 
             productPanel.revalidate();
             productPanel.repaint();
