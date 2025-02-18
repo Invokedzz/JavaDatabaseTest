@@ -65,18 +65,12 @@ public class Category extends Product {
     }
 
     @Override
-    public String toString () {
-
-        StringBuilder sb;
-
-        sb = new StringBuilder();
-
-        sb.append("TYPE: ").append(getType())
-                .append(" TIER: ").append(getTier())
-                .append(" ID: ").append(getId());
-
-        return sb.toString();
-
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", type=" + type +
+                ", tier=" + tier +
+                '}';
     }
 
 }

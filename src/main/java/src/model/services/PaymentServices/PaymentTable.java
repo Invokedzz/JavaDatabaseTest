@@ -39,8 +39,8 @@ public class PaymentTable implements DatabaseGeneralContract, PaymentContract {
             statement = connection.prepareStatement(
                     "INSERT INTO \"Purchases\".\"PurchasesRegister\" " +
                             "(transaction_id, product_bought, transaction_price, order_status, payer_cep, payer_address, payer_email, " +
-                            "payer_housenumber, payer_housecomplement, purchase_date) " +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                            "payer_housenumber, payer_housecomplement, purchase_date, id_customer) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
             statement.setString(1, purchases.getTransactionId());
@@ -62,6 +62,8 @@ public class PaymentTable implements DatabaseGeneralContract, PaymentContract {
             statement.setString(9, purchases.getAddress().getComplement());
 
             statement.setDate(10, Date.valueOf(purchases.getDate()));
+
+            statement.setInt(11, purchases.getCustomerId());
 
             statement.executeUpdate();
 
@@ -189,6 +191,57 @@ public class PaymentTable implements DatabaseGeneralContract, PaymentContract {
             throw new DbException(exception.getMessage());
 
         }
+
+    }
+
+    @Override
+    public List<Purchases> obtainUserPurchases(Connection connection) {
+
+        List <Purchases> productsBoughtByUser = new ArrayList<>();
+
+        try {
+
+            statement = connection.prepareStatement(
+                    """
+                            SELECT
+                                product_bought,
+                                transaction_price,
+                                order_status,
+                                purchase_date,
+                                transaction_id
+                            FROM
+                                "Purchases"."PurchasesRegister"
+                            JOIN
+                                "User"."Customer" c
+                            ON
+                                id_customer = c.id;"""
+            );
+
+            set = statement.executeQuery();
+
+            while (set.next()) {
+
+                String productBought = set.getString("product_bought");
+
+                Double transactionPrice = set.getDouble("transaction_price");
+
+                OrderStatus status = OrderStatus.valueOf(set.getString("order_status"));
+
+                LocalDate date = set.getDate("purchase_date").toLocalDate();
+
+                String transactionId = set.getString("transaction_id");
+
+                productsBoughtByUser.add(new Purchases(productBought, transactionPrice, status, date, transactionId));
+
+            }
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+        return productsBoughtByUser;
 
     }
 

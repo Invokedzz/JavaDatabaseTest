@@ -18,13 +18,37 @@ public class Purchases {
 
     private LocalDate date;
 
+    private Integer customerId;
+
     private Customer customer;
 
     private Address address;
 
     public Purchases () {}
 
-    public Purchases (String transactionId, String productBought, Double transactionPrice, OrderStatus status, LocalDate date, Customer customer, Address address) {
+    public Purchases (String transactionId, String productBought, Double transactionPrice, OrderStatus status,
+                      LocalDate date, Integer customerId, Customer customer, Address address) {
+
+        this.transactionId = transactionId;
+
+        this.productBought = productBought;
+
+        this.transactionPrice = transactionPrice;
+
+        this.status = status;
+
+        this.date = date;
+
+        this.customerId = customerId;
+
+        this.customer = customer;
+
+        this.address = address;
+
+    }
+
+    public Purchases (String transactionId, String productBought, Double transactionPrice, OrderStatus status,
+                      LocalDate date, Customer customer, Address address) {
 
         this.transactionId = transactionId;
 
@@ -39,6 +63,21 @@ public class Purchases {
         this.customer = customer;
 
         this.address = address;
+
+    }
+
+
+    public Purchases (String productBought, Double transactionPrice, OrderStatus status, LocalDate date, String transactionId) {
+
+        this.productBought = productBought;
+
+        this.transactionPrice = transactionPrice;
+
+        this.status = status;
+
+        this.date = date;
+
+        this.transactionId = transactionId;
 
     }
 
@@ -69,6 +108,12 @@ public class Purchases {
     public LocalDate getDate () {
 
         return date;
+
+    }
+
+    public Integer getCustomerId () {
+
+        return customerId;
 
     }
 
