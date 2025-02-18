@@ -87,6 +87,8 @@ public class ProductPage extends JFrame {
 
         }
 
+        //
+
         private void displayProducts(List<Product> productList, Connection connection, JButton cartBtn, Integer userId) {
             productPanel.removeAll();
 

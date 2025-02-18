@@ -31,13 +31,13 @@ public class RegisteredPurchasePage extends JFrame {
         List<Purchases> purchasesList = paymentTable.obtainPurchases(connection);
         System.out.println(purchasesList);
 
-        displayUpdatedPurchases(connection, paymentTable, purchasesList);
+        displayUpdatedPurchases(connection, purchasesList);
 
         setVisible(true);
 
     }
 
-    private void displayUpdatedPurchases (Connection connection, PaymentTable paymentTable, List <Purchases> purchasesList) {
+    private void displayUpdatedPurchases (Connection connection, List <Purchases> purchasesList) {
 
         JScrollPane scrollPane = new JScrollPane(scrollPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

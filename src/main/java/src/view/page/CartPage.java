@@ -1,17 +1,17 @@
 package src.view.page;
 
 import src.model.entities.ProdEntities.Product;
+import src.view.forms.ConfirmProductsPayment;
+import src.view.validations.payment.CheckIfCartIsEmpty;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CartPage extends JFrame {
 
-    private JPanel productPanel;
-    private JPanel productItemPanel;
+    private final JPanel productPanel;
 
     public CartPage (Connection connection, List <Product> productsInsideTheCart) {
 
@@ -49,13 +49,21 @@ public class CartPage extends JFrame {
 
         JButton buyProductsBtn = new JButton("Confirm buy");
 
+        buyProductsBtn.addActionListener(e -> {
+
+            if (!CheckIfCartIsEmpty.isCartEmpty(this, productsInsideTheCart)) return;
+
+            new ConfirmProductsPayment(connection, productsInsideTheCart);
+
+        });
+
         add(buyProductsBtn, BorderLayout.SOUTH);
 
         if (!productsInsideTheCart.isEmpty()) {
 
             for (Product product : productsInsideTheCart) {
 
-                productItemPanel = new JPanel();
+                JPanel productItemPanel = new JPanel();
                 productItemPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
                 productItemPanel.setBackground(new Color(255, 255, 255));
                 productItemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 1));
