@@ -13,7 +13,7 @@ public class CartPage extends JFrame {
 
     private final JPanel productPanel;
 
-    public CartPage (Connection connection, List <Product> productsInsideTheCart) {
+    public CartPage (Connection connection, List <Product> productsInsideTheCart, Integer userId) {
 
         setTitle("Cart");
         setLayout(new BorderLayout(10, 10));
@@ -37,13 +37,13 @@ public class CartPage extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         add(scrollPane, BorderLayout.CENTER);
 
-        displayProducts(connection, productsInsideTheCart);
+        displayProducts(connection, productsInsideTheCart, userId);
 
         setVisible(true);
 
     }
 
-    private void displayProducts (Connection connection, List <Product> productsInsideTheCart) {
+    private void displayProducts (Connection connection, List <Product> productsInsideTheCart, Integer userId) {
 
         productPanel.removeAll();
 
@@ -53,7 +53,7 @@ public class CartPage extends JFrame {
 
             if (!CheckIfCartIsEmpty.isCartEmpty(this, productsInsideTheCart)) return;
 
-            new ConfirmProductsPayment(connection, productsInsideTheCart);
+            new ConfirmProductsPayment(connection, productsInsideTheCart, userId);
 
         });
 
@@ -85,7 +85,7 @@ public class CartPage extends JFrame {
 
                     productsInsideTheCart.remove(product);
 
-                    displayProducts(connection, productsInsideTheCart);
+                    displayProducts(connection, productsInsideTheCart, userId);
 
                 });
 

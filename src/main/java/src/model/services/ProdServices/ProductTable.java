@@ -26,10 +26,6 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
     }
 
-    // Product: name, price, id_category
-    // id_category: 1 -> Electronics
-    // 2 -> Tools, 3 -> Clothes
-
     @Override
     public void insert () {
 
@@ -269,6 +265,29 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
             statement.setInt(1, quantity);
 
             statement.setInt(2, productId);
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+
+            throw new DbException(exception.getMessage());
+
+        }
+
+    }
+
+    @Override
+    public void changeProductQuantityBasedOnItsName(Connection connection, String name, Integer quantity) {
+
+        try {
+
+            statement = connection.prepareStatement(
+                    "UPDATE \"Stock\".\"Product\" SET quantity = ? WHERE name = ?"
+            );
+
+            statement.setInt(1, quantity);
+
+            statement.setString(2, name);
 
             statement.executeUpdate();
 

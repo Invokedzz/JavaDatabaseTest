@@ -5,12 +5,15 @@ import src.model.entities.UserEntities.Customer;
 import src.model.enums.OrderStatus;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Purchases {
 
     private String transactionId;
 
     private String productBought;
+
+    private List <String> productsBought;
 
     private Double transactionPrice;
 
@@ -32,6 +35,27 @@ public class Purchases {
         this.transactionId = transactionId;
 
         this.productBought = productBought;
+
+        this.transactionPrice = transactionPrice;
+
+        this.status = status;
+
+        this.date = date;
+
+        this.customerId = customerId;
+
+        this.customer = customer;
+
+        this.address = address;
+
+    }
+
+    public Purchases (String transactionId, List <String> productsBought, Double transactionPrice, OrderStatus status,
+                      LocalDate date, Integer customerId, Customer customer, Address address) {
+
+        this.transactionId = transactionId;
+
+        this.productsBought = productsBought;
 
         this.transactionPrice = transactionPrice;
 
@@ -90,6 +114,12 @@ public class Purchases {
     public String getProductBought () {
 
         return productBought;
+
+    }
+
+    public List <String> getProductsBought () {
+
+        return productsBought;
 
     }
 

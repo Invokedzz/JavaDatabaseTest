@@ -244,6 +244,8 @@ public class ProductPage extends JFrame {
 
                     if (!CheckIfProductIsInsideTheCart.lookInsideTheCart(this, productsInsideTheCart, selectedProduct)) return;
 
+                    if (!ProductQtyOutOfBounds.checkProductQty(this, Integer.parseInt(selectedProduct.getQuantity()))) return;
+
                     productsInsideTheCart.add(selectedProduct);
 
                     JOptionPane.showMessageDialog(this, "Product was added in the cart!");
@@ -256,7 +258,7 @@ public class ProductPage extends JFrame {
             }
 
 
-            cartBtn.addActionListener(e -> new CartPage(connection, productsInsideTheCart));
+            cartBtn.addActionListener(e -> new CartPage(connection, productsInsideTheCart, userId));
 
             productPanel.revalidate();
             productPanel.repaint();
