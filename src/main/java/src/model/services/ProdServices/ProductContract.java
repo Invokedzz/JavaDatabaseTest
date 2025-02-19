@@ -19,4 +19,6 @@ public interface ProductContract {
 
     void updateProductQuantity (Connection connection, Integer quantity, Integer productId);
 
+    void changeProductQuantityBasedOnItsName (Connection connection, String name, Integer quantity);
+
 }
