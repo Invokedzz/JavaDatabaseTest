@@ -12,9 +12,9 @@ import java.sql.Connection;
 
 public class EditAdminCredentials extends JFrame {
 
-    private JTextField emailField, newEmailField;
+    private final JTextField emailField, newEmailField;
 
-    private JButton updateProfileBtn, updateTicketBtn, cancelBtn;
+    private final JButton updateProfileBtn, updateTicketBtn, cancelBtn;
 
     public EditAdminCredentials (Connection connection, Integer userId) {
 

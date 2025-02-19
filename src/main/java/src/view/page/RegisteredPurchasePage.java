@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RegisteredPurchasePage extends JFrame {
 
-    private JPanel scrollPanel;
+    private final JPanel scrollPanel;
 
     public RegisteredPurchasePage (Connection connection) {
 

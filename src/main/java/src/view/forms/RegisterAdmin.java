@@ -9,9 +9,9 @@ import java.awt.*;
 
 public class RegisterAdmin extends JFrame {
 
-    private JTextField emailField;
+    private final JTextField emailField;
 
-    private JButton askForAccountBtn, proceedBtn;
+    private final JButton askForAccountBtn, proceedBtn;
 
     public RegisterAdmin () {
 

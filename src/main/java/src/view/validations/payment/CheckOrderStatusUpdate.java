@@ -1,6 +1,5 @@
 package src.view.validations.payment;
 
-import src.model.entities.ProdEntities.Purchases;
 import src.validation.CheckPurchasesStatus;
 
 import javax.swing.*;

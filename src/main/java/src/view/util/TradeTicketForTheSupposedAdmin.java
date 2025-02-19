@@ -4,11 +4,8 @@ import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 import src.exceptions.MailException;
-import src.model.entities.UserEntities.Admin;
-import src.model.enums.TypeUser;
 import src.model.services.UserServices.AdminTable;
 import src.security.AdminCredentials;
-import src.security.PassHash;
 import src.view.util.credentials.EmailData;
 
 import java.sql.Connection;
