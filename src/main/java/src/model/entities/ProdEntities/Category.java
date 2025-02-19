@@ -46,21 +46,9 @@ public class Category extends Product {
 
     }
 
-    public void setType (TypeProduct type) {
-
-        this.type = type;
-
-    }
-
     public Integer getTier() {
 
         return tier;
-
-    }
-
-    public void setTier (Integer tier) {
-
-        this.tier = tier;
 
     }
 

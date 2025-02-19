@@ -5,6 +5,9 @@ import src.model.entities.ProdEntities.Category;
 import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
 import src.model.services.ProdServices.ProductTable;
+import src.security.AdminCredentials;
+import src.security.ObtainImgPath;
+import src.view.util.CreateProductImg;
 import src.view.validations.product.page.AreYouSureThisProductExists;
 import src.view.validations.product.page.CheckProductInfoInOrderToUpdate;
 
@@ -16,8 +19,8 @@ import java.sql.Connection;
 
 public class ProductAdministration extends JFrame {
 
-    private JTextField searchField;
-    private JPanel productPanel;
+    private final JTextField searchField;
+    private final JPanel productPanel;
 
     public ProductAdministration(Connection connection) {
 
@@ -76,12 +79,12 @@ public class ProductAdministration extends JFrame {
         addButton.addActionListener(e -> {
 
             JFrame createProductFrame = new JFrame("Create new Product");
-            createProductFrame.setLayout(new MigLayout("center center, wrap 1, gapy 30"));
+            createProductFrame.setLayout(new MigLayout("center center, wrap 1, gapy 20"));
             createProductFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             createProductFrame.getContentPane().setBackground(new Color(245, 245, 245));
             createProductFrame.setLocationRelativeTo(null);
             createProductFrame.setResizable(false);
-            createProductFrame.setSize(400,670);
+            createProductFrame.setSize(600,750);
 
             JTextField productNameField = new JTextField(15);
             JTextField priceField = new JTextField(15);
@@ -93,14 +96,26 @@ public class ProductAdministration extends JFrame {
 
             JButton cancelBtn = new JButton("Cancel");
 
+            JLabel imageLabel = new JLabel("No image selected");
+            JButton selectImageButton = new JButton("Select Image");
+
+            CreateProductImg.setupImg(createProductFrame, imageLabel, selectImageButton);
+
             createProductBtn.addActionListener(createEvent -> {
+
+                //
+
+                System.out.println(ObtainImgPath.imagePath);
 
                 Integer categoryId = Integer.valueOf(categoryField.getText());
 
                 Category category = new Category(categoryId);
 
+                String productCode = AdminCredentials.generateTicket();
+
                 Product productThatIsAboutToBeCreated = new Product(productNameField.getText(), priceField.getText(),
-                        quantityField.getText(), ProductAvailability.valueOf(availabilityField.getText()), category);
+                        quantityField.getText(), ProductAvailability.valueOf(availabilityField.getText()), category,
+                        productCode, ObtainImgPath.imagePath);
 
                 ProductTable newTable = new ProductTable(productThatIsAboutToBeCreated);
 
@@ -118,8 +133,11 @@ public class ProductAdministration extends JFrame {
 
             });
 
-            cancelBtn.addActionListener(cancelEvent -> dispose());
+            cancelBtn.addActionListener(cancelEvent -> createProductFrame.dispose());
 
+            createProductFrame.add(new JLabel("Product Image:"));
+            createProductFrame.add(imageLabel);
+            createProductFrame.add(selectImageButton);
             createProductFrame.add(new JLabel("Name:"));
             createProductFrame.add(productNameField);
             createProductFrame.add(new JLabel("Price"));

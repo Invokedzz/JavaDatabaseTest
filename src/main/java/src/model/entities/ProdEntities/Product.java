@@ -22,8 +22,8 @@ public class Product {
 
     public Product () {}
 
-    public Product (String name, String price, String quantity, ProductAvailability availability, String description,
-                    String img, String productCode, Category category) {
+    public Product (String name, String price, String quantity, ProductAvailability availability, Category category,
+                    String productCode, String img) {
 
         this.name = name;
 
@@ -33,13 +33,11 @@ public class Product {
 
         this.availability = availability;
 
-        this.description = description;
-
-        this.img = img;
+        this.category = category;
 
         this.productCode = productCode;
 
-        this.category = category;
+        this.img = img;
 
     }
 
@@ -102,12 +100,6 @@ public class Product {
     public void setAvailability (ProductAvailability availability) {
 
         this.availability = availability;
-
-    }
-
-    public String getDescription () {
-
-        return description;
 
     }
 

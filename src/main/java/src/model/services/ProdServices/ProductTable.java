@@ -36,8 +36,8 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
             statement = connection.prepareStatement(
 
                     "INSERT INTO \"Stock\".\"Product\" "
-                            + "(name, price, quantity, availability, id_category) "
-                            + "VALUES (?, ?, ?, ?, ?)"
+                            + "(name, price, quantity, availability, id_category, product_code, product_img) "
+                            + "VALUES (?, ?, ?, ?, ?, ?, ?)"
 
             );
 
@@ -51,9 +51,13 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
             statement.setInt(5, product.getCategory().getId());
 
+            statement.setString(6, product.getProductCode());
+
+            statement.setString(7, product.getImg());
+
             statement.executeUpdate();
 
-        } catch ( SQLException exception ) {
+        } catch (SQLException exception) {
 
             throw new DbException( exception.getMessage() );
 

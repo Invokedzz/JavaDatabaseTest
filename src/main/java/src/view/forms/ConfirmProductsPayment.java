@@ -11,12 +11,9 @@ import src.model.enums.OrderStatus;
 import src.model.services.PaymentServices.PaymentTable;
 import src.model.services.ProdServices.ProductTable;
 import src.model.services.UserServices.CustomerTable;
-import src.view.page.DisplayABitMoreOfThePurchaseInfo;
-import src.view.page.EditOrderStatus;
 import src.view.util.GenerateQrCode;
 import src.view.util.SendEmailAfterSuccessfulPurchase;
 import src.view.validations.payment.AnalyzeQuantitySelectedByUser;
-import src.view.validations.payment.PricePerQuantityExpression;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,13 +28,9 @@ public class ConfirmProductsPayment extends JFrame {
 
     private JPanel scrollPanel;
 
-    private JTextField quantityField;
-
-    private JButton confirmButton;
-
     public ConfirmProductsPayment (Connection connection, List <Product> productsInsideTheCart, Integer userId) {
 
-        setTitle("Stored Purchase Page");
+        setTitle("Confirm Payment");
         setLayout(new BorderLayout(10, 5));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(new Color(245, 245, 245));
@@ -62,7 +55,7 @@ public class ConfirmProductsPayment extends JFrame {
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        confirmButton = new JButton("Confirm Purchase");
+        JButton confirmButton = new JButton("Confirm Purchase");
         confirmButton.setFont(new Font("Arial", Font.BOLD, 14));
         confirmButton.setBackground(new Color(50, 205, 50));
         confirmButton.setForeground(Color.BLACK);
@@ -117,7 +110,7 @@ public class ConfirmProductsPayment extends JFrame {
 
         confirmButton.addActionListener(e -> {
 
-            Double total = 0.0;
+            double total = 0.0;
 
             Map<Product, Integer> updatedQuantities = new HashMap<>();
 
@@ -125,19 +118,12 @@ public class ConfirmProductsPayment extends JFrame {
 
                 JTextField quantityField = productQuantityFields.get(product);
 
-                // Obtemos a quantidade que o usuário selecionou
-                Integer selectedQty = Integer.parseInt(quantityField.getText());
+                int selectedQty = Integer.parseInt(quantityField.getText());
 
-                // Calculamos a quantidade restante (estoque atualizado)
                 Integer totalQty = Integer.parseInt(product.getQuantity()) - selectedQty;
 
-                // Armazenamos a quantidade atualizada no mapa
                 updatedQuantities.put(product, totalQty);
 
-                System.out.println("Quantidade selecionada: " + selectedQty);
-                System.out.println("Quantidade restante: " + totalQty);
-
-                // Calcula o total do preço para o produto
                 total += selectedQty * Double.parseDouble(product.getPrice());
 
                 System.out.println("Total: " + total);
@@ -219,24 +205,6 @@ public class ConfirmProductsPayment extends JFrame {
 
 
         bottomPanel.add(confirmButton);
-
-    }
-
-    private double calculateTotal(List<Product> productsInsideTheCart, Integer qtySelectedByUser) {
-
-        double total = 0.0;
-
-        for (Product product : productsInsideTheCart) {
-
-            double price = Double.parseDouble(product.getPrice());
-
-            int quantity = qtySelectedByUser;
-
-            total += PricePerQuantityExpression.calculusResult(price, quantity);
-
-        }
-
-        return total;
 
     }
 

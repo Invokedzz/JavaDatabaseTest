@@ -20,7 +20,7 @@ public class LoginAdmin extends JFrame {
 
     private AdminTable adminTable;
 
-    private JButton loginBtn, cancelBtn;
+    private final JButton loginBtn, cancelBtn;
 
     public LoginAdmin () {
 
