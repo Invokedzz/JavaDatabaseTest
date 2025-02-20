@@ -97,6 +97,21 @@ public class CartPage extends JFrame {
 
             }
 
+        } else {
+
+            JPanel emptyCartPanel = new JPanel();
+
+            emptyCartPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+            emptyCartPanel.setBackground(new Color(255, 255, 255));
+
+            JLabel jLabel = new JLabel("Your cart looks empty. Why don't you add some products inside of it?");
+
+            emptyCartPanel.add(jLabel);
+
+            productPanel.add(emptyCartPanel);
+
+            emptyCartPanel.setVisible(true);
+
         }
 
         productPanel.revalidate();

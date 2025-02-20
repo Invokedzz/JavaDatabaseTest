@@ -2,6 +2,7 @@ package src.model.services.ProdServices;
 
 import src.model.entities.ProdEntities.Product;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.util.List;
 
@@ -19,6 +20,6 @@ public interface ProductContract {
 
     void updateProductQuantity (Connection connection, Integer quantity, Integer productId);
 
-    void changeProductQuantityBasedOnItsName (Connection connection, String name, Integer quantity);
+    ImageIcon obtainProductImg (Connection connection, Integer productId);
 
 }

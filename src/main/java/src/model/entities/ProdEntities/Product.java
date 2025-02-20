@@ -67,6 +67,20 @@ public class Product {
 
     }
 
+    public Product (String name, String price, String quantity, ProductAvailability availability, String img) {
+
+        this.name = name;
+
+        this.price = price;
+
+        this.quantity = quantity;
+
+        this.availability = availability;
+
+        this.img = img;
+
+    }
+
     public String getName () {
 
         return name;

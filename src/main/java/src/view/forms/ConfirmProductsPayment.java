@@ -14,6 +14,8 @@ import src.model.services.UserServices.CustomerTable;
 import src.view.util.GenerateQrCode;
 import src.view.util.SendEmailAfterSuccessfulPurchase;
 import src.view.validations.payment.AnalyzeQuantitySelectedByUser;
+import src.view.validations.payment.CheckQtySelectedByUser;
+import src.view.validations.product.page.CheckNumericalInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +28,7 @@ import java.util.Map;
 
 public class ConfirmProductsPayment extends JFrame {
 
-    private JPanel scrollPanel;
+    private final JPanel scrollPanel;
 
     public ConfirmProductsPayment (Connection connection, List <Product> productsInsideTheCart, Integer userId) {
 
@@ -118,7 +120,11 @@ public class ConfirmProductsPayment extends JFrame {
 
                 JTextField quantityField = productQuantityFields.get(product);
 
+                if (!CheckNumericalInput.isThisValueNumerical(this, quantityField.getText())) return;
+
                 int selectedQty = Integer.parseInt(quantityField.getText());
+
+                if (!CheckQtySelectedByUser.isQtyValidByAnyChance(this, selectedQty)) return;
 
                 Integer totalQty = Integer.parseInt(product.getQuantity()) - selectedQty;
 
@@ -168,7 +174,7 @@ public class ConfirmProductsPayment extends JFrame {
 
                 Purchases purchases = new Purchases(PaymentSession.paymentId, productNames.toString(),
                         finalTotal, OrderStatus.PROCESSING, LocalDate.now(), userId, customer, address);
-
+                
                 PaymentTable paymentTable = new PaymentTable(purchases);
 
                 paymentTable.insert();

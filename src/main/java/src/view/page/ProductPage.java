@@ -115,6 +115,14 @@ public class ProductPage extends JFrame {
                 productLabel.setFont(new Font("Arial", Font.PLAIN, 14));
                 productLabel.setForeground(Color.BLACK);
 
+                ImageIcon productImg = productTable.obtainProductImg(connection, productId);
+
+                Image scaledImg = productImg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+
+                ImageIcon resizedImg = new ImageIcon(scaledImg);
+
+                productLabel.setIcon(resizedImg);
+
                 productItemPanel.add(productLabel);
 
                 JButton buyProductBtn = new JButton("Buy Product");
