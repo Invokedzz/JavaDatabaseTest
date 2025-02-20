@@ -10,7 +10,7 @@ PorkyStore is a desktop e-commerce application built in **Java** using **Java Sw
 - **Payment Integration** with **MercadoPago SDK** for secure transactions;
 - **Geolocation Services** powered by **Here API**, in order to treat user data correctly;
 - **User Authentication & Security** with **BCrypt** for password hashing;
-- **Barcode Scanning** functionality using **Zxing**;
+- **QRCode creation** functionality for PIX transactions using **Zxing**;
 - **Unit Testing** with **JUnit** for robust testing;
 - **JSON Processing** with **Gson** for handling data interchange;
 - Utility functions provided by **Apache Commons** for better performance and ease of use.
@@ -23,7 +23,7 @@ PorkyStore is a desktop e-commerce application built in **Java** using **Java Sw
 - **Here API (Geolocation)**;
 - **JUnit** (Unit Testing);
 - **BCrypt** (Password Encryption);
-- **Zxing** (Barcode Scanning);
+- **Zxing** (QRCode Scanning);
 - **Gson** (JSON Parsing);
 - **Apache Commons**.
 
