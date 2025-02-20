@@ -11,7 +11,3 @@ public class App {
     }
 
 }
-
-// AXEPI6P3
-
-// 62Z705OE120A9U16I733

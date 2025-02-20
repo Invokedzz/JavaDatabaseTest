@@ -6,7 +6,7 @@ import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
 import src.model.services.ProdServices.ProductTable;
 import src.security.AdminCredentials;
-import src.security.ObtainImgPath;
+import src.view.util.ObtainImgPath;
 import src.view.util.CreateProductImg;
 import src.view.validations.product.page.AnalyzeAvailabilityInput;
 import src.view.validations.product.page.AreYouSureThisProductExists;
