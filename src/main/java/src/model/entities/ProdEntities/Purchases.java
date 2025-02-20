@@ -81,6 +81,17 @@ public class Purchases {
 
     }
 
+    // I'm only creating this constructor in order to validate specific methods
+    public Purchases (String transactionId, String productBought, Integer customerId) {
+
+        this.transactionId = transactionId;
+
+        this.productBought = productBought;
+
+        this.customerId = customerId;
+
+    }
+
     public String getTransactionId () {
 
         return transactionId;

@@ -1,8 +1,8 @@
 package src.validation;
 
-import src.util.PurchasesPredicate;
+import src.util.OrderStatusPredicate;
 
-public class CheckPurchasesStatus implements PurchasesPredicate {
+public class CheckPurchasesStatus implements OrderStatusPredicate {
 
     @Override
     public boolean test(String status) {

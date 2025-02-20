@@ -8,7 +8,9 @@ import src.model.services.ProdServices.ProductTable;
 import src.security.AdminCredentials;
 import src.security.ObtainImgPath;
 import src.view.util.CreateProductImg;
+import src.view.validations.product.page.AnalyzeAvailabilityInput;
 import src.view.validations.product.page.AreYouSureThisProductExists;
+import src.view.validations.product.page.CheckNumericalInput;
 import src.view.validations.product.page.CheckProductInfoInOrderToUpdate;
 
 import java.util.List;
@@ -103,9 +105,9 @@ public class ProductAdministration extends JFrame {
 
             createProductBtn.addActionListener(createEvent -> {
 
-                //
+                if (!CheckNumericalInput.isThisValueNumerical(this, categoryField.getText())) return;
 
-                System.out.println(ObtainImgPath.imagePath);
+                if (!AnalyzeAvailabilityInput.lookForAvailabilityText(this, availabilityField.getText())) return;
 
                 Integer categoryId = Integer.valueOf(categoryField.getText());
 
@@ -124,8 +126,6 @@ public class ProductAdministration extends JFrame {
                 newTable.insert();
 
                 JOptionPane.showMessageDialog(this, "Product created!");
-
-                createProductFrame.dispose();
 
                 List <Product> queryProducts = productTable.displayProducts(connection);
 
@@ -156,6 +156,7 @@ public class ProductAdministration extends JFrame {
         });
 
         setVisible(true);
+
     }
 
     private void displayProducts(List<Product> productList, Connection connection) {
