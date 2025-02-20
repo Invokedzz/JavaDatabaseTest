@@ -1,21 +1,39 @@
 # PorkyStore
 
-PorkyStore é uma loja online desenvolvida em **Java** utilizando **Java Swing** para a interface gráfica, juntamente com outras tecnologias modernas para melhorar a funcionalidade e a segurança do sistema. A aplicação simula um e-commerce completo com funcionalidades de cadastro, carrinho de compras, pagamento e integração com APIs externas.
+PorkyStore is a desktop e-commerce application built in **Java** using **Java Swing** and various technologies to offer a seamless and secure shopping experience. With integrations like **MercadoPago** for payment processing, **Here API** for geolocation, and more, PorkyStore provides a comprehensive solution for e-commerce needs.
 
-## Tecnologias Utilizadas
+![](/src/main/java/src/view/img/banner.png)
+<img src="/src/main/java/src/view/img/banner.png">
 
-- **Java**: Linguagem de programação principal para o desenvolvimento da aplicação, garantindo performance e escalabilidade.
-- **Java Swing**: Biblioteca para a criação da interface gráfica do usuário (GUI), proporcionando uma experiência rica e intuitiva.
-- **JUnit**: Framework para realizar testes unitários e de integração, assegurando a estabilidade e a qualidade do código.
-- **HttpClient**: Utilizado para realizar requisições HTTP para consumir APIs externas, como o Stripe para pagamentos e a Here para geolocalização.
-- **Stripe API**: Integração com a API Stripe para processamento seguro de pagamentos.
-- **Here API**: API utilizada para fornecer funcionalidades como geolocalização e mapeamento, permitindo calcular distâncias e localizar as lojas mais próximas do usuário.
-- **BCrypt**: Algoritmo utilizado para a criptografia de senhas, garantindo segurança na autenticação de usuários.
-- **Maven**: Ferramenta de automação para gerenciar dependências e o ciclo de vida do build do projeto, facilitando o processo de construção e execução da aplicação.
+## Features
 
-## Funcionalidades
+- **Payment Integration** with **MercadoPago SDK** for secure transactions;
+- **Geolocation Services** powered by **Here API**, in order to treat user data correctly;
+- **User Authentication & Security** with **BCrypt** for password hashing;
+- **Barcode Scanning** functionality using **Zxing**;
+- **Unit Testing** with **JUnit** for robust testing;
+- **JSON Processing** with **Gson** for handling data interchange;
+- Utility functions provided by **Apache Commons** for better performance and ease of use.
 
-- **Cadastro e Autenticação de Usuários**: Os usuários podem criar contas, autenticar-se e alterar suas informações pessoais.
-- **Carrinho de Compras**: Função que permite adicionar, editar e remover itens no carrinho antes de realizar a compra.
-- **Pagamento Seguro**: Processamento de pagamentos com a integração da API Stripe, proporcionando uma experiência de pagamento confiável.
-- **Testes Automatizados**: O sistema é testado com JUnit para garantir que todos os módulos funcionem corretamente.
+## Technologies Used
+
+- **Java**;
+- **Java Swing**;
+- **MercadoPago SDK**;
+- **Here API (Geolocation)**;
+- **JUnit** (Unit Testing);
+- **BCrypt** (Password Encryption);
+- **Zxing** (Barcode Scanning);
+- **Gson** (JSON Parsing);
+- **Apache Commons**.
+
+## Contributing
+- We welcome contributions to PorkyStore! If you'd like to contribute, please fork the repository and submit a pull request. Make sure to follow the guidelines below:
+
+- [x] Fork the repo.
+- [x] Create a new branch (git checkout -b feature-name).
+- [x] Commit your changes (git commit -am 'Add feature').
+- [x] Push to the branch (git push origin feature-name).
+- [x] Submit a pull request.
+## License
+Distributed under the MIT License. See the LICENSE file for more information.
