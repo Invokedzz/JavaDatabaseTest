@@ -4,6 +4,8 @@ import src.db.*;
 import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
 import src.model.services.DatabaseGeneralContract;
+
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +94,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
                 ProductAvailability availability = ProductAvailability.valueOf(set.getString("availability"));
 
-                products.add(new Product(name, price, quantity, availability));
+                String imagePath = set.getString("product_img");
+
+                products.add(new Product(name, price, quantity, availability, imagePath));
 
             }
 
@@ -281,19 +285,25 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
     }
 
     @Override
-    public void changeProductQuantityBasedOnItsName(Connection connection, String name, Integer quantity) {
+    public ImageIcon obtainProductImg(Connection connection, Integer productId) {
 
         try {
 
             statement = connection.prepareStatement(
-                    "UPDATE \"Stock\".\"Product\" SET quantity = ? WHERE name = ?"
+                    "SELECT product_img FROM \"Stock\".\"Product\" WHERE id = ?"
             );
 
-            statement.setInt(1, quantity);
+            statement.setInt(1, productId);
 
-            statement.setString(2, name);
+            set = statement.executeQuery();
 
-            statement.executeUpdate();
+            if (set.next()) {
+
+                String imagePath = set.getString("product_img");
+
+                return new ImageIcon(imagePath);
+
+            }
 
         } catch (SQLException exception) {
 
@@ -301,6 +311,9 @@ public class ProductTable implements DatabaseGeneralContract, ProductContract {
 
         }
 
+        return null;
+
     }
+
 
 }

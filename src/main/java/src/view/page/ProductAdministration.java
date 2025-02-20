@@ -176,10 +176,17 @@ public class ProductAdministration extends JFrame {
             productItemPanel.setMaximumSize(new Dimension(750, 80));
             productItemPanel.setMinimumSize(new Dimension(750, 80));
 
+            ImageIcon originalImg = productTable.obtainProductImg(connection, productId);
+
+            Image scaledImg = originalImg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+
+            ImageIcon resizedImg = new ImageIcon(scaledImg);
+
             JLabel productLabel = new JLabel("<html><strong style='color:black;'>" + product.getName() + "</strong><br>" +
-                    "<span style='color:black;'>Price: " + product.getPrice() + "</span></html>");
-            productLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-            productLabel.setForeground(Color.BLACK);
+                    "<span style='color:black;'>Price: " + product.getPrice() + "</span><br>" +
+                    "<span style='color:black;'>Quantity:" + product.getQuantity() + "</span></html>");
+
+            productLabel.setIcon(resizedImg);
 
             productItemPanel.add(productLabel);
 
