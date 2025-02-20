@@ -4,14 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
-import src.util.ConvertCentsToReal;
+import src.view.util.ConvertCentsToReal;
 import org.hamcrest.Matchers;
 import src.validation.CheckProducts;
 
 import java.math.BigDecimal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ConvertCentsToRealTest {
 

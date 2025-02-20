@@ -1,4 +1,4 @@
-package src.util;
+package src.view.util;
 
 import java.math.BigDecimal;
 

@@ -10,7 +10,7 @@ import com.mercadopago.resources.payment.Payment;
 import src.api.keys.MercadoPagoKey;
 import src.exceptions.ApiException;
 import src.exceptions.PaymentException;
-import src.util.ConvertCentsToReal;
+import src.view.util.ConvertCentsToReal;
 import java.math.BigDecimal;
 
 

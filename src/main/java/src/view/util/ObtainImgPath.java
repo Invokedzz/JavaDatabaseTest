@@ -1,4 +1,4 @@
-package src.security;
+package src.view.util;
 
 public class ObtainImgPath {
 
