@@ -2,7 +2,7 @@ package unittest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import src.view.validations.user.register.CheckIfCpfAlreadyExists;
+import src.validation.user.register.CheckIfCpfAlreadyExists;
 
 import java.awt.*;
 import java.util.ArrayList;

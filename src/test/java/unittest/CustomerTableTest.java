@@ -7,7 +7,7 @@ import src.db.DB;
 import src.db.DbException;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
-import src.validation.CheckCustomers;
+import src.validation.components.CheckCustomers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

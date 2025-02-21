@@ -1,10 +1,9 @@
 package unittest;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.model.entities.UserEntities.Customer;
-import src.validation.CheckElementsInOrderToUpdate;
+import src.validation.components.CheckElementsInOrderToUpdate;
 
 import static org.junit.jupiter.api.Assertions.*;
 

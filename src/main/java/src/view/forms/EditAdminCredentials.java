@@ -2,9 +2,9 @@ package src.view.forms;
 
 import net.miginfocom.swing.MigLayout;
 import src.model.entities.UserEntities.Admin;
-import src.model.services.UserServices.AdminTable;
-import src.view.util.TradeTicketForTheSupposedAdmin;
-import src.view.validations.user.forms.CheckIfEmailsAreTheSame;
+import src.model.repositories.userinfo.AdminTable;
+import src.model.services.TradeTicketForTheSupposedAdmin;
+import src.validation.user.forms.CheckIfEmailsAreTheSame;
 
 import javax.swing.*;
 import java.awt.*;

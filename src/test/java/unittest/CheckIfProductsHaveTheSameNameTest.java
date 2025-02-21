@@ -2,7 +2,7 @@ package unittest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import src.view.validations.product.page.CheckIfProductsHaveTheSameName;
+import src.validation.product.page.CheckIfProductsHaveTheSameName;
 
 import java.awt.*;
 

@@ -2,7 +2,7 @@ package src.view.page;
 
 import src.model.entities.ProdEntities.Product;
 import src.view.forms.ConfirmProductsPayment;
-import src.view.validations.payment.CheckIfCartIsEmpty;
+import src.validation.payment.CheckIfCartIsEmpty;
 
 import javax.swing.*;
 import java.awt.*;

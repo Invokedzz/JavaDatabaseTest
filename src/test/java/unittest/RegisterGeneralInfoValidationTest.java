@@ -6,9 +6,9 @@ import settings.ValidCpf;
 import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
-import src.validation.CheckAddress;
-import src.validation.CheckCustomers;
-import src.view.validations.user.register.RegisterGeneralInfoValidation;
+import src.validation.components.CheckAddress;
+import src.validation.components.CheckCustomers;
+import src.validation.user.register.RegisterGeneralInfoValidation;
 
 import java.awt.*;
 

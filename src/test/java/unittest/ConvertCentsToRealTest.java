@@ -4,9 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
-import src.view.util.ConvertCentsToReal;
+import src.model.services.ConvertCentsToReal;
 import org.hamcrest.Matchers;
-import src.validation.CheckProducts;
+import src.validation.components.CheckProducts;
 
 import java.math.BigDecimal;
 

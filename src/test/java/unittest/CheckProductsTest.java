@@ -3,11 +3,9 @@ package unittest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import src.exceptions.ProductException;
-import src.model.entities.ProdEntities.Category;
 import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
-import src.validation.CheckProducts;
+import src.validation.components.CheckProducts;
 
 import static org.junit.jupiter.api.Assertions.*;
 

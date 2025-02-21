@@ -2,7 +2,7 @@ package unittest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import src.view.validations.user.forms.CheckIfEmailsAreTheSame;
+import src.validation.user.forms.CheckIfEmailsAreTheSame;
 
 import java.awt.*;
 

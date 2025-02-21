@@ -2,7 +2,7 @@ package src.view.page;
 
 import net.miginfocom.swing.MigLayout;
 import src.model.entities.UserEntities.Admin;
-import src.model.services.UserServices.AdminTable;
+import src.model.repositories.userinfo.AdminTable;
 import src.view.forms.EditAdminCredentials;
 
 import javax.swing.*;

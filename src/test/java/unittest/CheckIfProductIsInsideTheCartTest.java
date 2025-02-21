@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
-import src.view.validations.product.page.CheckIfProductIsInsideTheCart;
+import src.validation.product.page.CheckIfProductIsInsideTheCart;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -2,7 +2,7 @@ package src.view.page;
 
 import net.miginfocom.swing.MigLayout;
 import src.model.entities.UserEntities.Address;
-import src.model.services.UserServices.CustomerTable;
+import src.model.repositories.userinfo.CustomerTable;
 
 import javax.swing.*;
 import java.awt.*;

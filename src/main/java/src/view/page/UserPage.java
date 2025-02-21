@@ -2,12 +2,12 @@ package src.view.page;
 
 import net.miginfocom.swing.MigLayout;
 import src.model.entities.UserEntities.Customer;
-import src.model.services.UserServices.CustomerTable;
+import src.model.repositories.userinfo.CustomerTable;
 import src.security.PassHash;
-import src.validation.CheckElementsInOrderToUpdate;
-import src.view.validations.user.forms.CheckElementsSentByUser;
-import src.view.validations.user.forms.CheckIfCustomerIsNull;
-import src.view.validations.user.forms.ComparePasswordsInOrderToUpdate;
+import src.validation.components.CheckElementsInOrderToUpdate;
+import src.validation.user.forms.CheckElementsSentByUser;
+import src.validation.user.forms.CheckIfCustomerIsNull;
+import src.validation.user.forms.ComparePasswordsInOrderToUpdate;
 
 import javax.swing.*;
 import java.awt.*;

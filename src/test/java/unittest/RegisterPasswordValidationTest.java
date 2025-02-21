@@ -1,7 +1,7 @@
 package unittest;
 
 import org.junit.jupiter.api.Test;
-import src.view.validations.user.register.RegisterPasswordValidation;
+import src.validation.user.register.RegisterPasswordValidation;
 
 import javax.swing.*;
 import java.awt.*;

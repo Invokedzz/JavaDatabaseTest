@@ -1,11 +1,11 @@
 package src.view.forms;
 
 import src.db.DB;
-import src.model.services.UserServices.CustomerTable;
+import src.model.repositories.userinfo.CustomerTable;
 import src.security.UserSession;
 import src.view.page.UserPage;
-import src.view.validations.user.login.LoginMessageValidation;
-import src.view.validations.user.login.LoginSearchAccountValidation;
+import src.validation.user.login.LoginMessageValidation;
+import src.validation.user.login.LoginSearchAccountValidation;
 
 import javax.swing.*;
 

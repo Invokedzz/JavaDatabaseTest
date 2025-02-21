@@ -4,7 +4,7 @@ import src.api.keys.HereKey;
 import src.exceptions.HereApiException;
 import src.model.entities.UserEntities.Address;
 import com.google.gson.*;
-import src.validation.CheckAddress;
+import src.validation.components.CheckAddress;
 
 import java.io.IOException;
 import java.net.*;

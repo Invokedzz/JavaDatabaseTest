@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
-import src.view.validations.payment.ProductQtyOutOfBounds;
+import src.validation.payment.ProductQtyOutOfBounds;
 
 import java.awt.*;
 

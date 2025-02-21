@@ -2,11 +2,11 @@ package src.view.forms;
 
 import net.miginfocom.swing.MigLayout;
 import src.db.DB;
-import src.model.services.UserServices.AdminTable;
+import src.model.repositories.userinfo.AdminTable;
 import src.security.UserSession;
 import src.view.page.AdminPage;
-import src.view.validations.user.login.LoginMessageValidation;
-import src.view.validations.user.login.LoginTicketValidation;
+import src.validation.user.login.LoginMessageValidation;
+import src.validation.user.login.LoginTicketValidation;
 
 import javax.swing.*;
 import java.awt.*;
