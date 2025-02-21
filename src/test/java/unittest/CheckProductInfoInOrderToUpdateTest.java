@@ -1,12 +1,10 @@
 package unittest;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.model.entities.ProdEntities.Product;
 import src.model.enums.ProductAvailability;
-import src.validation.CheckProducts;
-import src.view.validations.product.page.CheckProductInfoInOrderToUpdate;
+import src.validation.product.page.CheckProductInfoInOrderToUpdate;
 
 import java.awt.*;
 

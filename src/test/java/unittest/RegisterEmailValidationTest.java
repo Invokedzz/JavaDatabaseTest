@@ -2,7 +2,7 @@ package unittest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import src.view.validations.user.register.RegisterEmailValidation;
+import src.validation.user.register.RegisterEmailValidation;
 
 import javax.swing.*;
 import java.awt.*;

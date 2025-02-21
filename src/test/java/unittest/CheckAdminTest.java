@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.model.entities.UserEntities.Admin;
 import src.model.enums.TypeUser;
-import src.validation.CheckAdmin;
+import src.validation.components.CheckAdmin;
 
 import static org.junit.jupiter.api.Assertions.*;
 

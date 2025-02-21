@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.model.entities.ProdEntities.Purchases;
-import src.validation.CheckPurchases;
+import src.validation.components.CheckPurchases;
 
 import static org.junit.jupiter.api.Assertions.*;
 

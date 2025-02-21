@@ -7,7 +7,7 @@ import src.db.DB;
 import src.db.DbException;
 import src.model.entities.UserEntities.Admin;
 import src.model.enums.TypeUser;
-import src.validation.CheckAdmin;
+import src.validation.components.CheckAdmin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

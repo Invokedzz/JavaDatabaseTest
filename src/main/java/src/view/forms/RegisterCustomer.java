@@ -6,10 +6,10 @@ import src.db.DB;
 import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.TypeUser;
-import src.model.services.UserServices.CustomerTable;
-import src.validation.CheckAddress;
-import src.validation.CheckCustomers;
-import src.view.validations.user.register.*;
+import src.model.repositories.userinfo.CustomerTable;
+import src.validation.components.CheckAddress;
+import src.validation.components.CheckCustomers;
+import src.validation.user.register.*;
 
 import javax.swing.*;
 import java.util.List;

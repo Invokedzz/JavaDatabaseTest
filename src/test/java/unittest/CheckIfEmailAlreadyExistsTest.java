@@ -2,7 +2,7 @@ package unittest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import src.view.validations.user.register.CheckIfEmailAlreadyExists;
+import src.validation.user.register.CheckIfEmailAlreadyExists;
 
 import java.awt.*;
 import java.util.ArrayList;

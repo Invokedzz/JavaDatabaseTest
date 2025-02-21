@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import settings.ValidCpf;
 import src.api.usages.HereComponents;
 import src.model.entities.UserEntities.Address;
-import src.validation.CheckAddress;
+import src.validation.components.CheckAddress;
 
 import static org.junit.jupiter.api.Assertions.*;
 

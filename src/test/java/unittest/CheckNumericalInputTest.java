@@ -2,7 +2,7 @@ package unittest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import src.view.validations.product.page.CheckNumericalInput;
+import src.validation.product.page.CheckNumericalInput;
 
 import java.awt.*;
 

@@ -3,7 +3,7 @@ package unittest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.model.entities.ProdEntities.Product;
-import src.view.validations.product.page.AreYouSureThisProductExists;
+import src.validation.product.page.AreYouSureThisProductExists;
 import java.util.List;
 import java.awt.*;
 import java.util.ArrayList;

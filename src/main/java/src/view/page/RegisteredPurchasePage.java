@@ -1,8 +1,7 @@
 package src.view.page;
 
-import net.miginfocom.swing.MigLayout;
 import src.model.entities.ProdEntities.Purchases;
-import src.model.services.PaymentServices.PaymentTable;
+import src.model.repositories.purchases.PaymentTable;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,8 +2,7 @@ package unittest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
-import src.view.validations.user.login.LoginTicketValidation;
+import src.validation.user.login.LoginTicketValidation;
 
 import java.awt.*;
 

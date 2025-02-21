@@ -1,8 +1,8 @@
 package src.view.forms;
 
 import net.miginfocom.swing.MigLayout;
-import src.view.util.SendAccountToTheSupposedAdmin;
-import src.view.validations.user.register.RegisterEmailValidation;
+import src.model.services.SendAccountToTheSupposedAdmin;
+import src.validation.user.register.RegisterEmailValidation;
 
 import javax.swing.*;
 import java.awt.*;

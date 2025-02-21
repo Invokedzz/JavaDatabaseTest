@@ -7,7 +7,7 @@ import src.model.entities.ProdEntities.Purchases;
 import src.model.entities.UserEntities.Address;
 import src.model.entities.UserEntities.Customer;
 import src.model.enums.OrderStatus;
-import src.validation.CheckPurchasesStatus;
+import src.validation.components.CheckPurchasesStatus;
 
 import java.time.LocalDate;
 

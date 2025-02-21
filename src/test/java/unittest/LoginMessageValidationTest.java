@@ -3,7 +3,7 @@ package unittest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.security.PassHash;
-import src.view.validations.user.login.LoginMessageValidation;
+import src.validation.user.login.LoginMessageValidation;
 
 import java.awt.*;
 

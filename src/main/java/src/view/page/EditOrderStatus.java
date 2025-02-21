@@ -1,7 +1,7 @@
 package src.view.page;
 
-import src.model.services.PaymentServices.PaymentTable;
-import src.view.validations.payment.CheckOrderStatusUpdate;
+import src.model.repositories.purchases.PaymentTable;
+import src.validation.payment.CheckOrderStatusUpdate;
 
 import javax.swing.*;
 import java.sql.Connection;

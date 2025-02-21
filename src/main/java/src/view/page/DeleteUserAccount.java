@@ -1,6 +1,6 @@
 package src.view.page;
 
-import src.model.services.UserServices.CustomerTable;
+import src.model.repositories.userinfo.CustomerTable;
 
 import javax.swing.*;
 import java.sql.Connection;
