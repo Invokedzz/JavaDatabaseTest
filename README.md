@@ -2,7 +2,7 @@
 
 PorkyStore is a desktop e-commerce application built in **Java** using **Java Swing** and various technologies to offer a seamless and secure shopping experience. With integrations like **MercadoPago** for payment processing, **Here API** for geolocation, and more, PorkyStore provides a comprehensive solution for e-commerce needs.
 
-![](/src/main/java/src/view/img/banner.png)
+
 <img src="/src/main/java/src/view/img/banner.png">
 
 ## Features
